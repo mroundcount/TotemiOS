@@ -17,6 +17,7 @@
 		BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFD921014F6F0001AF90 /* LoginViewController.swift */; };
 		BF70CFDC21014FD70001AF90 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDB21014FD70001AF90 /* FeedViewController.swift */; };
 		BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */; };
+		BF8E11562106CAAE00D9A8C5 /* audioRecModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		BF70CFD921014F6F0001AF90 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF70CFDB21014FD70001AF90 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioRecModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		BF23663020FD19F50087C7E1 /* audioRec */ = {
 			isa = PBXGroup;
 			children = (
+				BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */,
 				BF23663120FD19F50087C7E1 /* AppDelegate.swift */,
 				BF23663320FD19F50087C7E1 /* ViewController.swift */,
 				BF70CFD921014F6F0001AF90 /* LoginViewController.swift */,
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */,
+				BF8E11562106CAAE00D9A8C5 /* audioRecModel.swift in Sources */,
 				BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */,
 				BF23663420FD19F50087C7E1 /* ViewController.swift in Sources */,
 				BF70CFDC21014FD70001AF90 /* FeedViewController.swift in Sources */,
