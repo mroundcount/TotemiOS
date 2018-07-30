@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5AB7DCA7210FC76600464C93 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AB7DCA6210FC76600464C93 /* ExternalAccessory.framework */; };
 		BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23663120FD19F50087C7E1 /* AppDelegate.swift */; };
 		BF23663420FD19F50087C7E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23663320FD19F50087C7E1 /* ViewController.swift */; };
 		BF23663720FD19F50087C7E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF23663520FD19F50087C7E1 /* Main.storyboard */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5AB7DCA6210FC76600464C93 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		5AB7DCA8210FC76600464C93 /* audioRec.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = audioRec.entitlements; sourceTree = "<group>"; };
 		BF23662E20FD19F50087C7E1 /* audioRec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = audioRec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF23663120FD19F50087C7E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF23663320FD19F50087C7E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AB7DCA7210FC76600464C93 /* ExternalAccessory.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AB7DCA5210FC76600464C93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5AB7DCA6210FC76600464C93 /* ExternalAccessory.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BF23662520FD19F50087C7E1 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +101,7 @@
 				BF23664520FD19FB0087C7E1 /* audioRecTests */,
 				BF23665020FD19FB0087C7E1 /* audioRecUITests */,
 				BF23662F20FD19F50087C7E1 /* Products */,
+				5AB7DCA5210FC76600464C93 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +118,7 @@
 		BF23663020FD19F50087C7E1 /* audioRec */ = {
 			isa = PBXGroup;
 			children = (
+				5AB7DCA8210FC76600464C93 /* audioRec.entitlements */,
 				BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */,
 				BF23663120FD19F50087C7E1 /* AppDelegate.swift */,
 				BF23663320FD19F50087C7E1 /* ViewController.swift */,
@@ -205,6 +219,11 @@
 				TargetAttributes = {
 					BF23662D20FD19F50087C7E1 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.WAC = {
+								enabled = 1;
+							};
+						};
 					};
 					BF23664120FD19FB0087C7E1 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -446,8 +465,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = audioRec/audioRec.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BMHQ829P8V;
 				INFOPLIST_FILE = audioRec/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -463,8 +485,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = audioRec/audioRec.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BMHQ829P8V;
 				INFOPLIST_FILE = audioRec/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

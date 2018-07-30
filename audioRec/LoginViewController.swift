@@ -9,102 +9,100 @@
 
 //Michael Code
 import UIKit
+import SystemConfiguration
+
 
 class LoginViewController: UIViewController {
 
     @IBOutlet var _username: UITextField!
     @IBOutlet var _password: UITextField!
-    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var login: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let preferences = UserDefaults.standard
-        
-        if(preferences.object(forKey: "session") != nil) {
-            LoginDone()
-        } else {
-            LoginToDo()
-        }
-        
-    }
-    //adding a _to the text fields so that they do not reference the vaiables
-    @IBAction func loginButton(_ sender: Any) {
-        
-        if(loginButton.titleLabel?.text == "Logout") {
-            let preferences = UserDefaults.standard
-            preferences.removeObject(forKey: "session")
-            
-            LoginToDo()
-            return
-        }
-        
-        let username = _username.text
-        let password = _password.text
-        
-        if (username == "" || password == "") {
-            return
-        }
-        
-        DoLogin(username!, password!)
     }
     
-    func DoLogin(_ user:String, _ psw:String){
+    @IBAction func loginPressed(_ sender: Any) {
+        let username = _username.text!
+        let password = _password.text!
+        
+        DoLogin(user: username, psw: password)
+    }
+    
+    func DoLogin(user:String, psw:String){
         
         //test API link
-        let url = URL(string: "http://www.kaleidosblog.com/tutorial/login/api/login")
+        let url = URL(string: "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/apiToken")
         let session = URLSession.shared
         
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "POST"
         
-        let paramToSend = "username" + user + "&password" + psw
+        // format data to be posted
+        let loginString = String(format: "%@:%@", user, psw)
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
         
-        request.httpBody = paramToSend.data(using: String.Encoding.utf8)
+        // Set method to POST and add username & password value
+        request.httpMethod = "POST"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        // use DispatchGroup so you don't return token before it has a value
+        let group = DispatchGroup()
         
-        let task = session.dataTask(with: request as URLRequest, completionHandler: {
-        (data, response, error) in
+        group.enter()
+        
+        // fireoff request
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             
-            guard let _:Data = data else {
-                return
-            }
-            let json:Any?
-            
-            do {
-                json = try JSONSerialization.jsonObject(with: data!, options: [])
-            }
-            catch {
-                return
-            }
-            guard let server_response = json as? NSDictionary else {
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(String(describing: error))")
+                
                 return
             }
             
-            if let data_block = server_response["data"] as? NSDictionary {
-                if let session_data = data_block["session"] as? String {
-                    let preferences = UserDefaults.standard
-                    preferences.set(session_data, forKey: "session")
-                    
-                    DispatchQueue.main.async (
-                        execute:self.LoginDone
-                            )
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {        // check for http errors
+                
+                // login failed
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                
+               
+                
+                // avoid deadlocks by not using .main queue here
+                DispatchQueue.global().async {
+                    group.leave()
                 }
+                
             }
-        })
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 {
+                // success case
+                
+                let responseString = String(data: data, encoding: .utf8)
+                
+                let res = String(describing: responseString)
+                let index1 = res.index(res.endIndex, offsetBy: -5)
+                let index0 = res.index(res.startIndex, offsetBy: 23)
+                
+                print(responseString)
+                
+                let sub1 = res[index0..<index1]
+                
+                print(sub1)
+                // avoid deadlocks by not using .main queue here
+                DispatchQueue.global().async {
+                    group.leave()
+                }
+                
+            }
+            
+        }
         task.resume()
-    }
-    
-    func LoginToDo() {
-        _username.isEnabled = true
-        _password.isEnabled = true
         
-        loginButton.setTitle("Login", for: .normal)
-    }
-    
-    func LoginDone() {
-        _username.isEnabled = false
-        _password.isEnabled = false
+        group.notify(queue: .main){
+            print("complete")
+        }
         
-        loginButton.setTitle("Logout", for: .normal)
-    }
+}
+
 }
