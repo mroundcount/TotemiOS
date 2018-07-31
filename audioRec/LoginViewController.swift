@@ -18,6 +18,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var _password: UITextField!
     @IBOutlet var login: UIButton!
     
+    let token : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +30,9 @@ class LoginViewController: UIViewController {
         let password = _password.text!
         
         DoLogin(user: username, psw: password)
+    
     }
+    
     
     func DoLogin(user:String, psw:String){
         
@@ -77,6 +81,9 @@ class LoginViewController: UIViewController {
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 {
                 // success case
+                let statCode = httpStatus.statusCode
+                
+                print(statCode)
                 
                 let responseString = String(data: data, encoding: .utf8)
                 
@@ -84,11 +91,14 @@ class LoginViewController: UIViewController {
                 let index1 = res.index(res.endIndex, offsetBy: -5)
                 let index0 = res.index(res.startIndex, offsetBy: 23)
                 
-                print(responseString)
-                
                 let sub1 = res[index0..<index1]
                 
                 print(sub1)
+                
+                let preferences = UserDefaults.standard
+                preferences.setValue(String(sub1), forKey: "tokenKey")
+                preferences.synchronize()
+                
                 // avoid deadlocks by not using .main queue here
                 DispatchQueue.global().async {
                     group.leave()
@@ -101,6 +111,16 @@ class LoginViewController: UIViewController {
         
         group.notify(queue: .main){
             print("complete")
+            
+            if(!self.token.starts(with: "ey")){
+                // login worked, perform segue
+                
+                print("Performing the segue")
+                
+                self.performSegue(withIdentifier: "loginSuccessful", sender: nil)
+                
+            }
+            
         }
         
 }

@@ -23,11 +23,12 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var repeatPassword: UITextField!
     @IBOutlet weak var emailAddress: UITextField!
-    @IBOutlet weak var labelMessage: UILabel!    
+    @IBOutlet weak var labelMessage: UILabel!
+    
     
     @IBAction func registerButton(_ sender: Any) {
       
-        if(password.isEqual(repeatPassword)){
+        if(password.text!.isEqual(repeatPassword.text!)){
             let dbManager = DatabaseManager()
             
             /*
@@ -39,6 +40,9 @@ class CreateAccountViewController: UIViewController {
             
             print("-----------------response from dataPost-----------------------")
             print(dbManager.dataPost(endpoint: "api/user", data: variable))
+            
+            labelMessage.text = "Success! Return to login"
+
         } else{
             labelMessage.text = "Passwords don't match"
         }
