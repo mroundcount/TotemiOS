@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5AB7DCA7210FC76600464C93 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AB7DCA6210FC76600464C93 /* ExternalAccessory.framework */; };
+		5AB7DCAA2110D34A00464C93 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */; };
 		BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23663120FD19F50087C7E1 /* AppDelegate.swift */; };
 		BF23663420FD19F50087C7E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23663320FD19F50087C7E1 /* ViewController.swift */; };
 		BF23663720FD19F50087C7E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF23663520FD19F50087C7E1 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		5AB7DCA6210FC76600464C93 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		5AB7DCA8210FC76600464C93 /* audioRec.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = audioRec.entitlements; sourceTree = "<group>"; };
+		5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		BF23662E20FD19F50087C7E1 /* audioRec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = audioRec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF23663120FD19F50087C7E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF23663320FD19F50087C7E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
 				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
 				BF23663D20FD19FA0087C7E1 /* Info.plist */,
+				5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */,
 			);
 			path = audioRec;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			files = (
 				BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */,
 				BF8E11562106CAAE00D9A8C5 /* audioRecModel.swift in Sources */,
+				5AB7DCAA2110D34A00464C93 /* DatabaseManager.swift in Sources */,
 				BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */,
 				BF23663420FD19F50087C7E1 /* ViewController.swift in Sources */,
 				BF70CFDC21014FD70001AF90 /* FeedViewController.swift in Sources */,
