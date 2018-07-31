@@ -15,9 +15,11 @@
 		BF23664720FD19FB0087C7E1 /* audioRecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23664620FD19FB0087C7E1 /* audioRecTests.swift */; };
 		BF23665220FD19FB0087C7E1 /* audioRecUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */; };
 		BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFD921014F6F0001AF90 /* LoginViewController.swift */; };
-		BF70CFDC21014FD70001AF90 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDB21014FD70001AF90 /* FeedViewController.swift */; };
 		BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */; };
 		BF8E11562106CAAE00D9A8C5 /* audioRecModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */; };
+		BFE02FFD210FF7EB00376B16 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */; };
+		BFE030012111128300376B16 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE030002111128300376B16 /* FeedViewController.swift */; };
+		BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE030022111183600376B16 /* CreateAccountModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,9 +54,11 @@
 		BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioRecUITests.swift; sourceTree = "<group>"; };
 		BF23665320FD19FB0087C7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF70CFD921014F6F0001AF90 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		BF70CFDB21014FD70001AF90 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioRecModel.swift; sourceTree = "<group>"; };
+		BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BFE030002111128300376B16 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		BFE030022111183600376B16 /* CreateAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,12 +109,14 @@
 		BF23663020FD19F50087C7E1 /* audioRec */ = {
 			isa = PBXGroup;
 			children = (
-				BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */,
 				BF23663120FD19F50087C7E1 /* AppDelegate.swift */,
+				BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */,
+				BFE030022111183600376B16 /* CreateAccountModel.swift */,
 				BF23663320FD19F50087C7E1 /* ViewController.swift */,
 				BF70CFD921014F6F0001AF90 /* LoginViewController.swift */,
-				BF70CFDB21014FD70001AF90 /* FeedViewController.swift */,
 				BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */,
+				BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */,
+				BFE030002111128300376B16 /* FeedViewController.swift */,
 				BF23663520FD19F50087C7E1 /* Main.storyboard */,
 				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
 				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
@@ -268,12 +274,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE02FFD210FF7EB00376B16 /* ProfileViewController.swift in Sources */,
 				BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */,
 				BF8E11562106CAAE00D9A8C5 /* audioRecModel.swift in Sources */,
 				BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */,
 				BF23663420FD19F50087C7E1 /* ViewController.swift in Sources */,
-				BF70CFDC21014FD70001AF90 /* FeedViewController.swift in Sources */,
+				BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */,
 				BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */,
+				BFE030012111128300376B16 /* FeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

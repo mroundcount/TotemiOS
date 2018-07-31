@@ -11,12 +11,11 @@ import AVFoundation
 
 class ViewController: UIViewController, AVAudioRecorderDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    //resting reset
-    //@IBOutlet weak var resetBtn: UIButton!
     //Timer labels
     @IBOutlet weak var labelMinute: UILabel!
     @IBOutlet weak var labelSecond: UILabel!
     @IBOutlet weak var labelMillisecond: UILabel!
+    
     //Timer variables
     weak var timer: Timer?
     var startTime: Double = 0
@@ -41,11 +40,15 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, UITableViewDele
         if (pause.titleLabel?.text == "Pause") {
             //Pause the recording
             audioRecorder.pause()
+            //stop timer
+            stop()
             //change the button label
             pause.setTitle("Resume", for: .normal)
         } else {
             //resume the recording
             audioRecorder.record()
+            //restart timer
+            start()
             //myTableView.reloadData()
             pause.setTitle("Pause", for: .normal)
         }
@@ -120,30 +123,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, UITableViewDele
             UserDefaults.standard.set(numberOfRecords, forKey: "MyNumber")
         }
     }
-    
-    //testing reset
-    /*
-    @IBAction func resetBtn(_ sender: UIButton) {
-        // Invalidate timer
-        timer?.invalidate()
-        
-        // Reset timer variables
-        startTime = 0
-        time = 0
-        elapsed = 0
-        status = false
-        
-        // Reset all three labels to 00
-        let strReset = String("00")
-        labelMinute.text = strReset
-        labelSecond.text = strReset
-        labelMillisecond.text = strReset
-    }
-    */
-    //end reset testing
-    
-    
-    
+
     
     
     //playback button
@@ -165,14 +145,11 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, UITableViewDele
     @IBAction func publish(_ sender: Any) {
         //scrap this and move it back to the record button        
         myTableView.reloadData()
-        
     }
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // quote.text = audioRecModel.randomQuote(self: number)
         
         //Hide the buttons
@@ -239,27 +216,20 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, UITableViewDele
     
     //Timer functions
     func start() {
-        
         startTime = Date().timeIntervalSinceReferenceDate - elapsed
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        
         // Set Start/Stop button to true
         status = true
-        
     }
     
     func stop() {
-        
         elapsed = Date().timeIntervalSinceReferenceDate - startTime
         timer?.invalidate()
-        
         // Set Start/Stop button to false
         status = false
-        
     }
     
     @objc func updateCounter() {
-        
         // Calculate total time since timer started in seconds
         time = Date().timeIntervalSinceReferenceDate - startTime
         
@@ -283,7 +253,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, UITableViewDele
         labelMinute.text = strMinutes
         labelSecond.text = strSeconds
         labelMillisecond.text = strMilliseconds
-        
     }
     
 }
