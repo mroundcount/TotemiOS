@@ -12,21 +12,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     @IBOutlet weak var username: UILabel!
-    
+    var token = ""
+    var usernameString = ""
+    let preferences = UserDefaults.standard
     
     
     
     @IBOutlet weak var tableView: UITableView!
     
-    var foods = ["Milk", "Honey", "Salt", "Bread", "Banana"]
+    var posts : [Any] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foods.count
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath)
-        cell.textLabel?.text = foods[indexPath.row]
+        cell.textLabel?.text = posts[indexPath.row] as! String
         return cell
     }
     
@@ -35,7 +37,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     {
         if editingStyle == UITableViewCellEditingStyle.delete
         {
-            foods.remove(at: indexPath.row)
+            posts.remove(at: indexPath.row)
             tableView.reloadData()
         }
     }
@@ -44,6 +46,29 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        
+        // get token from preferences
+        if preferences.value(forKey: "tokenKey") == nil {
+            //  Doesn't exist
+        } else {
+            self.token = preferences.value(forKey: "tokenKey") as! String
+        }
+        
+        // get token from preferences
+        if preferences.value(forKey: "username") == nil {
+            //  Doesn't exist
+        } else {
+            self.usernameString = preferences.value(forKey: "username") as! String
+        }
+        
+        let dbManager = DatabaseManager()
+        let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
+        
+        print("----------------------------")
+        self.posts = dbManager.getPostsForUser(token: self.token, data: dataString) as! [Any]
+        
+        print(self.posts)
+
     }
 
     override func didReceiveMemoryWarning() {
