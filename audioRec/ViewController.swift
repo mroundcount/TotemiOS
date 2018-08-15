@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+
 class ViewController: UIViewController, AVAudioRecorderDelegate, UITableViewDelegate, UITableViewDataSource {
     
     //Timer labels
@@ -31,6 +32,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, UITableViewDele
     var numberOfRecords: Int = 0
     
     @IBOutlet weak var quote: UILabel!
+    @IBOutlet weak var descriptionTxt: UITextView!
+    
     
     @IBOutlet weak var ButtonLabel: UIButton!
     
@@ -150,6 +153,13 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
+        descriptionTxt.layer.borderWidth = 1
+        descriptionTxt.layer.borderColor = borderColor.cgColor
+        descriptionTxt.layer.cornerRadius = 5.0
+        
+        
         // quote.text = audioRecModel.randomQuote(self: number)
         
         //Hide the buttons
@@ -213,6 +223,10 @@ class ViewController: UIViewController, AVAudioRecorderDelegate, UITableViewDele
             displayALert(title: "Oh no.....", message: "Playback Failed")
         }
     }
+    
+    
+    
+    
     
     //Timer functions
     func start() {
