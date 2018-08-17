@@ -14,29 +14,28 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     let reference = recorder()
     //let timeReference = timer()
     
+    
     @IBOutlet weak var recordingImage: UIImageView!
     
-    
     @IBOutlet weak var recordBtn: UIButton!
-    @IBOutlet weak var pause: UIButton!
-    @IBOutlet weak var finished: UIButton!
+    @IBOutlet weak var finishedBtn: UIButton!
+    @IBOutlet weak var pauseBtn: UIButton!
     @IBOutlet weak var publishBtn: UIButton!
     
     @IBOutlet weak var defaultTxt: UILabel!
-    @IBOutlet weak var timerMessage: UILabel!
+    @IBOutlet weak var timerMessageTxt: UILabel!
     @IBOutlet weak var descriptionTxt: UITextView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pause.isHidden = true
-        finished.isHidden = true
+        publishBtn.isHidden = true
+        pauseBtn.isHidden = true
+        finishedBtn.isHidden = true
         descriptionTxt.isHidden = true
         publishBtn.isHidden = true
         
         //Timer message debate
-        timerMessage.isHidden = true
+        timerMessageTxt.isHidden = true
         
         defaultTxt.text = reference.openingTxt()
         
@@ -52,13 +51,22 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func recordBtn(_ sender: UIButton) {
-    
+
         if audioRecorder == nil{
             
             let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
             
             //Defining the format, sample rate, number of channels, and the quality
+            //Test mP3
+            //let settings = [AVFormatIDKey: Int(kAudioFormatMPEGLayer3), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
+            
+            //Origional code that works
             let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
+            
+            //reference code from stackoverflow
+            //[NSNumber numberWithInt:kAudioFormatMPEGLayer3] forKey:AVFormatIDKey
+            
+            
             
             //Start Audio Recodring
             do {
@@ -67,15 +75,16 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
                 audioRecorder.delegate = self
                 audioRecorder.record()
                 
-                pause.isHidden = false
-                finished.isHidden = false
+                publishBtn.isHidden = true
+                pauseBtn.isHidden = false
+                finishedBtn.isHidden = false
                 recordBtn.isHidden = true
                 defaultTxt.isHidden = true
                 publishBtn.isHidden = true
                 
                 //rerecord settings
-                pause.setTitle("Pause", for: .normal)
-                finished.setTitle("Finished", for: .normal)
+                pauseBtn.setTitle("Pause", for: .normal)
+                finishedBtn.setTitle("Finished", for: .normal)
                 recordingImage.isHidden = false
                 descriptionTxt.isHidden = true
                 
@@ -92,9 +101,10 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     
-    @IBAction func pause(_ sender: UIButton) {
-    if (finished.titleLabel?.text == "Finished") {
-            if (pause.titleLabel?.text == "Pause") {
+
+    @IBAction func pauseBtn(_ sender: UIButton) {
+    if (finishedBtn.titleLabel?.text == "Finished") {
+            if (pauseBtn.titleLabel?.text == "Pause") {
                 //When recording is paused
                 recordingImage.isHidden = true
                 
@@ -103,31 +113,34 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
                 
                 audioRecorder.pause()
                 
-                pause.setTitle("Resume", for: .normal)
+                pauseBtn.setTitle("Resume", for: .normal)
             } else {
                 //When recording is active
-                pause.setTitle("Pause", for: .normal)
+                pauseBtn.setTitle("Pause", for: .normal)
                 recordingImage.loadGif(name: "recording")
                 recordingImage.isHidden = false
                 
                 audioRecorder.record()
             }
         } else {
-            if (pause.titleLabel?.text == "Pause") {
+            if (pauseBtn.titleLabel?.text == "Pause") {
                 audioPlayer.pause()
-                pause.setTitle("Resume", for: .normal)
+                pauseBtn.setTitle("Resume", for: .normal)
             } else {
-                pause.setTitle("Pause", for: .normal)
+                pauseBtn.setTitle("Pause", for: .normal)
                 audioPlayer.play()
             }
         }
     }
     
     
-    @IBAction func finished(_ sender: UIButton) {
-    if (finished.titleLabel?.text == "Finished") {
+
+    @IBAction func finishedBtn(_ sender: UIButton) {
+    if (finishedBtn.titleLabel?.text == "Finished") {
             //When clicked
-            pause.setTitle("Pause", for: .normal)
+            pauseBtn.setTitle("Pause", for: .normal)
+        
+            publishBtn.isHidden = false
             recordingImage.isHidden = true
             descriptionTxt.isHidden = false
             publishBtn.isHidden = false
@@ -144,7 +157,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.stop()
             audioRecorder = nil
             
-            finished.setTitle("Playback", for: .normal)
+            finishedBtn.setTitle("Playback", for: .normal)
         } else {
             
             let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
@@ -167,9 +180,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     
     
-    
-    
-    
     var time = 0
     var timer = Timer()
     
@@ -177,13 +187,13 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     {
         time += 1
         if time >= 0 && time <= 3 {
-            timerMessage.text = "Go ahead and begin"
+            timerMessageTxt.text = "Go ahead and begin"
         } else if time >= 6 && time <= 8 {
-            timerMessage.text = "You'll do great"
+            timerMessageTxt.text = "You'll do great"
         } else if time >= 15 && time <= 18 {
-            timerMessage.text = "Seriously cowboy, wrap it the fuck up"
+            timerMessageTxt.text = "Seriously cowboy, wrap it the fuck up"
         } else {
-            timerMessage.text = " "
+            timerMessageTxt.text = " "
         }
     }
     

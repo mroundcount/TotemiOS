@@ -13,9 +13,9 @@
 		BF078107212655FF00EB7CBE /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF078106212655FF00EB7CBE /* RecorderViewController.swift */; };
 		BF07810921268F6200EB7CBE /* gifFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF07810821268F6200EB7CBE /* gifFile.swift */; };
 		BF07810B2126940D00EB7CBE /* recording.gif in Resources */ = {isa = PBXBuildFile; fileRef = BF07810A2126940C00EB7CBE /* recording.gif */; };
+		BF07810F2127674E00EB7CBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF07810E2127674E00EB7CBE /* Main.storyboard */; };
 		BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23663120FD19F50087C7E1 /* AppDelegate.swift */; };
 		BF23663420FD19F50087C7E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23663320FD19F50087C7E1 /* ViewController.swift */; };
-		BF23663720FD19F50087C7E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF23663520FD19F50087C7E1 /* Main.storyboard */; };
 		BF23663920FD19FA0087C7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF23663820FD19FA0087C7E1 /* Assets.xcassets */; };
 		BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */; };
 		BF23664720FD19FB0087C7E1 /* audioRecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23664620FD19FB0087C7E1 /* audioRecTests.swift */; };
@@ -54,10 +54,10 @@
 		BF078106212655FF00EB7CBE /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
 		BF07810821268F6200EB7CBE /* gifFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifFile.swift; sourceTree = "<group>"; };
 		BF07810A2126940C00EB7CBE /* recording.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = recording.gif; path = ../../Totem/appImages/recording.gif; sourceTree = "<group>"; };
+		BF07810E2127674E00EB7CBE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BF23662E20FD19F50087C7E1 /* audioRec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = audioRec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF23663120FD19F50087C7E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF23663320FD19F50087C7E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BF23663620FD19F50087C7E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF23663820FD19FA0087C7E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF23663B20FD19FA0087C7E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF23663D20FD19FA0087C7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 				BF8C12662113DABB0086A99E /* PostTableViewCell.swift */,
 				BFD1E98921181E7A00135D94 /* PrivatePublishViewController.swift */,
 				BFE030002111128300376B16 /* FeedViewController.swift */,
-				BF23663520FD19F50087C7E1 /* Main.storyboard */,
+				BF07810E2127674E00EB7CBE /* Main.storyboard */,
 				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
 				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
 				BF07810A2126940C00EB7CBE /* recording.gif */,
@@ -287,7 +287,7 @@
 				BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */,
 				BF23663920FD19FA0087C7E1 /* Assets.xcassets in Resources */,
 				BF07810B2126940D00EB7CBE /* recording.gif in Resources */,
-				BF23663720FD19F50087C7E1 /* Main.storyboard in Resources */,
+				BF07810F2127674E00EB7CBE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,14 +360,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BF23663520FD19F50087C7E1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BF23663620FD19F50087C7E1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -499,7 +491,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = audioRec/audioRec.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BMHQ829P8V;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = audioRec/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -508,6 +500,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Totem-LLC.audioRec";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -519,15 +512,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = audioRec/audioRec.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BMHQ829P8V;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = audioRec/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Totem-LLC.audioRec";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
