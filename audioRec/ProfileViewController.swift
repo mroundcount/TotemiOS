@@ -105,6 +105,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     /*
+     
+     get the values of thr array first then turn them into a json object
+     
      //Roundcount Attempt 1
     func parseURL(theURL:String){
         let url = URL(string: theURL)

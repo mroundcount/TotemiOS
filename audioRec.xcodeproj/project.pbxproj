@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		5AB7DCA7210FC76600464C93 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AB7DCA6210FC76600464C93 /* ExternalAccessory.framework */; };
 		5AB7DCAA2110D34A00464C93 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */; };
+		BF078105212640FA00EB7CBE /* recorderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF078104212640FA00EB7CBE /* recorderModel.swift */; };
+		BF078107212655FF00EB7CBE /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF078106212655FF00EB7CBE /* RecorderViewController.swift */; };
+		BF07810921268F6200EB7CBE /* gifFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF07810821268F6200EB7CBE /* gifFile.swift */; };
+		BF07810B2126940D00EB7CBE /* recording.gif in Resources */ = {isa = PBXBuildFile; fileRef = BF07810A2126940C00EB7CBE /* recording.gif */; };
 		BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23663120FD19F50087C7E1 /* AppDelegate.swift */; };
 		BF23663420FD19F50087C7E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23663320FD19F50087C7E1 /* ViewController.swift */; };
 		BF23663720FD19F50087C7E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF23663520FD19F50087C7E1 /* Main.storyboard */; };
@@ -19,7 +23,6 @@
 		BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFD921014F6F0001AF90 /* LoginViewController.swift */; };
 		BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */; };
 		BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C12662113DABB0086A99E /* PostTableViewCell.swift */; };
-		BF8E11562106CAAE00D9A8C5 /* audioRecModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */; };
 		BFD1E98A21181E7A00135D94 /* PrivatePublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1E98921181E7A00135D94 /* PrivatePublishViewController.swift */; };
 		BFE02FFD210FF7EB00376B16 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */; };
 		BFE030012111128300376B16 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE030002111128300376B16 /* FeedViewController.swift */; };
@@ -47,6 +50,10 @@
 		5AB7DCA6210FC76600464C93 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		5AB7DCA8210FC76600464C93 /* audioRec.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = audioRec.entitlements; sourceTree = "<group>"; };
 		5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		BF078104212640FA00EB7CBE /* recorderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recorderModel.swift; sourceTree = "<group>"; };
+		BF078106212655FF00EB7CBE /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
+		BF07810821268F6200EB7CBE /* gifFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifFile.swift; sourceTree = "<group>"; };
+		BF07810A2126940C00EB7CBE /* recording.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = recording.gif; path = ../../Totem/appImages/recording.gif; sourceTree = "<group>"; };
 		BF23662E20FD19F50087C7E1 /* audioRec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = audioRec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF23663120FD19F50087C7E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF23663320FD19F50087C7E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +70,6 @@
 		BF70CFD921014F6F0001AF90 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		BF8C12662113DABB0086A99E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioRecModel.swift; sourceTree = "<group>"; };
 		BFD1E98921181E7A00135D94 /* PrivatePublishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivatePublishViewController.swift; sourceTree = "<group>"; };
 		BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BFE030002111128300376B16 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -129,8 +135,10 @@
 			isa = PBXGroup;
 			children = (
 				5AB7DCA8210FC76600464C93 /* audioRec.entitlements */,
+				BF07810821268F6200EB7CBE /* gifFile.swift */,
 				BF23663120FD19F50087C7E1 /* AppDelegate.swift */,
-				BF8E11552106CAAE00D9A8C5 /* audioRecModel.swift */,
+				BF078104212640FA00EB7CBE /* recorderModel.swift */,
+				BF078106212655FF00EB7CBE /* RecorderViewController.swift */,
 				BF23663320FD19F50087C7E1 /* ViewController.swift */,
 				BFE030022111183600376B16 /* CreateAccountModel.swift */,
 				BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */,
@@ -142,6 +150,7 @@
 				BF23663520FD19F50087C7E1 /* Main.storyboard */,
 				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
 				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
+				BF07810A2126940C00EB7CBE /* recording.gif */,
 				BF23663D20FD19FA0087C7E1 /* Info.plist */,
 				5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */,
 			);
@@ -277,6 +286,7 @@
 			files = (
 				BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */,
 				BF23663920FD19FA0087C7E1 /* Assets.xcassets in Resources */,
+				BF07810B2126940D00EB7CBE /* recording.gif in Resources */,
 				BF23663720FD19F50087C7E1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,14 +314,16 @@
 			files = (
 				BFE02FFD210FF7EB00376B16 /* ProfileViewController.swift in Sources */,
 				BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */,
-				BF8E11562106CAAE00D9A8C5 /* audioRecModel.swift in Sources */,
 				5AB7DCAA2110D34A00464C93 /* DatabaseManager.swift in Sources */,
 				BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */,
+				BF07810921268F6200EB7CBE /* gifFile.swift in Sources */,
+				BF078107212655FF00EB7CBE /* RecorderViewController.swift in Sources */,
 				BF23663420FD19F50087C7E1 /* ViewController.swift in Sources */,
 				BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */,
 				BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */,
 				BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */,
 				BFD1E98A21181E7A00135D94 /* PrivatePublishViewController.swift in Sources */,
+				BF078105212640FA00EB7CBE /* recorderModel.swift in Sources */,
 				BFE030012111128300376B16 /* FeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
