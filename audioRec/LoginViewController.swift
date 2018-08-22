@@ -18,6 +18,9 @@ class LoginViewController: UIViewController {
     @IBOutlet var _password: UITextField!
     @IBOutlet var login: UIButton!
     
+    @IBOutlet weak var authLbl: UILabel!
+    
+    
     let token : String = ""
     
     override func viewDidLoad() {

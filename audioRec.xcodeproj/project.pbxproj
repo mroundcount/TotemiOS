@@ -22,8 +22,14 @@
 		BF23665220FD19FB0087C7E1 /* audioRecUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */; };
 		BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFD921014F6F0001AF90 /* LoginViewController.swift */; };
 		BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */; };
+		BF77DE1A2127AAD200C7C038 /* loginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE182127AAD000C7C038 /* loginButton.png */; };
+		BF77DE1D2127ADD300C7C038 /* loginButtonPurple.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE1C2127ADD300C7C038 /* loginButtonPurple.png */; };
+		BF77DE1F212BE0CD00C7C038 /* TotemBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE1E212BE0CC00C7C038 /* TotemBanner.png */; };
+		BF77DE21212BE43900C7C038 /* CreateAccountBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE20212BE43800C7C038 /* CreateAccountBtn.png */; };
+		BF77DE2B212D26AC00C7C038 /* RecorderButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE2A212D26AC00C7C038 /* RecorderButton.png */; };
+		BF77DE2F212D286800C7C038 /* PrivateFeedButtonPurp.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE2E212D286800C7C038 /* PrivateFeedButtonPurp.png */; };
+		BF77DE31212D29AA00C7C038 /* FeedButtonGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE30212D29AA00C7C038 /* FeedButtonGrey.png */; };
 		BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C12662113DABB0086A99E /* PostTableViewCell.swift */; };
-		BFD1E98A21181E7A00135D94 /* PrivatePublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1E98921181E7A00135D94 /* PrivatePublishViewController.swift */; };
 		BFE02FFD210FF7EB00376B16 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */; };
 		BFE030012111128300376B16 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE030002111128300376B16 /* FeedViewController.swift */; };
 		BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE030022111183600376B16 /* CreateAccountModel.swift */; };
@@ -69,8 +75,14 @@
 		BF23665320FD19FB0087C7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF70CFD921014F6F0001AF90 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		BF77DE182127AAD000C7C038 /* loginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginButton.png; path = ../../Totem/loginButton.png; sourceTree = "<group>"; };
+		BF77DE1C2127ADD300C7C038 /* loginButtonPurple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginButtonPurple.png; path = ../../Totem/loginButtonPurple.png; sourceTree = "<group>"; };
+		BF77DE1E212BE0CC00C7C038 /* TotemBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TotemBanner.png; path = ../../Totem/appImages/TotemBanner.png; sourceTree = "<group>"; };
+		BF77DE20212BE43800C7C038 /* CreateAccountBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CreateAccountBtn.png; path = ../../Totem/appImages/CreateAccountBtn.png; sourceTree = "<group>"; };
+		BF77DE2A212D26AC00C7C038 /* RecorderButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RecorderButton.png; path = ../../Totem/appImages/RecorderButton.png; sourceTree = "<group>"; };
+		BF77DE2E212D286800C7C038 /* PrivateFeedButtonPurp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PrivateFeedButtonPurp.png; path = ../../Totem/appImages/PrivateFeedButtonPurp.png; sourceTree = "<group>"; };
+		BF77DE30212D29AA00C7C038 /* FeedButtonGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FeedButtonGrey.png; path = ../../Totem/appImages/FeedButtonGrey.png; sourceTree = "<group>"; };
 		BF8C12662113DABB0086A99E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		BFD1E98921181E7A00135D94 /* PrivatePublishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivatePublishViewController.swift; sourceTree = "<group>"; };
 		BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BFE030002111128300376B16 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		BFE030022111183600376B16 /* CreateAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountModel.swift; sourceTree = "<group>"; };
@@ -137,20 +149,26 @@
 				5AB7DCA8210FC76600464C93 /* audioRec.entitlements */,
 				BF07810821268F6200EB7CBE /* gifFile.swift */,
 				BF23663120FD19F50087C7E1 /* AppDelegate.swift */,
-				BF078104212640FA00EB7CBE /* recorderModel.swift */,
-				BF078106212655FF00EB7CBE /* RecorderViewController.swift */,
 				BF23663320FD19F50087C7E1 /* ViewController.swift */,
 				BFE030022111183600376B16 /* CreateAccountModel.swift */,
 				BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */,
+				BFE030002111128300376B16 /* FeedViewController.swift */,
 				BF70CFD921014F6F0001AF90 /* LoginViewController.swift */,
 				BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */,
 				BF8C12662113DABB0086A99E /* PostTableViewCell.swift */,
-				BFD1E98921181E7A00135D94 /* PrivatePublishViewController.swift */,
-				BFE030002111128300376B16 /* FeedViewController.swift */,
+				BF078104212640FA00EB7CBE /* recorderModel.swift */,
+				BF078106212655FF00EB7CBE /* RecorderViewController.swift */,
 				BF07810E2127674E00EB7CBE /* Main.storyboard */,
 				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
 				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
+				BF77DE20212BE43800C7C038 /* CreateAccountBtn.png */,
+				BF77DE30212D29AA00C7C038 /* FeedButtonGrey.png */,
+				BF77DE1C2127ADD300C7C038 /* loginButtonPurple.png */,
+				BF77DE182127AAD000C7C038 /* loginButton.png */,
+				BF77DE2E212D286800C7C038 /* PrivateFeedButtonPurp.png */,
+				BF77DE2A212D26AC00C7C038 /* RecorderButton.png */,
 				BF07810A2126940C00EB7CBE /* recording.gif */,
+				BF77DE1E212BE0CC00C7C038 /* TotemBanner.png */,
 				BF23663D20FD19FA0087C7E1 /* Info.plist */,
 				5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */,
 			);
@@ -284,10 +302,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF77DE31212D29AA00C7C038 /* FeedButtonGrey.png in Resources */,
+				BF77DE1F212BE0CD00C7C038 /* TotemBanner.png in Resources */,
 				BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */,
 				BF23663920FD19FA0087C7E1 /* Assets.xcassets in Resources */,
+				BF77DE2B212D26AC00C7C038 /* RecorderButton.png in Resources */,
+				BF77DE2F212D286800C7C038 /* PrivateFeedButtonPurp.png in Resources */,
+				BF77DE1A2127AAD200C7C038 /* loginButton.png in Resources */,
+				BF77DE21212BE43900C7C038 /* CreateAccountBtn.png in Resources */,
 				BF07810B2126940D00EB7CBE /* recording.gif in Resources */,
 				BF07810F2127674E00EB7CBE /* Main.storyboard in Resources */,
+				BF77DE1D2127ADD300C7C038 /* loginButtonPurple.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +347,6 @@
 				BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */,
 				BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */,
 				BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */,
-				BFD1E98A21181E7A00135D94 /* PrivatePublishViewController.swift in Sources */,
 				BF078105212640FA00EB7CBE /* recorderModel.swift in Sources */,
 				BFE030012111128300376B16 /* FeedViewController.swift in Sources */,
 			);
