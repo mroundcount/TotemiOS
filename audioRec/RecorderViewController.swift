@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+
 class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     let reference = recorder()
@@ -158,22 +159,40 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
             audioRecorder = nil
             
             finishedBtn.setTitle("Playback", for: .normal)
+        
+            // This is just a test to upload to s3
+            let dataURL = getDirectory().appendingPathComponent("myrecorder.m4a")
+            let s3Transfer = S3TransferUtility()
+            do {
+                let audioData = try Data(contentsOf: dataURL as URL)
+                s3Transfer.uploadData(data: audioData)
+            } catch {
+                print("Unable to load data: \(error)")
+            }
+        
+            // This is just a test to play from s3
+        
+        
         } else {
+        
             
-            let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
-            do{
-                //initialize the audio player
-                audioPlayer = try AVAudioPlayer(contentsOf: filename)
-                audioPlayer.play()
-            }
-            catch{
-                displayALert(title: "Oh no.....", message: "Playback Failed")
-            }
+//            let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
+//            do{
+//                //initialize the audio player
+//                audioPlayer = try AVAudioPlayer(contentsOf: filename)
+//                audioPlayer.play()
+//            }
+//            catch{
+//                displayALert(title: "Oh no.....", message: "Playback Failed")
+//            }
         }
     }
     
     @IBAction func publishBtn(_ sender: UIButton) {
         
+        print("playing back")
+        let s3Transfer = S3TransferUtility()
+        s3Transfer.downloadData()
     }
     
     
