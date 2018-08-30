@@ -17,8 +17,6 @@
 		5AB7DCA7210FC76600464C93 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AB7DCA6210FC76600464C93 /* ExternalAccessory.framework */; };
 		5AB7DCAA2110D34A00464C93 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */; };
 		5AFD7BDE2129E08B0047349C /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 5AFD7BDD2129E08B0047349C /* awsconfiguration.json */; };
-		BF00BC90212F8E3200AE45B2 /* ProfileButtonPurp.png in Resources */ = {isa = PBXBuildFile; fileRef = BF00BC8F212F8E3100AE45B2 /* ProfileButtonPurp.png */; };
-		BF00BC922137737200AE45B2 /* buttonsLogos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */; };
 		BF078105212640FA00EB7CBE /* recorderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF078104212640FA00EB7CBE /* recorderModel.swift */; };
 		BF078107212655FF00EB7CBE /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF078106212655FF00EB7CBE /* RecorderViewController.swift */; };
 		BF07810921268F6200EB7CBE /* gifFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF07810821268F6200EB7CBE /* gifFile.swift */; };
@@ -78,8 +76,6 @@
 		95FDA8D6D96088EEA89D066F /* Pods-audioRecTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-audioRecTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-audioRecTests/Pods-audioRecTests.release.xcconfig"; sourceTree = "<group>"; };
 		9E2DEF742C4F78E777F90C84 /* Pods-audioRecTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-audioRecTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-audioRecTests/Pods-audioRecTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4ACEA7F5E64F8CCB7BB7928 /* Pods-audioRecUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-audioRecUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-audioRecUITests/Pods-audioRecUITests.release.xcconfig"; sourceTree = "<group>"; };
-		BF00BC8F212F8E3100AE45B2 /* ProfileButtonPurp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ProfileButtonPurp.png; path = ../../Totem/appImages/ProfileButtonPurp.png; sourceTree = "<group>"; };
-		BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = buttonsLogos.xcassets; sourceTree = "<group>"; };
 		BF078104212640FA00EB7CBE /* recorderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recorderModel.swift; sourceTree = "<group>"; };
 		BF078106212655FF00EB7CBE /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
 		BF07810821268F6200EB7CBE /* gifFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifFile.swift; sourceTree = "<group>"; };
@@ -212,17 +208,17 @@
 				BF07810E2127674E00EB7CBE /* Main.storyboard */,
 				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
 				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
-				BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */,
-
+<<<<<<< HEAD
 				BF77DE20212BE43800C7C038 /* CreateAccountBtn.png */,
 				BF77DE30212D29AA00C7C038 /* FeedButtonGrey.png */,
 				BF77DE1C2127ADD300C7C038 /* loginButtonPurple.png */,
 				BF77DE182127AAD000C7C038 /* loginButton.png */,
 				BF77DE2E212D286800C7C038 /* PrivateFeedButtonPurp.png */,
-				BF00BC8F212F8E3100AE45B2 /* ProfileButtonPurp.png */,
 				BF77DE2A212D26AC00C7C038 /* RecorderButton.png */,
 				BF07810A2126940C00EB7CBE /* recording.gif */,
 				BF77DE1E212BE0CC00C7C038 /* TotemBanner.png */,
+=======
+>>>>>>> 3cb41ebcb4899d4e67a01ec36fea4d04954e55ab
 				BF23663D20FD19FA0087C7E1 /* Info.plist */,
 				5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */,
 			);
@@ -360,19 +356,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF00BC90212F8E3200AE45B2 /* ProfileButtonPurp.png in Resources */,
 				BF77DE31212D29AA00C7C038 /* FeedButtonGrey.png in Resources */,
 				BF77DE1F212BE0CD00C7C038 /* TotemBanner.png in Resources */,
 				BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */,
 				5AFD7BDE2129E08B0047349C /* awsconfiguration.json in Resources */,
 				BF23663920FD19FA0087C7E1 /* Assets.xcassets in Resources */,
+<<<<<<< HEAD
 				BF77DE2B212D26AC00C7C038 /* RecorderButton.png in Resources */,
 				BF77DE2F212D286800C7C038 /* PrivateFeedButtonPurp.png in Resources */,
 				BF77DE1A2127AAD200C7C038 /* loginButton.png in Resources */,
-				BF00BC922137737200AE45B2 /* buttonsLogos.xcassets in Resources */,
 				BF77DE21212BE43900C7C038 /* CreateAccountBtn.png in Resources */,
 				BF07810B2126940D00EB7CBE /* recording.gif in Resources */,
+=======
 				5A5A4084212A331F00302124 /* recording.gif in Resources */,
+>>>>>>> 3cb41ebcb4899d4e67a01ec36fea4d04954e55ab
 				BF07810F2127674E00EB7CBE /* Main.storyboard in Resources */,
 				BF77DE1D2127ADD300C7C038 /* loginButtonPurple.png in Resources */,
 			);
@@ -492,8 +489,11 @@
 				BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */,
 				BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */,
 				BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */,
+<<<<<<< HEAD
+=======
 				BFD1E98A21181E7A00135D94 /* PrivatePublishViewController.swift in Sources */,
 				5A5A4082212A2FBE00302124 /* S3TransferUtility.swift in Sources */,
+>>>>>>> 3cb41ebcb4899d4e67a01ec36fea4d04954e55ab
 				BF078105212640FA00EB7CBE /* recorderModel.swift in Sources */,
 				BFE030012111128300376B16 /* FeedViewController.swift in Sources */,
 			);

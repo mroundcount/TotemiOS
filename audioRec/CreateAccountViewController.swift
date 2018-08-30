@@ -12,6 +12,8 @@ import UIKit
 
 class CreateAccountViewController: UIViewController {
     
+    private let CreateAccount = CreateAccountModel()
+    
     //Defined a constant that holds the URL for our web service
     //This is a test account
     let URL_USER_REGISTER = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com"
@@ -24,6 +26,9 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var repeatPassword: UITextField!
     @IBOutlet weak var emailAddress: UITextField!
     @IBOutlet weak var labelMessage: UILabel!
+    
+    
+    @IBOutlet weak var registrationButton: UIButton!
     
     
     @IBAction func registerButton(_ sender: Any) {
@@ -48,6 +53,12 @@ class CreateAccountViewController: UIViewController {
         }
         
     }
+    
+    
+    
+    
+    
+    
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +70,43 @@ class CreateAccountViewController: UIViewController {
             self.token = preferences.value(forKey: "tokenKey") as! String
         }
         
+        registrationButton.isEnabled = false
+        
+        username.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        password.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        emailAddress.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
     }
- 
+    
+    //enabling and disabling the sign up button based on whether or not the fields are valid
+    @objc func editingChanged(_ textField: UITextField) {
+        if CreateAccount.validation(username: username.text, emailAddress: emailAddress.text, password: password.text) == true {
+            self.registrationButton.isEnabled = true
+        } else {
+            self.registrationButton.isEnabled = false
+        }
+        
+        if CreateAccount.validateUsername(username: username.text!) == true {
+            username.layer.backgroundColor = UIColor.green.cgColor }
+        else {
+            print ("Bam")
+        }
+        
+        if CreateAccount.validatePassword(password: password.text!) == true {
+            password.layer.backgroundColor = UIColor.green.cgColor }
+        else {
+            print ("Bam")
+        }
+        
+        if password.text == repeatPassword.text {
+            repeatPassword.layer.backgroundColor = UIColor.green.cgColor }
+        else {
+            print ("Peanut")
+        }
+        
+        if CreateAccount.validateEmail(emailAddress: emailAddress.text!) == true {
+            emailAddress.layer.backgroundColor = UIColor.green.cgColor }
+        else {
+            print ("Bam")
+        }
+    }
 }

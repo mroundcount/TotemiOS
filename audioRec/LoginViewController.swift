@@ -18,7 +18,10 @@ class LoginViewController: UIViewController {
     @IBOutlet var _password: UITextField!
     @IBOutlet var login: UIButton!
     
+    
     @IBOutlet weak var authLbl: UILabel!
+    
+    @IBOutlet weak var logoBanner: UIImageView!
     
     
     let token : String = ""
@@ -26,14 +29,36 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        _username.layer.cornerRadius = 8.0
+        _username.layer.borderColor = UIColor.black.cgColor
+        _username.layer.borderWidth = 1.0
+        _username.layer.shadowOffset = CGSize(width: 3, height: 3)
+        _username.layer.shadowOpacity = 0.8
+        
+        _password.layer.cornerRadius = 8.0
+        _password.layer.borderColor = UIColor.black.cgColor
+        _password.layer.borderWidth = 1.0
+        _password.layer.shadowOffset = CGSize(width: 3, height: 3)
+        _password.layer.shadowOpacity = 0.8
+        
+        logoBanner.layer.borderColor = UIColor.black.cgColor
+        logoBanner.layer.borderWidth = 1.0
+        logoBanner.layer.shadowOffset = CGSize(width: 3, height: 3)
+        logoBanner.layer.shadowOpacity = 0.8
+        
+        
     }
+    
+    
+    @IBAction func createAccountBtn(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "createAccount", sender: nil) }
+    
     
     @IBAction func loginPressed(_ sender: Any) {
         let username = _username.text!
         let password = _password.text!
         
         DoLogin(user: username, psw: password)
-    
     }
     
     
@@ -41,7 +66,7 @@ class LoginViewController: UIViewController {
         
         //test API link
         let url = URL(string: "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/apiToken")
-        let session = URLSession.shared
+        //let session = URLSession.shared
         
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "POST"
@@ -70,16 +95,15 @@ class LoginViewController: UIViewController {
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {        // check for http errors
                 
+                self.authLbl.text = "Login Failed"
+                
                 // login failed
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                
-               
                 
                 // avoid deadlocks by not using .main queue here
                 DispatchQueue.global().async {
                     group.leave()
                 }
-                
             }
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 {
@@ -109,26 +133,21 @@ class LoginViewController: UIViewController {
                 DispatchQueue.global().async {
                     group.leave()
                 }
-                
             }
-            
         }
-        task.resume()
+
+            task.resume()
         
-        group.notify(queue: .main){
+            group.notify(queue: .main){
             print("complete")
             
-            if(!self.token.starts(with: "ey")){
+            if(!self.token.starts(with: "ey"))  {
+                
                 // login worked, perform segue
-                
                 print("Performing the segue")
-                
                 self.performSegue(withIdentifier: "loginSuccessful", sender: nil)
                 
             }
-            
         }
-        
-}
-
+    }
 }
