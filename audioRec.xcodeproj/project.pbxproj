@@ -219,10 +219,6 @@
 				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
 				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
 				BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */,
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 				BF77DE20212BE43800C7C038 /* CreateAccountBtn.png */,
 				BF77DE30212D29AA00C7C038 /* FeedButtonGrey.png */,
 				BF77DE1C2127ADD300C7C038 /* loginButtonPurple.png */,
