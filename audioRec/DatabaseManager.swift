@@ -219,17 +219,13 @@ class DatabaseManager {
             
             print("GETTING POSTS")
             // get patient
-            let webUrl1 = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/getPostsForUser"
+            let webUrl1 = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/allPosts"
             var request1 = URLRequest(url: URL(string: webUrl1)!)
             
             // Set method to GET and add token
-            request1.httpMethod = "POST"
-            request1.setValue("data", forHTTPHeaderField: "Content")
+            request1.httpMethod = "GET"
             request1.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
             
-            let json: NSData = data.data(using: String.Encoding.utf8)! as NSData
-            
-            request1.httpBody = json as Data
             
             // use DispatchGroup so you don't return token before it has a value
             let group = DispatchGroup()
