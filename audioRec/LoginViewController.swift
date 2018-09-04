@@ -129,6 +129,7 @@ class LoginViewController: UIViewController {
                 preferences.setValue(String(user), forKey: "username")
                 preferences.synchronize()
                 
+                
                 // avoid deadlocks by not using .main queue here
                 DispatchQueue.global().async {
                     group.leave()

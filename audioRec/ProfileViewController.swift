@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var token = ""
     var usernameString = ""
     let preferences = UserDefaults.standard
+    var userID : Int = 0
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -129,7 +130,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         print(dataString)
         
-        print("----------------------------")
+        // this part gets current user's id for posting Posts
+        print("--- getting user id ---")
+        self.userID = dbManager.dataPost(endpoint: "api/searchUser", data: dataString)
+        
+        print(self.userID)
+        
+        // set in preferences
+        preferences.setValue(self.userID, forKey: "userid")
+        preferences.synchronize()
+        
+        // end part that gets current user's etc
+        
+        print("-------------- getting posts --------------")
         self.posts = dbManager.getPostsForUser(token: self.token, data: dataString) as NSArray
         
         print(self.posts!)

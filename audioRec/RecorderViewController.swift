@@ -27,6 +27,12 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var timerMessageTxt: UILabel!
     @IBOutlet weak var descriptionTxt: UITextView!
     
+    // user variables
+    var userID : Int = 0
+    var username : String = ""
+    var token : String = ""
+    let preferences = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         publishBtn.isHidden = true
@@ -39,6 +45,20 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
         timerMessageTxt.isHidden = true
         
         defaultTxt.text = reference.openingTxt()
+        
+        // get token from preferences
+        if preferences.value(forKey: "tokenKey") == nil {
+            //  Doesn't exist
+        } else {
+            self.token = preferences.value(forKey: "tokenKey") as! String
+        }
+        
+        // get token from preferences
+        if preferences.value(forKey: "username") == nil {
+            //  Doesn't exist
+        } else {
+            self.username = preferences.value(forKey: "username") as! String
+        }
         
         //Setting up session
         recordingSession = AVAudioSession.sharedInstance()
@@ -190,9 +210,21 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func publishBtn(_ sender: UIButton) {
         
-        print("playing back")
-        let s3Transfer = S3TransferUtility()
-        s3Transfer.downloadData()
+        print("publishing")
+        let timeInterval = Int(NSDate().timeIntervalSince1970)
+        let likes : Int = 0
+        //
+        let variable = "{\"Post\":[{\"username\":\"\(self.username)\",\"description\":\"" + descriptionTxt.text! + "\",\"timeCreated\":\""+String(timeInterval)+"\",\"likes\":" + String(likes) + "}]}"
+        
+        print(variable)
+        
+        let dbManager = DatabaseManager()
+        
+        print("-----------------response from dataPost-----------------------")
+        
+        // TODO: update the dbManager thing with a post that uses a token
+        print(dbManager.dataPost(endpoint: "api/post", data: variable))
+        
     }
     
     
