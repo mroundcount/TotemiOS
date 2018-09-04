@@ -229,6 +229,9 @@ class DatabaseManager {
                 
                 let httpStatus = response as? HTTPURLResponse
                 
+                print("HTTPS STATUS (I)#(*%)($*%)(#*)$(%*")
+                print(httpStatus)
+                
                 if httpStatus?.statusCode != 200 {           // check for http errors
                     print("statusCode should be 200, but is \(String(describing: httpStatus?.statusCode))")
                     

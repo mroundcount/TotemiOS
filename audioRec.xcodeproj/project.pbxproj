@@ -19,7 +19,6 @@
 		5AB7DCAA2110D34A00464C93 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */; };
 		5AFD7BDE2129E08B0047349C /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 5AFD7BDD2129E08B0047349C /* awsconfiguration.json */; };
 		7FFE33338E44167D01E1CAFC /* Pods_audioRec.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77AC3E79F6067E566705EBB1 /* Pods_audioRec.framework */; };
-		BF00BC90212F8E3200AE45B2 /* ProfileButtonPurp.png in Resources */ = {isa = PBXBuildFile; fileRef = BF00BC8F212F8E3100AE45B2 /* ProfileButtonPurp.png */; };
 		BF00BC922137737200AE45B2 /* buttonsLogos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */; };
 		BF078105212640FA00EB7CBE /* recorderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF078104212640FA00EB7CBE /* recorderModel.swift */; };
 		BF078107212655FF00EB7CBE /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF078106212655FF00EB7CBE /* RecorderViewController.swift */; };
@@ -33,13 +32,6 @@
 		BF23665220FD19FB0087C7E1 /* audioRecUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */; };
 		BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFD921014F6F0001AF90 /* LoginViewController.swift */; };
 		BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */; };
-		BF77DE1A2127AAD200C7C038 /* loginButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE182127AAD000C7C038 /* loginButton.png */; };
-		BF77DE1D2127ADD300C7C038 /* loginButtonPurple.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE1C2127ADD300C7C038 /* loginButtonPurple.png */; };
-		BF77DE1F212BE0CD00C7C038 /* TotemBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE1E212BE0CC00C7C038 /* TotemBanner.png */; };
-		BF77DE21212BE43900C7C038 /* CreateAccountBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE20212BE43800C7C038 /* CreateAccountBtn.png */; };
-		BF77DE2B212D26AC00C7C038 /* RecorderButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE2A212D26AC00C7C038 /* RecorderButton.png */; };
-		BF77DE2F212D286800C7C038 /* PrivateFeedButtonPurp.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE2E212D286800C7C038 /* PrivateFeedButtonPurp.png */; };
-		BF77DE31212D29AA00C7C038 /* FeedButtonGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = BF77DE30212D29AA00C7C038 /* FeedButtonGrey.png */; };
 		BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C12662113DABB0086A99E /* PostTableViewCell.swift */; };
 		BFE02FFD210FF7EB00376B16 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */; };
 		BFE030012111128300376B16 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE030002111128300376B16 /* FeedViewController.swift */; };
@@ -84,7 +76,6 @@
 		A4ACEA7F5E64F8CCB7BB7928 /* Pods-audioRecUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-audioRecUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-audioRecUITests/Pods-audioRecUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A6D174BC186C4F4E7F504E4E /* Pods_audioRecTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_audioRecTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B016A423D8DA75C830DDA5A3 /* Pods_audioRecUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_audioRecUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF00BC8F212F8E3100AE45B2 /* ProfileButtonPurp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ProfileButtonPurp.png; path = ../../Totem/appImages/ProfileButtonPurp.png; sourceTree = "<group>"; };
 		BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = buttonsLogos.xcassets; sourceTree = "<group>"; };
 		BF078104212640FA00EB7CBE /* recorderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recorderModel.swift; sourceTree = "<group>"; };
 		BF078106212655FF00EB7CBE /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
@@ -104,13 +95,6 @@
 		BF23665320FD19FB0087C7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF70CFD921014F6F0001AF90 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
-		BF77DE182127AAD000C7C038 /* loginButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginButton.png; path = ../../Totem/loginButton.png; sourceTree = "<group>"; };
-		BF77DE1C2127ADD300C7C038 /* loginButtonPurple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginButtonPurple.png; path = ../../Totem/loginButtonPurple.png; sourceTree = "<group>"; };
-		BF77DE1E212BE0CC00C7C038 /* TotemBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TotemBanner.png; path = ../../Totem/appImages/TotemBanner.png; sourceTree = "<group>"; };
-		BF77DE20212BE43800C7C038 /* CreateAccountBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CreateAccountBtn.png; path = ../../Totem/appImages/CreateAccountBtn.png; sourceTree = "<group>"; };
-		BF77DE2A212D26AC00C7C038 /* RecorderButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RecorderButton.png; path = ../../Totem/appImages/RecorderButton.png; sourceTree = "<group>"; };
-		BF77DE2E212D286800C7C038 /* PrivateFeedButtonPurp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PrivateFeedButtonPurp.png; path = ../../Totem/appImages/PrivateFeedButtonPurp.png; sourceTree = "<group>"; };
-		BF77DE30212D29AA00C7C038 /* FeedButtonGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FeedButtonGrey.png; path = ../../Totem/appImages/FeedButtonGrey.png; sourceTree = "<group>"; };
 		BF8C12662113DABB0086A99E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BFE030002111128300376B16 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -225,14 +209,6 @@
 				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
 				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
 				BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */,
-				BF77DE20212BE43800C7C038 /* CreateAccountBtn.png */,
-				BF77DE30212D29AA00C7C038 /* FeedButtonGrey.png */,
-				BF77DE1C2127ADD300C7C038 /* loginButtonPurple.png */,
-				BF77DE182127AAD000C7C038 /* loginButton.png */,
-				BF77DE2E212D286800C7C038 /* PrivateFeedButtonPurp.png */,
-				BF00BC8F212F8E3100AE45B2 /* ProfileButtonPurp.png */,
-				BF77DE2A212D26AC00C7C038 /* RecorderButton.png */,
-				BF77DE1E212BE0CC00C7C038 /* TotemBanner.png */,
 				BF23663D20FD19FA0087C7E1 /* Info.plist */,
 				5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */,
 			);
@@ -370,20 +346,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF00BC90212F8E3200AE45B2 /* ProfileButtonPurp.png in Resources */,
-				BF77DE31212D29AA00C7C038 /* FeedButtonGrey.png in Resources */,
-				BF77DE1F212BE0CD00C7C038 /* TotemBanner.png in Resources */,
 				BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */,
 				5AFD7BDE2129E08B0047349C /* awsconfiguration.json in Resources */,
 				BF23663920FD19FA0087C7E1 /* Assets.xcassets in Resources */,
-				BF77DE2B212D26AC00C7C038 /* RecorderButton.png in Resources */,
-				BF77DE2F212D286800C7C038 /* PrivateFeedButtonPurp.png in Resources */,
-				BF77DE1A2127AAD200C7C038 /* loginButton.png in Resources */,
 				BF00BC922137737200AE45B2 /* buttonsLogos.xcassets in Resources */,
-				BF77DE21212BE43900C7C038 /* CreateAccountBtn.png in Resources */,
 				5A5A4084212A331F00302124 /* recording.gif in Resources */,
 				BF07810F2127674E00EB7CBE /* Main.storyboard in Resources */,
-				BF77DE1D2127ADD300C7C038 /* loginButtonPurple.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

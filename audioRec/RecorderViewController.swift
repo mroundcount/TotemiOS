@@ -180,18 +180,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
             
             finishedBtn.setTitle("Playback", for: .normal)
         
-            // This is just a test to upload to s3
-            let dataURL = getDirectory().appendingPathComponent("myrecorder.m4a")
-            let s3Transfer = S3TransferUtility()
-            do {
-                let audioData = try Data(contentsOf: dataURL as URL)
-                s3Transfer.uploadData(data: audioData)
-            } catch {
-                print("Unable to load data: \(error)")
-            }
-        
-            // This is just a test to play from s3
-        
         
         } else {
         
@@ -211,10 +199,12 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     @IBAction func publishBtn(_ sender: UIButton) {
         
         print("publishing")
+        
         let timeInterval = Int(NSDate().timeIntervalSince1970)
         let likes : Int = 0
+        
         //
-        let variable = "{\"Post\":[{\"username\":\"\(self.username)\",\"description\":\"" + descriptionTxt.text! + "\",\"timeCreated\":\""+String(timeInterval)+"\",\"likes\":" + String(likes) + "}]}"
+        let variable = "{\"Post\":[{\"username\":\"\(self.username)\",\"description\":\"" + descriptionTxt.text! + "\",\"timeCreated\":\"" + String(timeInterval) + "\",\"likes\":" + String(likes) + "}]}"
         
         print(variable)
         
@@ -223,7 +213,20 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
         print("-----------------response from dataPost-----------------------")
         
         // TODO: update the dbManager thing with a post that uses a token
-        print(dbManager.dataPost(endpoint: "api/post", data: variable))
+        print(dbManager.createNewPost(token: self.token, data: variable))
+        
+        
+        // This is just a test to upload to s3
+        let dataURL = getDirectory().appendingPathComponent("myrecorder.m4a")
+        let s3Transfer = S3TransferUtility()
+        do {
+            let audioData = try Data(contentsOf: dataURL as URL)
+            s3Transfer.uploadData(data: audioData)
+        } catch {
+            print("Unable to load data: \(error)")
+        }
+        
+        // This is just a test to play from s3
         
     }
     

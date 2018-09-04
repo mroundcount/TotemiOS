@@ -17,6 +17,8 @@ class PostTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var datePostedLabel: UILabel!
+    
+    var postID: Int?
 
     override func awakeFromNib() {
         super.awakeFromNib()

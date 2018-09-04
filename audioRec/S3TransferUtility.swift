@@ -40,7 +40,7 @@ class S3TransferUtility {
         let transferUtility = AWSS3TransferUtility.default()
         
         transferUtility.uploadData(data,
-                                   bucket: "roundcountaudiotest",
+                                   bucket: "s3Folder",
                                    key: "testing.m4a",
                                    contentType: "m4a",
                                    expression: expression,
@@ -57,7 +57,7 @@ class S3TransferUtility {
         }
     }
     
-    func downloadData() {
+    func downloadData(postID: Int) {
         let expression = AWSS3TransferUtilityDownloadExpression()
         expression.progressBlock = {(task, progress) in DispatchQueue.main.async(execute: {
             // Do something e.g. Update a progress bar.
@@ -71,6 +71,7 @@ class S3TransferUtility {
                 // On failed downloads, `error` contains the error object.
                 
                 print("completed download of file")
+                print("error \(error)")
                 
                 do{
                     //initialize the audio player
@@ -87,7 +88,7 @@ class S3TransferUtility {
         let transferUtility = AWSS3TransferUtility.default()
         transferUtility.downloadData(
             fromBucket: "roundcountaudiotest",
-            key: "testing.m4a",
+            key: "s3Folder/testing.m4a",
             expression: expression,
             completionHandler: completionHandler
             ).continueWith {

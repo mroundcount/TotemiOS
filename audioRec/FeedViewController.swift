@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSS3
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -57,6 +58,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             let description = post!["description"] as? String
             
+            let postID = post!["post_i_d"] as? Int
+            
+            print(postID)
+            
             let username = post!["username"] as? String
             
             let timeCreated = post!["time_created"] as? Int
@@ -72,6 +77,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.postDescription.text = description!
             cell.usernameLabel.text = "By: \(username!)"
             cell.datePostedLabel.text = finalDate
+            cell.postID = postID!
+
         }
         
         cell.sizeToFit()
@@ -92,6 +99,23 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.contentView.sendSubview(toBack: whiteRoundedView)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell
+        
+        let postID = cell?.postID!
+        downloadAudioFromS3(postID: postID!)
+        
+    }
+    
+    
+    func downloadAudioFromS3(postID: Int) {
+        
+        let s3Transfer = S3TransferUtility()
+        s3Transfer.downloadData(postID: postID)
+        
     }
     
     
