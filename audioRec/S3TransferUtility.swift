@@ -40,8 +40,8 @@ class S3TransferUtility {
         let transferUtility = AWSS3TransferUtility.default()
         
         transferUtility.uploadData(data,
-                                   bucket: "s3Folder",
-                                   key: "testing.m4a",
+                                   bucket: "roundcountaudiotest",
+                                   key: "iostest.m4a",
                                    contentType: "m4a",
                                    expression: expression,
                                    completionHandler: completionHandler).continueWith {
@@ -88,7 +88,7 @@ class S3TransferUtility {
         let transferUtility = AWSS3TransferUtility.default()
         transferUtility.downloadData(
             fromBucket: "roundcountaudiotest",
-            key: "s3Folder/testing.m4a",
+            key: "iostest.m4a",
             expression: expression,
             completionHandler: completionHandler
             ).continueWith {

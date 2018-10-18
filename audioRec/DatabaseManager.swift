@@ -117,6 +117,101 @@ class DatabaseManager {
         }
     }
     
+    // -------------------------------------------
+    
+    // Requires valid JSON Web token, web endpoint and data as string
+    //
+    //
+    // Returns current User's ID
+    func getUserID(token: String, endpoint: String, data: String) -> Int {
+        
+        if(isInternetAvailable()){
+            
+            var responseCode : Int?
+            
+            // get patient
+            let webUrl1 = self.webURL + endpoint
+            var request1 = URLRequest(url: URL(string: webUrl1)!)
+            
+            // Set method to GET and add token
+            request1.httpMethod = "POST"
+            request1.setValue("data", forHTTPHeaderField: "Content")
+            request1.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            
+            let json: NSData = data.data(using: String.Encoding.utf8)! as NSData
+            
+            request1.httpBody = json as Data
+            
+            let group = DispatchGroup()
+            
+            group.enter()
+            
+            DispatchQueue.global(qos: .background).async {
+                print("This is run on the background queue")
+                
+                
+                // fireoff request
+                let task1 = URLSession.shared.dataTask(with: request1) { data, response, error in
+                    guard let _ = data, error == nil else {                                                 // check for fundamental networking error
+                        print("error=\(String(describing: error))")
+                        responseCode = 404
+                        group.leave()
+                        return
+                    }
+                    
+                    let responseString = String(data: data!, encoding: String.Encoding.utf8) as String!
+                    // responseString format {"status":201,"type":305}
+                    
+                    // typeID = whatever in the data
+                    
+                    let httpStatus = response as? HTTPURLResponse
+                    
+                    if httpStatus?.statusCode != 201 {
+                        // check for http errors
+                        print("statusCode should be 201, but is \(String(describing: httpStatus?.statusCode))")
+                        
+                        print("response = \(String(describing: response))")
+                        
+                    } else {
+                        
+                        do{
+                            // convert String to NSData
+                            let data: NSData = responseString!.data(using: String.Encoding.utf8)! as NSData
+                            let parsedData = try JSONSerialization.jsonObject(with: data as Data) as! [String:AnyObject]
+                            print("[][][][][][][][][ parsed data ][][][][][")
+                            print(parsedData)
+                        } catch{
+                            print("Could not make object")
+                        }
+                        
+                        
+                        // avoid deadlocks by not using .main queue here
+                        DispatchQueue.global().async {
+                            responseCode = httpStatus?.statusCode
+                            group.leave()
+                        }
+                        
+                        
+                    }
+                    
+                }
+                task1.resume()
+            }
+            
+            // wait ...
+            group.wait()
+            // ... and return as soon as "responseCode" has a value
+            //        group.notify(queue: .main) {
+            //            print(responseCode!)
+            //        }
+            
+            return responseCode!
+            
+        }
+        else{
+            return -1
+        }
+    }
     // Requires valid JSON Web token
     //
     // Returns Posts as NSArray

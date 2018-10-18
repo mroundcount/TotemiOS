@@ -110,7 +110,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    
     func downloadAudioFromS3(postID: Int) {
         
         let s3Transfer = S3TransferUtility()

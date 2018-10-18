@@ -130,12 +130,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         print(dataString)
         
-        // this part gets current user's id for posting Posts
-        print("--- getting user id ---")
-        self.userID = dbManager.dataPost(endpoint: "api/searchUser", data: dataString)
-        
-        print(self.userID)
-        
+//        // this part gets current user's id for posting Posts
+//        print("--- getting user id ---")
+//        self.userID = dbManager.getUserID(token: token, endpoint: "/getID", data: dataString)
+//
+//        print(self.userID)
+//
         // set in preferences
         preferences.setValue(self.userID, forKey: "userid")
         preferences.synchronize()
