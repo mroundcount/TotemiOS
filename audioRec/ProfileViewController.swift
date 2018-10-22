@@ -52,6 +52,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let description = post!["description"] as? String
             
             let username = post!["username"] as? String
+
+            let postID = post!["post_i_d"] as? Int
             
             let timeCreated = post!["time_created"] as? Int
             let dateFormatter = DateFormatter()
@@ -66,6 +68,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.postDescription.text = description!
             cell.usernameLabel.text = "By: \(username!)"
             cell.datePostedLabel.text = finalDate
+            cell.postID = postID
         }
         
         cell.sizeToFit()
@@ -135,24 +138,38 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print(self.posts!)
     }
     
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell
+        
+        let postID = cell?.postID!
+        downloadAudioFromS3(postID: postID!)
+        
+    }
     
+    func downloadAudioFromS3(postID: Int) {
+        
+        let s3Transfer = S3TransferUtility()
+        s3Transfer.downloadData(postID: postID)
+        
+    }
     
-    
-    /*
+    //Deleting the Post
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         //copy this and add the variables in the return with "delete
-        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+        let delete = UITableViewRowAction(style: .normal, title: "      Delete     ") { action, index in
             print("delete button tapped")
         }
         delete.backgroundColor = .red
         
         return [delete]
     }
-     */
+
     
 
     override func didReceiveMemoryWarning() {
