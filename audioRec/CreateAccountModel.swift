@@ -9,9 +9,7 @@
 import Foundation
 
 class CreateAccountModel {
-    
-    //test
-    
+ 
     init() {}
 
     func validation(username: String?, emailAddress: String?, password: String?) -> Bool {

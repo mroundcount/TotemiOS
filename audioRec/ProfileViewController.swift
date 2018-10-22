@@ -11,9 +11,19 @@ import UIKit
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var followBtn: UIButton!
+    @IBOutlet weak var feedNavBtn: UIToolbar!
+    @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
+    @IBOutlet weak var profileNavBtn: UIBarButtonItem!
     
+    @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "profileToFeed", sender: nil)
+    }
+    
+    @IBAction func recorderNavBtn(_ sender: Any) {
+        self.performSegue(withIdentifier: "profileToRecorder", sender: nil)
+    }
+    
+    @IBOutlet weak var username: UILabel!
     
     var token = ""
     var usernameString = ""
@@ -24,31 +34,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var posts : NSArray?
-    
-    /*
-    //Defined a constant that holds the URL for our web service
-    //This is a test account
-    let URL_USER_REGISTER = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com"
-    var token : String = ""
-    let preferences = UserDefaults.standard
-    
-    @IBAction func followBtn(_ sender: UIButton) {
-
-        let dbManager = DatabaseManager()
-    
-        /*
-        * Expected Data Input:
-        * variable = {"User":[{"username":"Username","password":"hi","email":"Email Address"}]}
-
-        let variable = "{\"User\":[{\"username\":\" " + username.text! + "\",\"password\":\" " + password.text! +
-         "\",\"email\":\" " + emailAddress.text! + "\"}]}"
-        */
-            
-        print("-----------------response from dataPost-----------------------")
-        print(dbManager.dataPost(endpoint: "api/addFollower", data: variable))
-        
-    }
-    */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (posts?.count)!
@@ -106,6 +91,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        profileNavBtn.isEnabled = false
+        
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -148,10 +135,35 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print(self.posts!)
     }
     
+    
+    
+    
+    /*
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        //copy this and add the variables in the return with "delete
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            print("delete button tapped")
+        }
+        delete.backgroundColor = .red
+        
+        return [delete]
+    }
+     */
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*
+    override open var shouldAutorotate: Bool {
+        return false
+    }
+     */
 
 }

@@ -11,15 +11,12 @@
 import UIKit
 import SystemConfiguration
 
-
 class LoginViewController: UIViewController {
 
     @IBOutlet var _username: UITextField!
     @IBOutlet var _password: UITextField!
     @IBOutlet var login: UIButton!
-    
-    
-    @IBOutlet weak var authLbl: UILabel!
+
     
     @IBOutlet weak var logoBanner: UIImageView!
     
@@ -94,8 +91,6 @@ class LoginViewController: UIViewController {
             }
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {        // check for http errors
-                
-                self.authLbl.text = "Login Failed"
                 
                 // login failed
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
