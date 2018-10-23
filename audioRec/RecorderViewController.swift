@@ -210,10 +210,9 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
         
         let dbManager = DatabaseManager()
         
-        print("-----------------response from dataPost-----------------------")
-        
         // TODO: update the dbManager thing with a post that uses a token
-        print(dbManager.createNewPost(token: self.token, data: variable))
+        let postID = dbManager.createNewPost(token: self.token, data: variable)
+        print("ID of the post just returned \(postID)")
         
         
         // This is just a test to upload to s3
@@ -221,7 +220,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
         let s3Transfer = S3TransferUtility()
         do {
             let audioData = try Data(contentsOf: dataURL as URL)
-            s3Transfer.uploadData(data: audioData)
+            s3Transfer.uploadData(data: audioData, postID: postID)
         } catch {
             print("Unable to load data: \(error)")
         }

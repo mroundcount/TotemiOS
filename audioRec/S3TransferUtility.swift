@@ -20,7 +20,7 @@ class S3TransferUtility {
         
     }
     
-    func uploadData(data : Data) {
+    func uploadData(data : Data, postID: Int) {
         
         let expression = AWSS3TransferUtilityUploadExpression()
         expression.progressBlock = {(task, progress) in
@@ -41,7 +41,7 @@ class S3TransferUtility {
         
         transferUtility.uploadData(data,
                                    bucket: "roundcountaudiotest",
-                                   key: "iostest.m4a",
+                                   key: "\(postID)",
                                    contentType: "m4a",
                                    expression: expression,
                                    completionHandler: completionHandler).continueWith {
