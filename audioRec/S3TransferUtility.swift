@@ -41,7 +41,7 @@ class S3TransferUtility {
         
         transferUtility.uploadData(data,
                                    bucket: "roundcountaudiotest",
-                                   key: "\(postID)",
+                                   key: "\(postID).m4a",
                                    contentType: "m4a",
                                    expression: expression,
                                    completionHandler: completionHandler).continueWith {

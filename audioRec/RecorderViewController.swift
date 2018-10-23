@@ -5,12 +5,11 @@
 //  Created by Michael Roundcount on 8/16/18.
 //  Copyright © 2018 Michael Roundcount. All rights reserved.
 //
-
 import UIKit
 import AVFoundation
 
 
-class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
+class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextFieldDelegate {
     
     private let recorderRule = recorderCharLimit()
     
@@ -39,13 +38,25 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        buttonsOnLoad ()
+        
+        // get token from preferences
+        if preferences.value(forKey: "tokenKey") == nil {
+            //  Doesn't exist
+        } else {
+            self.token = preferences.value(forKey: "tokenKey") as! String
+        }
+        
+        // get token from preferences
+        if preferences.value(forKey: "username") == nil {
+            //  Doesn't exist
+        } else {
+            self.username = preferences.value(forKey: "username") as! String
+        }
+        
+        descriptionTxt.delegate = self
+        
+        buttonsOnLoad()
     }
-    
-    override open var shouldAutorotate: Bool {
-        return false
-    }
-    
     
     @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "recorderToFeed", sender: nil)
@@ -58,19 +69,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     
     @IBAction func recordBtn(_ sender: UIButton) {
-        if audioRecorder == nil{
-            let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
-            let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
-            //Start Audio Recodring
-            do {
-                //pass in the URL and the settings defined above
-                audioRecorder = try AVAudioRecorder(url: filename, settings: settings)
-                beginRecording ()
-            }
-            catch {
-                displayALert(title: "Oh my.....", message: "Recording Failed")
-            }
-        }
+        beginRecording()
     }
     
     
@@ -96,12 +95,38 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     
     @IBAction func finishedBtn(_ sender: UIButton) {
-        finishedAction ()
+        
+        finishedAction()
+        
     }
     
     @IBAction func publishBtn(_ sender: UIButton) {
-        print("playing back")
+        print("publishing")
+        
+        let timeInterval = Int(NSDate().timeIntervalSince1970)
+        let likes : Int = 0
+        
+        //
+        let variable = "{\"Post\":[{\"username\":\"\(self.username)\",\"description\":\"" + descriptionTxt.text! + "\",\"timeCreated\":\"" + String(timeInterval) + "\",\"likes\":" + String(likes) + "}]}"
+        
+        print(variable)
+        
+        let dbManager = DatabaseManager()
+        
+        // TODO: update the dbManager thing with a post that uses a token
+        let postID = dbManager.createNewPost(token: self.token, data: variable)
+        print("ID of the post just returned \(postID)")
+        
+        
+        // This is just a test to upload to s3
+        let dataURL = getDirectory().appendingPathComponent("myrecorder.m4a")
         let s3Transfer = S3TransferUtility()
+        do {
+            let audioData = try Data(contentsOf: dataURL as URL)
+            s3Transfer.uploadData(data: audioData, postID: postID)
+        } catch {
+            print("Unable to load data: \(error)")
+        }
         
     }
     
@@ -117,12 +142,29 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
         pauseBtn.isHidden = true
         finishedBtn.isHidden = true
         descriptionTxt.isHidden = true
-        publishBtn.isHidden = true
         
         defaultTxt.text = "Click anywhere and start talking"
         
+        if audioRecorder == nil{
+            let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
+            let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
+            //Start Audio Recodring
+            do {
+                //pass in the URL and the settings defined above
+                audioRecorder = try AVAudioRecorder(url: filename, settings: settings)
+            }
+            catch {
+                displayALert(title: "Oh my.....", message: "Recording Failed")
+            }
+        }
+        
         //Setting up session
         recordingSession = AVAudioSession.sharedInstance()
+        
+        print("[[[[[[[[[")
+        print(        recordingSession.availableModes
+)
+        print("]]]]]]]]")
         
         //recordNavBtn.isEnabled = false
         
@@ -145,7 +187,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
         finishedBtn.isHidden = false
         recordBtn.isHidden = true
         defaultTxt.isHidden = true
-        publishBtn.isHidden = true
         
         //rerecord settings
         pauseBtn.setTitle("Pause", for: .normal)
@@ -190,7 +231,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
             publishBtn.isHidden = false
             recordingImage.isHidden = true
             descriptionTxt.isHidden = false
-            publishBtn.isHidden = false
             defaultTxt.isHidden = false
             defaultTxt.text = "Play it back, hey if ya fucked up click anywhere to record again"
             
@@ -207,167 +247,131 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate {
             pauseBtn.isHidden = true
             
             finishedBtn.setTitle("Playback", for: .normal)
-            
-            // This is just a test to upload to s3
-            let dataURL = getDirectory().appendingPathComponent("myrecorder.m4a")
-            let s3Transfer = S3TransferUtility()
-            do {
-                let audioData = try Data(contentsOf: dataURL as URL)
-                s3Transfer.uploadData(data: audioData)
-            } catch {
-                print("Unable to load data: \(error)")
-            }
+           
         }
         if (finishedBtn.titleLabel?.text == "Playback") {
             //perform segue
-            playBack ()
-        }
-        
-        @IBAction func publishBtn(_ sender: UIButton) {
-            
-            print("publishing")
-            
-            let timeInterval = Int(NSDate().timeIntervalSince1970)
-            let likes : Int = 0
-            
-            //
-            let variable = "{\"Post\":[{\"username\":\"\(self.username)\",\"description\":\"" + descriptionTxt.text! + "\",\"timeCreated\":\"" + String(timeInterval) + "\",\"likes\":" + String(likes) + "}]}"
-            
-            print(variable)
-            
-            let dbManager = DatabaseManager()
-            
-            // TODO: update the dbManager thing with a post that uses a token
-            let postID = dbManager.createNewPost(token: self.token, data: variable)
-            print("ID of the post just returned \(postID)")
-            
-            
-            // This is just a test to upload to s3
-            let dataURL = getDirectory().appendingPathComponent("myrecorder.m4a")
-            let s3Transfer = S3TransferUtility()
-            do {
-                let audioData = try Data(contentsOf: dataURL as URL)
-                s3Transfer.uploadData(data: audioData, postID: postID)
-            } catch {
-                print("Unable to load data: \(error)")
-            }
-        }
-        
-        func playBack () {
-            pauseBtn.isHidden = false
-            let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
-            do{
-                //initialize the audio player
-                audioPlayer = try AVAudioPlayer(contentsOf: filename)
-                audioPlayer.play()
-            }
-            catch{
-                displayALert(title: "Oh no.....", message: "Playback Failed")
-            }
-        }
-        
-        //Recording functions
-        var recordingSession:AVAudioSession!
-        var audioRecorder:AVAudioRecorder!
-        var audioPlayer: AVAudioPlayer!
-        
-        //Function that get's path to direcotry
-        func getDirectory() -> URL{
-            //Searching for all the URLS in the documents directory and taking the first one and returning the URL to the document directory
-            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            //defining our constant.
-            //We will use the first URL path
-            let documentDirectory = paths[0]
-            return documentDirectory
-        }
-        
-        //Function that displays an alert
-        func displayALert(title:String, message:String) {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "dismiss", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
-        
-        //Publishing
-        func textViewDidChange(textView: UITextView) { //Handle the text changes here
-            print(textView.text); //the textView parameter is the textView where text was changed
-        }
-        
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            self.view.endEditing(true)
-            return false
-        }
-        
-        @objc func editingChanged(_ textField: UITextField) {
-            if recorderRule.validation(description: descriptionTxt.text) == true {
-                defaultTxt.text = " Hey pal shorten the text a bit, that space costs money you know.... "
-                publishBtn.isHidden = true
-            } else {
-                defaultTxt.text = " Play it back, hey if ya fucked up click anywhere to record again "
-                publishBtn.isHidden = false
-            }
-        }
-        
-        //Timers
-        //Timer variables
-        weak var timer: Timer?
-        var startTime: Double = 0
-        var time: Double = 0
-        var elapsed: Double = 0
-        var status: Bool = false
-        
-        //Timer functions
-        func start() {
-            startTime = Date().timeIntervalSinceReferenceDate - elapsed
-            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-            // Set Start/Stop button to true
-            status = true
-        }
-        
-        func stop() {
-            elapsed = Date().timeIntervalSinceReferenceDate - startTime
-            timer?.invalidate()
-            // Set Start/Stop button to false
-            status = false
-        }
-        
-        func reset() {
-            time = 0
-            elapsed = 0
-        }
-        
-        @objc func updateCounter() {
-            // Calculate total time since timer started in seconds
-            time = Date().timeIntervalSinceReferenceDate - startTime
-            
-            // Calculate minutes
-            let minutes = UInt8(time / 60.0)
-            time -= (TimeInterval(minutes) * 60)
-            
-            // Calculate seconds
-            let seconds = UInt8(time)
-            time -= TimeInterval(seconds)
-            
-            // Calculate milliseconds
-            let milliseconds = UInt8(time * 100)
-            
-            // Format time vars with leading zero
-            let strMinutes = String(format: "%02d", minutes)
-            let strSeconds = String(format: "%02d", seconds)
-            let strMilliseconds = String(format: "%02d", milliseconds)
-            
-            timerLbl.text = "\(strMinutes):\(strSeconds)"
-            
-            func eventTimer() {
-                if minutes == 1 {
-                    finishedAction ()
-                    stop()
-                }
-            }
-            //why must you have this?
-            return(eventTimer())
+            playBack()
         }
     }
     
+    func playBack() {
+        print("playing back")
+        pauseBtn.isHidden = false
+        let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
+        do{
+            //initialize the audio player
+            audioPlayer = try AVAudioPlayer(contentsOf: filename)
+            audioPlayer.play()
+        }
+        catch{
+            displayALert(title: "Oh no.....", message: "Playback Failed")
+        }
+    }
+    
+    //Recording functions
+    var audioRecorder:AVAudioRecorder!
+    var recordingSession:AVAudioSession!
+    var audioPlayer: AVAudioPlayer!
+    
+    //Function that get's path to direcotry
+    func getDirectory() -> URL{
+        //Searching for all the URLS in the documents directory and taking the first one and returning the URL to the document directory
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        //defining our constant.
+        //We will use the first URL path
+        let documentDirectory = paths[0]
+        return documentDirectory
+    }
+    
+    //Function that displays an alert
+    func displayALert(title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "dismiss", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    //Publishing
+    func textViewDidChange(textView: UITextView) { //Handle the text changes here
+        print(textView.text); //the textView parameter is the textView where text was changed
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    @objc func editingChanged(_ textField: UITextField) {
+        if recorderRule.validation(description: descriptionTxt.text) == true {
+            defaultTxt.text = " Hey pal shorten the text a bit, that space costs money you know.... "
+            publishBtn.isHidden = true
+        } else {
+            defaultTxt.text = " Play it back, hey if ya fucked up click anywhere to record again "
+            publishBtn.isHidden = false
+        }
+    }
+    
+    //Timers
+    //Timer variables
+    weak var timer: Timer?
+    var startTime: Double = 0
+    var time: Double = 0
+    var elapsed: Double = 0
+    var status: Bool = false
+    
+    //Timer functions
+    func start() {
+        startTime = Date().timeIntervalSinceReferenceDate - elapsed
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        // Set Start/Stop button to true
+        status = true
+    }
+    
+    func stop() {
+        elapsed = Date().timeIntervalSinceReferenceDate - startTime
+        timer?.invalidate()
+        // Set Start/Stop button to false
+        status = false
+    }
+    
+    func reset() {
+        time = 0
+        elapsed = 0
+    }
+    
+    @objc func updateCounter() {
+        // Calculate total time since timer started in seconds
+        time = Date().timeIntervalSinceReferenceDate - startTime
+        
+        // Calculate minutes
+        let minutes = UInt8(time / 60.0)
+        time -= (TimeInterval(minutes) * 60)
+        
+        // Calculate seconds
+        let seconds = UInt8(time)
+        time -= TimeInterval(seconds)
+        
+        // Calculate milliseconds
+        let milliseconds = UInt8(time * 100)
+        
+        // Format time vars with leading zero
+        let strMinutes = String(format: "%02d", minutes)
+        let strSeconds = String(format: "%02d", seconds)
+        let strMilliseconds = String(format: "%02d", milliseconds)
+        
+        timerLbl.text = "\(strMinutes):\(strSeconds)"
+        
+        func eventTimer() {
+            if minutes == 1 {
+                finishedAction ()
+                stop()
+            }
+        }
+        //why must you have this?
+        return(eventTimer())
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+    }
 }
-
