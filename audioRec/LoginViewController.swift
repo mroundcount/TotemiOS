@@ -7,19 +7,16 @@
 //
 
 
-//Michael Code
 import UIKit
 import SystemConfiguration
-
 
 class LoginViewController: UIViewController {
 
     @IBOutlet var _username: UITextField!
     @IBOutlet var _password: UITextField!
     @IBOutlet var login: UIButton!
+    @IBOutlet weak var createAccountBtn: UIButton!
     
-    
-    @IBOutlet weak var authLbl: UILabel!
     
     @IBOutlet weak var logoBanner: UIImageView!
     
@@ -45,13 +42,12 @@ class LoginViewController: UIViewController {
         logoBanner.layer.borderWidth = 1.0
         logoBanner.layer.shadowOffset = CGSize(width: 3, height: 3)
         logoBanner.layer.shadowOpacity = 0.8
-        
-        
+
     }
     
     
     @IBAction func createAccountBtn(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "createAccount", sender: nil) }
+      self.performSegue(withIdentifier: "createAccount", sender: nil) }
     
     
     @IBAction func loginPressed(_ sender: Any) {
@@ -94,8 +90,6 @@ class LoginViewController: UIViewController {
             }
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {        // check for http errors
-                
-                self.authLbl.text = "Login Failed"
                 
                 // login failed
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")

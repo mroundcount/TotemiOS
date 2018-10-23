@@ -370,6 +370,94 @@ class DatabaseManager {
         }
     }
     
+    // MARK: Methods for posting data
+    // -------------------------------------------
+    
+    // Requires valid JSON Web token, web endpoint and data as string
+    //
+    //
+    // Returns response code as Int
+    func deletePost(token: String, data: String) -> Int {
+        
+        if(isInternetAvailable()){
+            
+            var responseCode : Int?
+            
+            // get patient
+            let webUrl1 = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/deletePost"
+            var request1 = URLRequest(url: URL(string: webUrl1)!)
+            
+            // Set method to GET and add token
+            request1.httpMethod = "POST"
+            request1.setValue("data", forHTTPHeaderField: "Content")
+            request1.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+
+            let json: NSData = data.data(using: String.Encoding.utf8)! as NSData
+            
+            request1.httpBody = json as Data
+            
+            let group = DispatchGroup()
+            
+            group.enter()
+            
+            DispatchQueue.global(qos: .background).async {
+                print("This is run on the background queue")
+                
+                
+                // fireoff request
+                let task1 = URLSession.shared.dataTask(with: request1) { data, response, error in
+                    guard let _ = data, error == nil else {                                                 // check for fundamental networking error
+                        print("error=\(String(describing: error))")
+                        responseCode = 404
+                        group.leave()
+                        return
+                    }
+                    
+                    let httpStatus = response as? HTTPURLResponse
+                    
+                    if httpStatus?.statusCode != 201 {
+                        // check for http errors
+                        print("statusCode should be 201, but is \(String(describing: httpStatus?.statusCode))")
+                        
+                        print("response = \(String(describing: response))")
+                        
+                    } else {
+                        
+                        do{
+                            
+                        } catch{
+                            print("Could not make object")
+                        }
+                        
+                        
+                        // avoid deadlocks by not using .main queue here
+                        DispatchQueue.global().async {
+                            responseCode = httpStatus?.statusCode
+                            group.leave()
+                        }
+                        
+                        
+                    }
+                    
+                }
+                task1.resume()
+            }
+            
+            // wait ...
+            group.wait()
+            // ... and return as soon as "responseCode" has a value
+            //        group.notify(queue: .main) {
+            //            print(responseCode!)
+            //        }
+            
+            return responseCode!
+            
+        }
+        else{
+            return -1
+        }
+    }
+    
     func isInternetAvailable() -> Bool
     {
         var zeroAddress = sockaddr_in()

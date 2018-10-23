@@ -11,9 +11,21 @@ import UIKit
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var followBtn: UIButton!
+    @IBOutlet weak var feedNavBtn: UIToolbar!
+    @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
+    @IBOutlet weak var profileNavBtn: UIBarButtonItem!
     
+    let dbManager = DatabaseManager()
+    
+    @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "profileToFeed", sender: nil)
+    }
+    
+    @IBAction func recorderNavBtn(_ sender: Any) {
+        self.performSegue(withIdentifier: "profileToRecorder", sender: nil)
+    }
+    
+    @IBOutlet weak var username: UILabel!
     
     var token = ""
     var usernameString = ""
@@ -24,31 +36,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var posts : NSArray?
-    
-    /*
-    //Defined a constant that holds the URL for our web service
-    //This is a test account
-    let URL_USER_REGISTER = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com"
-    var token : String = ""
-    let preferences = UserDefaults.standard
-    
-    @IBAction func followBtn(_ sender: UIButton) {
-
-        let dbManager = DatabaseManager()
-    
-        /*
-        * Expected Data Input:
-        * variable = {"User":[{"username":"Username","password":"hi","email":"Email Address"}]}
-
-        let variable = "{\"User\":[{\"username\":\" " + username.text! + "\",\"password\":\" " + password.text! +
-         "\",\"email\":\" " + emailAddress.text! + "\"}]}"
-        */
-            
-        print("-----------------response from dataPost-----------------------")
-        print(dbManager.dataPost(endpoint: "api/addFollower", data: variable))
-        
-    }
-    */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (posts?.count)!
@@ -67,6 +54,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let description = post!["description"] as? String
             
             let username = post!["username"] as? String
+
+            let postID = post!["post_i_d"] as? Int
             
             let timeCreated = post!["time_created"] as? Int
             let dateFormatter = DateFormatter()
@@ -81,6 +70,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.postDescription.text = description!
             cell.usernameLabel.text = "By: \(username!)"
             cell.datePostedLabel.text = finalDate
+            cell.postID = postID
         }
         
         cell.sizeToFit()
@@ -106,6 +96,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        profileNavBtn.isEnabled = false
+        
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -125,10 +117,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.usernameString = preferences.value(forKey: "username") as! String
         }
         print(usernameString)
-        let dbManager = DatabaseManager()
-        let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
-        
-        print(dataString)
+      
         
 //        // this part gets current user's id for posting Posts
 //        print("--- getting user id ---")
@@ -140,18 +129,71 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         preferences.setValue(self.userID, forKey: "userid")
         preferences.synchronize()
         
-        // end part that gets current user's etc
+        getPosts()
+    }
+    
+    func getPosts(){
         
+        let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
+        
+        self.posts = []
         print("-------------- getting posts --------------")
         self.posts = dbManager.getPostsForUser(token: self.token, data: dataString) as NSArray
         
         print(self.posts!)
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell
+        
+        let postID = cell?.postID!
+        downloadAudioFromS3(postID: postID!)
+        
+    }
+    
+    func downloadAudioFromS3(postID: Int) {
+        
+        let s3Transfer = S3TransferUtility()
+        s3Transfer.downloadData(postID: postID)
+        
+    }
+    
+    //Deleting the Post
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        //copy this and add the variables in the return with "delete
+        let delete = UITableViewRowAction(style: .normal, title: "      Delete     ") { action, index in
+            // execute the delete
+            
+            let cell = tableView.cellForRow(at: editActionsForRowAt) as? PostTableViewCell
+            let postID = cell?.postID!
+            print("delete button tapped. going to delete post with id: \(postID)")
+            let postData = "{\"postID\":\(postID!)}"
+            print(postData)
+            self.dbManager.deletePost(token: self.token, data: postData)
+            self.getPosts()
+            tableView.reloadData()
+        }
+        delete.backgroundColor = .red
+        
+        return [delete]
+    }
+
     
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*
+    override open var shouldAutorotate: Bool {
+        return false
+    }
+     */
 
 }

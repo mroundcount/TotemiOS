@@ -11,31 +11,22 @@ import AWSS3
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var feedNavBtn: UIBarButtonItem!
+    @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
+    @IBOutlet weak var profileNavBtn: UIBarButtonItem!
+    
+    @IBAction func recorderNavBtn(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "feedToRecorder", sender: nil)
+    }
+    @IBAction func profileNavBtn(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "feedToProfile", sender: nil)
+    }
     
     var token = ""
     var usernameString = ""
     
-    
-    @IBOutlet weak var privateFeedBtn: UIButton!
-    @IBOutlet weak var recorderBtn: UIButton!
-    @IBOutlet weak var feedBtn: UIButton!
-    
-    
-    
-    @IBAction func privateFeedBtn(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "tempProfileFeed", sender: nil)   
-    }
-    
-    @IBAction func recorderBtn(_ sender: UIButton) {
-    self.performSegue(withIdentifier: "toRecorder", sender: nil)
-    }
-
-    
-
-    
     let preferences = UserDefaults.standard
-    
-    
+
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -121,6 +112,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        feedNavBtn.isEnabled = false
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -146,10 +138,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         print(dataString)
         
         print("----------------------------")
-        
-        
-        //big
-        
+
         self.posts = dbManager.getPostsForFeed(token: self.token, data: dataString) as NSArray
         
         print(self.posts!)
@@ -160,5 +149,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*
+    override open var shouldAutorotate: Bool {
+        return false
+    }
+ */
     
 }
