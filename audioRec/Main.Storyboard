@@ -23,14 +23,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJC-wq-WIf">
                                 <rect key="frame" x="54" y="238" width="267" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3d-Og-8Vq">
                                 <rect key="frame" x="64" y="343" width="246" height="61"/>
@@ -48,10 +48,11 @@
                                 <state key="normal" image="CreateAccountBtn.png"/>
                                 <connections>
                                     <action selector="createAccountBtn:" destination="rZ9-7n-uVR" eventType="touchUpInside" id="sc6-NL-vyw"/>
+                                    <segue destination="zh8-oA-iV0" kind="show" identifier="createAccount" id="3tY-99-MMF"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TotemBanner.png" translatesAutoresizingMaskIntoConstraints="NO" id="lfe-FN-YrP">
-                                <rect key="frame" x="15" y="94" width="345" height="110"/>
+                                <rect key="frame" x="15" y="50" width="345" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="CPu-Og-6A5"/>
                                 </constraints>
@@ -69,10 +70,10 @@
                     <connections>
                         <outlet property="_password" destination="ENj-Bj-Vra" id="FAI-5r-fkS"/>
                         <outlet property="_username" destination="CJC-wq-WIf" id="gIu-6g-fVb"/>
+                        <outlet property="createAccountBtn" destination="OCq-Hg-aRv" id="FGS-Sj-z63"/>
                         <outlet property="login" destination="Q3d-Og-8Vq" id="tzW-kX-Ope"/>
                         <outlet property="logoBanner" destination="lfe-FN-YrP" id="pNl-c5-jFC"/>
                         <segue destination="Gsk-Cu-sAB" kind="show" identifier="loginSuccessful" id="tFQ-qk-At8"/>
-                        <segue destination="zh8-oA-iV0" kind="show" identifier="createAccount" id="17j-XC-WD8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBU-aj-r3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -131,17 +132,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TotemBanner.png" translatesAutoresizingMaskIntoConstraints="NO" id="e8M-PF-NGe">
-                                <rect key="frame" x="15" y="94" width="345" height="110"/>
+                                <rect key="frame" x="15" y="50" width="345" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="4be-4k-wM0"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DS9-rf-Mnu">
+                                <rect key="frame" x="170" y="533" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="rZ9-7n-uVR" kind="show" id="nfS-jH-l8U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="e8M-PF-NGe" firstAttribute="top" secondItem="JIS-eq-gWJ" secondAttribute="top" constant="30" id="7Nq-Us-g9G"/>
                             <constraint firstItem="e8M-PF-NGe" firstAttribute="leading" secondItem="JIS-eq-gWJ" secondAttribute="leading" constant="15" id="Dtx-0J-Ht4"/>
                             <constraint firstItem="JIS-eq-gWJ" firstAttribute="trailing" secondItem="e8M-PF-NGe" secondAttribute="trailing" constant="15" id="Xxf-dX-ERs"/>
-                            <constraint firstItem="e8M-PF-NGe" firstAttribute="top" secondItem="JIS-eq-gWJ" secondAttribute="top" constant="30" id="rww-Ew-OkG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JIS-eq-gWJ"/>
                     </view>
@@ -223,7 +232,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6b-ot-UHy">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
@@ -536,8 +545,9 @@
         <image name="loginButtonPurple.png" width="286" height="89"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mek-Tq-dLp"/>
-        <segue reference="Mdd-V0-bt0"/>
+        <segue reference="sSE-Mw-bbN"/>
+        <segue reference="WcJ-qf-B7z"/>
         <segue reference="eol-gO-uF4"/>
+        <segue reference="nfS-jH-l8U"/>
     </inferredMetricsTieBreakers>
 </document>

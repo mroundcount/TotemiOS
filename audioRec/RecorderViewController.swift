@@ -219,7 +219,7 @@ private let recorderRule = recorderCharLimit()
             }
         }
         if (finishedBtn.titleLabel?.text == "Playback") {
-            
+            //perform segue
             playBack ()
         }
     }

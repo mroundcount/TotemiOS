@@ -14,7 +14,7 @@ class recorderCharLimit {
     init() {}
     
     func validation(description: String?) -> Bool {
-        if ((description?.count)! >= 3) {
+        if ((description?.count)! >= 160) {
             return true
         }else{
             return false
