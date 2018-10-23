@@ -8,6 +8,7 @@
 
 import Foundation
 import SystemConfiguration
+import SwiftyJSON
 
 class DatabaseManager {
     
@@ -292,9 +293,9 @@ class DatabaseManager {
     func createNewPost(token: String, data: String) -> Int {
         
         var responseCode : Int = 0
+        var postID = 0
         if(isInternetAvailable()){
             
-            print("GETTING POSTS")
             // get patient
             let webUrl1 = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/post"
             var request1 = URLRequest(url: URL(string: webUrl1)!)
@@ -321,14 +322,20 @@ class DatabaseManager {
                     group.leave()
                     return
                 }
-                
                 let httpStatus = response as? HTTPURLResponse
+
+                let responseString = String(data: data, encoding: String.Encoding.utf8)
                 
-                print("HTTPS STATUS (I)#(*%)($*%)(#*)$(%*")
-                print(httpStatus)
+                print(responseString!)
+                // responseString format {"status":201,"postID":305}
+                // now get that postID
+                let responseJSON = JSON(data)
                 
-                if httpStatus?.statusCode != 200 {           // check for http errors
-                    print("statusCode should be 200, but is \(String(describing: httpStatus?.statusCode))")
+                postID = responseJSON["postID"].intValue
+                print("after json \(postID)")
+                
+                if httpStatus?.statusCode != 201 {           // check for http errors
+                    print("statusCode should be 201, but is \(String(describing: httpStatus?.statusCode))")
                     
                     // avoid deadlocks by not using .main queue here
                     DispatchQueue.global().async {
@@ -340,7 +347,7 @@ class DatabaseManager {
                     // avoid deadlocks by not using .main queue here
                     DispatchQueue.global().async {
                         do{
-                            responseCode = (httpStatus?.statusCode)!
+                            
                         } catch{
                             print("Could not make obj")
                         }
@@ -355,8 +362,8 @@ class DatabaseManager {
             
             // wait ...
             group.wait()
-            // ... and return as soon as "posts" has a value
-            return responseCode
+            // ... and return as soon as "postID" has a value
+            return postID
         }
         else {
             return 0
