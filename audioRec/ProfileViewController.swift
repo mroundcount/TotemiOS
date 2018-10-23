@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
     
+    let dbManager = DatabaseManager()
+    
     @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "profileToFeed", sender: nil)
     }
@@ -115,10 +117,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.usernameString = preferences.value(forKey: "username") as! String
         }
         print(usernameString)
-        let dbManager = DatabaseManager()
-        let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
-        
-        print(dataString)
+      
         
 //        // this part gets current user's id for posting Posts
 //        print("--- getting user id ---")
@@ -130,14 +129,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         preferences.setValue(self.userID, forKey: "userid")
         preferences.synchronize()
         
-        // end part that gets current user's etc
+        getPosts()
+    }
+    
+    func getPosts(){
         
+        let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
+        
+        self.posts = []
         print("-------------- getting posts --------------")
         self.posts = dbManager.getPostsForUser(token: self.token, data: dataString) as NSArray
         
         print(self.posts!)
     }
-    
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -163,7 +167,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         //copy this and add the variables in the return with "delete
         let delete = UITableViewRowAction(style: .normal, title: "      Delete     ") { action, index in
-            print("delete button tapped")
+            // execute the delete
+            
+            let cell = tableView.cellForRow(at: editActionsForRowAt) as? PostTableViewCell
+            let postID = cell?.postID!
+            print("delete button tapped. going to delete post with id: \(postID)")
+            let postData = "{\"postID\":\(postID!)}"
+            print(postData)
+            self.dbManager.deletePost(token: self.token, data: postData)
+            self.getPosts()
+            tableView.reloadData()
         }
         delete.backgroundColor = .red
         
