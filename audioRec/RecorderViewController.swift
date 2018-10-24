@@ -160,11 +160,12 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         
         //Setting up session
         recordingSession = AVAudioSession.sharedInstance()
-        
-        print("[[[[[[[[[")
-        print(        recordingSession.availableModes
-)
-        print("]]]]]]]]")
+        do{
+            try recordingSession!.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try recordingSession.setActive(true)
+        } catch {
+            
+        }
         
         //recordNavBtn.isEnabled = false
         
