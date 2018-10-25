@@ -10,18 +10,18 @@
 import UIKit
 import SystemConfiguration
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var _username: UITextField!
     @IBOutlet var _password: UITextField!
     @IBOutlet var login: UIButton!
     @IBOutlet weak var createAccountBtn: UIButton!
-    
-    
     @IBOutlet weak var logoBanner: UIImageView!
-    
-    
     let token : String = ""
+    var loginSuccessful = false
+    private var currentTextField: UITextField?
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +43,18 @@ class LoginViewController: UIViewController {
         logoBanner.layer.shadowOffset = CGSize(width: 3, height: 3)
         logoBanner.layer.shadowOpacity = 0.8
 
+        _username.delegate = self
+        _password.delegate = self
+        
     }
     
+    //MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard.
+        textField.resignFirstResponder()
+        return true
+    }
     
     @IBAction func createAccountBtn(_ sender: UIButton) {
       self.performSegue(withIdentifier: "createAccount", sender: nil) }
@@ -114,14 +124,19 @@ class LoginViewController: UIViewController {
                 
                 let sub1 = res[index0..<index1]
                 
+                let token = String(sub1)
+                
                 print(sub1)
-                
-                let preferences = UserDefaults.standard
-                preferences.setValue(String(sub1), forKey: "tokenKey")
-                preferences.synchronize()
-                
-                preferences.setValue(String(user), forKey: "username")
-                preferences.synchronize()
+                if(token.starts(with: "ey")){
+                    let preferences = UserDefaults.standard
+                    preferences.setValue(token, forKey: "tokenKey")
+                    preferences.synchronize()
+                    
+                    preferences.setValue(String(user), forKey: "username")
+                    preferences.synchronize()
+                    
+                    self.loginSuccessful = true
+                }
                 
                 
                 // avoid deadlocks by not using .main queue here
@@ -134,15 +149,19 @@ class LoginViewController: UIViewController {
             task.resume()
         
             group.notify(queue: .main){
-            print("complete")
-            
-            if(!self.token.starts(with: "ey"))  {
-                
-                // login worked, perform segue
-                print("Performing the segue")
-                self.performSegue(withIdentifier: "loginSuccessful", sender: nil)
-                
-            }
+                print("complete")
+                if(self.loginSuccessful)  {
+                    
+                    // login worked, perform segue
+                    print("Performing the segue")
+                    self.performSegue(withIdentifier: "loginSuccessful", sender: nil)
+                    
+                } else {
+                    // show alert dialog saying incorrect login
+                    let alert = UIAlertController(title: "Alert", message: "Login information incorrect", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
         }
     }
 }
