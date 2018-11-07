@@ -95,7 +95,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     
     @IBAction func finishedBtn(_ sender: UIButton) {
-        
         finishedAction()
         
     }
@@ -124,6 +123,10 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         do {
             let audioData = try Data(contentsOf: dataURL as URL)
             s3Transfer.uploadData(data: audioData, postID: postID)
+            
+            //perform segue
+            self.performSegue(withIdentifier: "recorderToFeed", sender: nil)
+            
         } catch {
             print("Unable to load data: \(error)")
         }
@@ -200,7 +203,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         
         reset()
         start()
-        //audioPlayer.stop()
     }
     
     func pauseRecorder () {
@@ -248,11 +250,9 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             pauseBtn.isHidden = true
             
             finishedBtn.setTitle("Playback", for: .normal)
-           
         }
         if (finishedBtn.titleLabel?.text == "Playback") {
-            //perform segue
-            playBack()
+                playBack()
         }
     }
     
@@ -262,6 +262,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
         do{
             //initialize the audio player
+            
             audioPlayer = try AVAudioPlayer(contentsOf: filename)
             audioPlayer.play()
         }

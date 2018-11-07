@@ -77,6 +77,8 @@ class S3TransferUtility {
                     //initialize the audio player
                     self.audioPlayer = try AVAudioPlayer(data: data!)
                     self.audioPlayer.play()
+                    print("playing")
+
                 }
                 catch{
                     print("bummer")
@@ -102,5 +104,12 @@ class S3TransferUtility {
                 }
                 return nil;
         }
+    }
+    
+    
+    
+    //added Roundcount
+    func audioPlayerDidFinishPlayingC(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("finishedC")//It is working now! printed "finished"!
     }
 }

@@ -8,12 +8,16 @@
 
 import UIKit
 import AWSS3
+import AVFoundation
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate {
     
     @IBOutlet weak var feedNavBtn: UIBarButtonItem!
     @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
+    
+    @IBOutlet weak var testLabel: UILabel!
+    
     
     @IBAction func recorderNavBtn(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "feedToRecorder", sender: nil)
@@ -26,19 +30,20 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var usernameString = ""
     
     let preferences = UserDefaults.standard
-
     
+    var audioPlayer: AVAudioPlayer!
     
     @IBOutlet weak var tableView: UITableView!
     
     var posts : NSArray?
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (posts?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        print("print1")
         
         var cell : PostTableViewCell!
         
@@ -69,9 +74,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.usernameLabel.text = "By: \(username!)"
             cell.datePostedLabel.text = finalDate
             cell.postID = postID!
-
+            
+            print("print2")
+            
         }
-        
+
         cell.sizeToFit()
         
         
@@ -89,28 +96,91 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubview(toBack: whiteRoundedView)
         
+        
+        if audioPlayer != nil{
+            if audioPlayer?.isPlaying == true {
+                cell?.contentView.backgroundColor = UIColor.green
+            } else {
+                cell.contentView.backgroundColor = UIColor.clear
+            }
+        }
+        
+        print("print3")
+        
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell
-        
         let postID = cell?.postID!
         downloadAudioFromS3(postID: postID!)
         
+        print("print4")
+ 
+        
+        
+        //Roundcount testing
+        cell?.contentView.backgroundColor = UIColor.green
+        if audioPlayer?.isPlaying == true{
+            print("print6")
+        }
+        
+        
+        
+        
+        /*
+        if (AVPlayerTimeControlStatus.playing) {
+            testLabel.text = "playing"
+        } else {
+            testLabel.text = "buh"
+        }
+ 
+
+        if audioPlayer != nil{
+            if audioPlayer?.isPlaying == true {
+                cell?.contentView.backgroundColor = UIColor.green
+            } else {
+                cell.contentView.backgroundColor = UIColor.clear
+            }
+        }
+
+        
+        func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+            cell?.contentView.backgroundColor = UIColor.green
+            print("finished")
+        }
+        
+            func audioPlayerDidFinishPlaying(_: AVAudioPlayer, successfully: Bool) {
+                print("finished")//It is working now! printed "finished"!
+            }
+        
+            func audioPlayerDidFinishPlayingC(player: AVAudioPlayer!, successfully flag: Bool) {
+                //You can stop the audio
+                print("finishedC")
+            }
+            */
     }
+
+
+
+    
+    
     
     func downloadAudioFromS3(postID: Int) {
-        
         let s3Transfer = S3TransferUtility()
         s3Transfer.downloadData(postID: postID)
         
+        print("print5")
     }
+    
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        testLabel.text = "buh"
         
         feedNavBtn.isEnabled = false
         
@@ -140,20 +210,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("----------------------------")
 
         self.posts = dbManager.getPostsForFeed(token: self.token, data: dataString) as NSArray
+        self.posts = self.posts!.reversed() as NSArray
         
         print(self.posts!)
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    override open var shouldAutorotate: Bool {
-        return false
-    }
- */
     
 }

@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var usernameString = ""
     let preferences = UserDefaults.standard
     var userID : Int = 0
+    let profile = ""
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -43,10 +44,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         var cell : PostTableViewCell!
-        
-        
+    
         if((posts?.count)! > 0){
             
             let post = posts?[indexPath.row] as? [String: Any]
@@ -96,8 +95,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profileNavBtn.isEnabled = false
+        //username.text = "\(username!)"
+        let profile = preferences.value(forKey: "username") as! String
+        username.text = "\(profile)'s Profile"
         
+        profileNavBtn.isEnabled = false
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -118,14 +120,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         print(usernameString)
       
-        
-//        // this part gets current user's id for posting Posts
-//        print("--- getting user id ---")
-//        self.userID = dbManager.getUserID(token: token, endpoint: "/getID", data: dataString)
-//
-//        print(self.userID)
-//
-        // set in preferences
         preferences.setValue(self.userID, forKey: "userid")
         preferences.synchronize()
         
@@ -139,6 +133,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.posts = []
         print("-------------- getting posts --------------")
         self.posts = dbManager.getPostsForUser(token: self.token, data: dataString) as NSArray
+        self.posts = self.posts!.reversed() as NSArray
         
         print(self.posts!)
     }
@@ -184,7 +179,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -197,3 +191,5 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
      */
 
 }
+
+

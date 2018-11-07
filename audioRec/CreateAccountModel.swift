@@ -20,6 +20,7 @@ class CreateAccountModel {
         }
     }
     
+    
     //function for name validation
     func validateUsername(username:String) -> Bool {
         if (username.count) >= 3 {
