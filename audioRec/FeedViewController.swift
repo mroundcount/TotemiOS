@@ -10,7 +10,7 @@ import UIKit
 import AWSS3
 import AVFoundation
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate {
     
     @IBOutlet weak var feedNavBtn: UIBarButtonItem!
     @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
@@ -18,6 +18,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var testLabel: UILabel!
     
+    var postCell: PostTableViewCell!
+    
+    let s3Transfer = S3TransferUtility()
     
     @IBAction func recorderNavBtn(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "feedToRecorder", sender: nil)
@@ -112,16 +115,21 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell
-        let postID = cell?.postID!
-        downloadAudioFromS3(postID: postID!)
+        postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
+        let postID = postCell.postID!
+        downloadAudioFromS3(postID: postID)
+        
+        // Do something e.g. Alert a user for transfer completion.
+        // On failed downloads, `error` contains the error object.
+        
+       
         
         print("print4")
  
         
         
         //Roundcount testing
-        cell?.contentView.backgroundColor = UIColor.green
+        postCell.contentView.backgroundColor = UIColor.green
         if audioPlayer?.isPlaying == true{
             print("print6")
         }
@@ -168,13 +176,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func downloadAudioFromS3(postID: Int) {
-        let s3Transfer = S3TransferUtility()
+        
         s3Transfer.downloadData(postID: postID)
         
         print("print5")
     }
     
 
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("Finished playing from feed view controller")
+    }
     
     
     override func viewDidLoad() {
@@ -186,7 +197,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
+        s3Transfer.delegate = self
         
         // get token from preferences
         if preferences.value(forKey: "tokenKey") == nil {
@@ -220,4 +231,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
+    func donePlayingAudio(){
+        print("Done")
+        postCell.contentView.backgroundColor = UIColor.clear
+    }
 }

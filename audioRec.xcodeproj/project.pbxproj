@@ -25,6 +25,7 @@
 		BF078107212655FF00EB7CBE /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF078106212655FF00EB7CBE /* RecorderViewController.swift */; };
 		BF07810921268F6200EB7CBE /* gifFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF07810821268F6200EB7CBE /* gifFile.swift */; };
 		BF07810F2127674E00EB7CBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF07810E2127674E00EB7CBE /* Main.storyboard */; };
+		BF145F832195136E00450A88 /* DonePlayingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF145F822195136E00450A88 /* DonePlayingDelegate.swift */; };
 		BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23663120FD19F50087C7E1 /* AppDelegate.swift */; };
 		BF23663920FD19FA0087C7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF23663820FD19FA0087C7E1 /* Assets.xcassets */; };
 		BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */; };
@@ -82,6 +83,7 @@
 		BF078106212655FF00EB7CBE /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
 		BF07810821268F6200EB7CBE /* gifFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifFile.swift; sourceTree = "<group>"; };
 		BF07810E2127674E00EB7CBE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		BF145F822195136E00450A88 /* DonePlayingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonePlayingDelegate.swift; sourceTree = "<group>"; };
 		BF23662E20FD19F50087C7E1 /* audioRec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = audioRec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF23663120FD19F50087C7E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF23663820FD19FA0087C7E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				BF23663D20FD19FA0087C7E1 /* Info.plist */,
 				5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */,
 				BF05B445217D7DA7003FB438 /* TotemLogo.png */,
+				BF145F822195136E00450A88 /* DonePlayingDelegate.swift */,
 			);
 			path = audioRec;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */,
 				BF07810921268F6200EB7CBE /* gifFile.swift in Sources */,
 				BF078107212655FF00EB7CBE /* RecorderViewController.swift in Sources */,
+				BF145F832195136E00450A88 /* DonePlayingDelegate.swift in Sources */,
 				BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */,
 				BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */,
 				BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */,
