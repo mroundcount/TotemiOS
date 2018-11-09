@@ -133,52 +133,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         if audioPlayer?.isPlaying == true{
             print("print6")
         }
-        
-        
-        
-        
-        /*
-        if (AVPlayerTimeControlStatus.playing) {
-            testLabel.text = "playing"
-        } else {
-            testLabel.text = "buh"
-        }
- 
-
-        if audioPlayer != nil{
-            if audioPlayer?.isPlaying == true {
-                cell?.contentView.backgroundColor = UIColor.green
-            } else {
-                cell.contentView.backgroundColor = UIColor.clear
-            }
-        }
-
-        
-        func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-            cell?.contentView.backgroundColor = UIColor.green
-            print("finished")
-        }
-        
-            func audioPlayerDidFinishPlaying(_: AVAudioPlayer, successfully: Bool) {
-                print("finished")//It is working now! printed "finished"!
-            }
-        
-            func audioPlayerDidFinishPlayingC(player: AVAudioPlayer!, successfully flag: Bool) {
-                //You can stop the audio
-                print("finishedC")
-            }
-            */
     }
 
 
-
-    
-    
-    
     func downloadAudioFromS3(postID: Int) {
-        
         s3Transfer.downloadData(postID: postID)
-        
         print("print5")
     }
     

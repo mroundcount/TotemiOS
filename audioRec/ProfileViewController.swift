@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate {
     
     
     @IBOutlet weak var feedNavBtn: UIToolbar!
@@ -16,6 +16,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
     
     let dbManager = DatabaseManager()
+    
+    var postCell: PostTableViewCell!
     
     @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "profileToFeed", sender: nil)
@@ -139,11 +141,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
+        let postID = postCell.postID!
         
-        let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell
+        downloadAudioFromS3(postID: postID)
         
-        let postID = cell?.postID!
-        downloadAudioFromS3(postID: postID!)
+        postCell.contentView.backgroundColor = UIColor.green
         
     }
     
@@ -151,7 +154,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let s3Transfer = S3TransferUtility()
         s3Transfer.downloadData(postID: postID)
-        
+
     }
     
     //Deleting the Post
@@ -182,6 +185,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func donePlayingAudio(){
+        
+        print("Done")
+        postCell.contentView.backgroundColor = UIColor.clear
     }
     
     /*
