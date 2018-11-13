@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AWSCore
+import AWSS3
 import AVFoundation
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate {
@@ -19,6 +21,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let dbManager = DatabaseManager()
     
     var postCell: PostTableViewCell!
+    
+    let s3Transfer = S3TransferUtility()
     
     @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "profileToFeed", sender: nil)
@@ -96,39 +100,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
 
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
+        let postID = postCell.postID!
+        downloadAudioFromS3(postID: postID)
         
-        //username.text = "\(username!)"
-        let profile = preferences.value(forKey: "username") as! String
-        username.text = "\(profile)'s Profile"
+        postCell.contentView.backgroundColor = UIColor.green
         
-        profileNavBtn.isEnabled = false
-        
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        
-        
-        // get token from preferences
-        if preferences.value(forKey: "tokenKey") == nil {
-            //  Doesn't exist
-        } else {
-            self.token = preferences.value(forKey: "tokenKey") as! String
-        }
-        
-        // get token from preferences
-        if preferences.value(forKey: "username") == nil {
-            //  Doesn't exist
-        } else {
-            self.usernameString = preferences.value(forKey: "username") as! String
-        }
-        print(usernameString)
-      
-        preferences.setValue(self.userID, forKey: "userid")
-        preferences.synchronize()
-        
-        getPosts()
     }
     
     func getPosts(){
@@ -143,27 +121,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print(self.posts!)
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
-        let postID = postCell.postID!
-        
-        downloadAudioFromS3(postID: postID)
-        
-        postCell.contentView.backgroundColor = UIColor.green
-        
-    }
+
     
     func downloadAudioFromS3(postID: Int) {
-        
         let s3Transfer = S3TransferUtility()
         s3Transfer.downloadData(postID: postID)
 
     }
-    
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        print("Finished playing from feed view controller")
-    }
-    
+  
     //Deleting the Post
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -187,19 +152,54 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return [delete]
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let profile = preferences.value(forKey: "username") as! String
+        username.text = "\(profile)'s Profile"
+        
+        profileNavBtn.isEnabled = false
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        s3Transfer.delegate = self
+        
+        // get token from preferences
+        if preferences.value(forKey: "tokenKey") == nil {
+            //  Doesn't exist
+        } else {
+            self.token = preferences.value(forKey: "tokenKey") as! String
+        }
+        
+        // get token from preferences
+        if preferences.value(forKey: "username") == nil {
+            //  Doesn't exist
+        } else {
+            self.usernameString = preferences.value(forKey: "username") as! String
+        }
+        print(usernameString)
+        
+        preferences.setValue(self.userID, forKey: "userid")
+        preferences.synchronize()
+        
+        getPosts()
+    }
 
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("Finished playing from feed view controller")
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
     func donePlayingAudio(){
         print("Done")
         postCell.contentView.backgroundColor = UIColor.clear
     }
-
 }
 
 

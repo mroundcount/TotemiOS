@@ -16,8 +16,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
     
-    @IBOutlet weak var testLabel: UILabel!
-    
     var postCell: PostTableViewCell!
     
     let s3Transfer = S3TransferUtility()
@@ -115,9 +113,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         //Roundcount testing
         postCell.contentView.backgroundColor = UIColor.green
-        if audioPlayer?.isPlaying == true{
-            print("print6")
-        }
+
     }
 
 
@@ -134,8 +130,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        testLabel.text = "buh"
         
         feedNavBtn.isEnabled = false
         

@@ -109,9 +109,9 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
                 
     
     }
- 
+    //changed self.delegate!.donePlayingAudio()
     func donePlayingAudio() {
-        self.delegate!.donePlayingAudio()
+        self.delegate?.donePlayingAudio()
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
