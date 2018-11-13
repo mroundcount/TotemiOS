@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate {
     
@@ -34,6 +35,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let preferences = UserDefaults.standard
     var userID : Int = 0
     let profile = ""
+    
+    var audioPlayer: AVAudioPlayer!
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -157,6 +160,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
     
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("Finished playing from feed view controller")
+    }
+    
     //Deleting the Post
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -189,16 +196,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func donePlayingAudio(){
-        
         print("Done")
         postCell.contentView.backgroundColor = UIColor.clear
     }
-    
-    /*
-    override open var shouldAutorotate: Bool {
-        return false
-    }
-     */
 
 }
 

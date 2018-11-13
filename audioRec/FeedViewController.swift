@@ -99,15 +99,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubview(toBack: whiteRoundedView)
         
-        
-        if audioPlayer != nil{
-            if audioPlayer?.isPlaying == true {
-                cell?.contentView.backgroundColor = UIColor.green
-            } else {
-                cell.contentView.backgroundColor = UIColor.clear
-            }
-        }
-        
         print("print3")
         
         return cell
@@ -121,13 +112,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Do something e.g. Alert a user for transfer completion.
         // On failed downloads, `error` contains the error object.
-        
-       
-        
-        print("print4")
- 
-        
-        
+
         //Roundcount testing
         postCell.contentView.backgroundColor = UIColor.green
         if audioPlayer?.isPlaying == true{
