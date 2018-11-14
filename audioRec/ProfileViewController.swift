@@ -124,14 +124,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     
     func downloadAudioFromS3(postID: Int) {
-        let s3Transfer = S3TransferUtility()
         s3Transfer.downloadData(postID: postID)
-
     }
   
     //Deleting the Post
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("Finished playing from feed view controller")
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
@@ -184,11 +186,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         preferences.synchronize()
         
         getPosts()
-    }
-
-    
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        print("Finished playing from feed view controller")
     }
     
     override func didReceiveMemoryWarning() {
