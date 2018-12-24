@@ -72,11 +72,17 @@ class S3TransferUtility {
                 
                 print("completed download of file")
                 print("error \(error)")
+
                 
                 do{
+                    if self.audioPlayer != nil {
+                        self.audioPlayer.stop()
+                    } else {
+
                     //initialize the audio player
                     self.audioPlayer = try AVAudioPlayer(data: data!)
                     self.audioPlayer.play()
+                    }
                 }
                 catch{
                     print("bummer")
