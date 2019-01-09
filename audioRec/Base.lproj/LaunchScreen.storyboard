@@ -24,18 +24,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="TotemLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="kgZ-9t-ugf">
-                                <rect key="frame" x="58" y="257" width="258" height="153"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TotemLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="kgZ-9t-ugf">
+                                <rect key="frame" x="88" y="275" width="199" height="117"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kgZ-9t-ugf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3zs-uM-p8q"/>
                             <constraint firstItem="kgZ-9t-ugf" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="9IV-pG-OnK"/>
-                            <constraint firstItem="kgZ-9t-ugf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="237" id="GLO-gE-kvo"/>
-                            <constraint firstItem="xeF-em-YqL" firstAttribute="top" secondItem="kgZ-9t-ugf" secondAttribute="bottom" constant="58" id="Oan-Kc-aJM"/>
-                            <constraint firstItem="xeF-em-YqL" firstAttribute="centerX" secondItem="kgZ-9t-ugf" secondAttribute="centerX" id="aZu-tU-r4d"/>
-                            <constraint firstItem="kgZ-9t-ugf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="58" id="ilN-1Q-iMV"/>
+                            <constraint firstItem="xeF-em-YqL" firstAttribute="top" secondItem="kgZ-9t-ugf" secondAttribute="bottom" constant="76" id="9T8-S7-roX"/>
+                            <constraint firstItem="kgZ-9t-ugf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="255" id="JZA-Ag-aZS"/>
+                            <constraint firstItem="xeF-em-YqL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="96" id="gv1-5c-ql9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xeF-em-YqL" secondAttribute="bottom" constant="178" id="hyt-ZQ-eYQ"/>
+                            <constraint firstItem="kgZ-9t-ugf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="88" id="lSW-U8-044"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kgZ-9t-ugf" secondAttribute="trailing" constant="88" id="uxH-4e-9js"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

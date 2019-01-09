@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import AWSCore
+import AWSS3
+import AVFoundation
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate {
     
     
     @IBOutlet weak var feedNavBtn: UIToolbar!
@@ -16,6 +19,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
     
     let dbManager = DatabaseManager()
+    
+    var postCell: PostTableViewCell!
+    
+    let s3Transfer = S3TransferUtility()
     
     @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "profileToFeed", sender: nil)
@@ -31,6 +38,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var usernameString = ""
     let preferences = UserDefaults.standard
     var userID : Int = 0
+    let profile = ""
+    
+    var audioPlayer: AVAudioPlayer!
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -43,10 +53,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         var cell : PostTableViewCell!
-        
-        
+    
         if((posts?.count)! > 0){
             
             let post = posts?[indexPath.row] as? [String: Any]
@@ -92,44 +100,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
 
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
+        let postID = postCell.postID!
+        downloadAudioFromS3(postID: postID)
         
-        profileNavBtn.isEnabled = false
+        postCell.contentView.backgroundColor = UIColor.green
         
-        
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        
-        
-        // get token from preferences
-        if preferences.value(forKey: "tokenKey") == nil {
-            //  Doesn't exist
-        } else {
-            self.token = preferences.value(forKey: "tokenKey") as! String
-        }
-        
-        // get token from preferences
-        if preferences.value(forKey: "username") == nil {
-            //  Doesn't exist
-        } else {
-            self.usernameString = preferences.value(forKey: "username") as! String
-        }
-        print(usernameString)
-      
-        
-//        // this part gets current user's id for posting Posts
-//        print("--- getting user id ---")
-//        self.userID = dbManager.getUserID(token: token, endpoint: "/getID", data: dataString)
-//
-//        print(self.userID)
-//
-        // set in preferences
-        preferences.setValue(self.userID, forKey: "userid")
-        preferences.synchronize()
-        
-        getPosts()
     }
     
     func getPosts(){
@@ -139,29 +116,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.posts = []
         print("-------------- getting posts --------------")
         self.posts = dbManager.getPostsForUser(token: self.token, data: dataString) as NSArray
+        self.posts = self.posts!.reversed() as NSArray
         
         print(self.posts!)
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell
-        
-        let postID = cell?.postID!
-        downloadAudioFromS3(postID: postID!)
-        
-    }
+
     
     func downloadAudioFromS3(postID: Int) {
-        
-        let s3Transfer = S3TransferUtility()
         s3Transfer.downloadData(postID: postID)
-        
     }
-    
+  
     //Deleting the Post
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("Finished playing from feed view controller")
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
@@ -182,18 +154,49 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return [delete]
     }
-
     
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let profile = preferences.value(forKey: "username") as! String
+        username.text = "\(profile)'s Profile"
+        
+        profileNavBtn.isEnabled = false
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        s3Transfer.delegate = self
+        
+        // get token from preferences
+        if preferences.value(forKey: "tokenKey") == nil {
+            //  Doesn't exist
+        } else {
+            self.token = preferences.value(forKey: "tokenKey") as! String
+        }
+        
+        // get token from preferences
+        if preferences.value(forKey: "username") == nil {
+            //  Doesn't exist
+        } else {
+            self.usernameString = preferences.value(forKey: "username") as! String
+        }
+        print(usernameString)
+        
+        preferences.setValue(self.userID, forKey: "userid")
+        preferences.synchronize()
+        
+        getPosts()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    override open var shouldAutorotate: Bool {
-        return false
+    func donePlayingAudio(){
+        print("Done")
+        postCell.contentView.backgroundColor = UIColor.clear
     }
-     */
-
 }
+
+

@@ -12,11 +12,14 @@ import AWSS3
 import AVFoundation
 
 
-class S3TransferUtility {
+class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
+    
+    var delegate : DonePlayingDelegate!
     
     var audioPlayer: AVAudioPlayer!
     
-    init () {
+    
+    override init () {
         
     }
     
@@ -58,6 +61,8 @@ class S3TransferUtility {
     }
     
     func downloadData(postID: Int) {
+        
+        
         let expression = AWSS3TransferUtilityDownloadExpression()
         expression.progressBlock = {(task, progress) in DispatchQueue.main.async(execute: {
             // Do something e.g. Update a progress bar.
@@ -67,40 +72,49 @@ class S3TransferUtility {
         var completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
         completionHandler = { (task, URL, data, error) -> Void in
             DispatchQueue.main.async(execute: {
-                // Do something e.g. Alert a user for transfer completion.
-                // On failed downloads, `error` contains the error object.
-                
                 print("completed download of file")
-                print("error \(error)")
                 
                 do{
                     //initialize the audio player
                     self.audioPlayer = try AVAudioPlayer(data: data!)
+                    self.audioPlayer.delegate = self
                     self.audioPlayer.play()
+                    print("playing")
                 }
                 catch{
                     print("bummer")
                 }
-
+                
             })
         }
         
         let transferUtility = AWSS3TransferUtility.default()
-        transferUtility.downloadData(
-            fromBucket: "roundcountaudiotest",
-            key: "\(postID).m4a",
-            expression: expression,
-            completionHandler: completionHandler
-            ).continueWith {
-                (task) -> AnyObject! in if let error = task.error {
-                    print("Error: \(error.localizedDescription)")
-                }
-                
-                if let _ = task.result {
-                    // Do something with downloadTask.
+            transferUtility.downloadData(
+                fromBucket: "roundcountaudiotest",
+                key: "\(postID).m4a",
+                expression: expression,
+                completionHandler: completionHandler
+                ).continueWith {
+                    (task) -> AnyObject! in if let error = task.error {
+                        print("Error: \(error.localizedDescription)")
+                        
+                    }
                     
-                }
-                return nil;
-        }
+                    if let _ = task.result {
+                        // Do something with downloadTask.
+                        
+                    }
+                    return nil;
+            }
+                
+    
+    }
+    //changed self.delegate!.donePlayingAudio()
+    func donePlayingAudio() {
+        self.delegate.donePlayingAudio()
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        donePlayingAudio()
     }
 }

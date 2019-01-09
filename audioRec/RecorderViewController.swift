@@ -76,18 +76,25 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     @IBAction func pauseBtn(_ sender: UIButton) {
         if (finishedBtn.titleLabel?.text == "Finished") {
+        //if (finishedBtn.titleLabel?.text == "[ ]") {
             if (pauseBtn.titleLabel?.text == "Pause") {
+            //if (pauseBtn.titleLabel?.text == "| |") {
                 pauseRecorder ()
             } else {
                 resumeRecorder ()
             }
         } else {
             if (pauseBtn.titleLabel?.text == "Pause") {
+            //if (pauseBtn.titleLabel?.text == "| |") {
                 audioPlayer.pause()
                 pauseBtn.setTitle("Resume", for: .normal)
+                //pauseBtn.setTitle("=.>", for: .normal)
+                //pauseBtn.setImage( UIImage.init(named: "pauseIcon"), for: .normal)
             } else {
                 pauseBtn.setTitle("Pause", for: .normal)
+                //pauseBtn.setTitle("| |", for: .normal)
                 audioPlayer.play()
+                //yourBtn.setImage( UIImage.init(named: "imagename"), for: .normal)
             }
         }
     }
@@ -95,7 +102,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     
     @IBAction func finishedBtn(_ sender: UIButton) {
-        
         finishedAction()
         
     }
@@ -124,6 +130,10 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         do {
             let audioData = try Data(contentsOf: dataURL as URL)
             s3Transfer.uploadData(data: audioData, postID: postID)
+            
+            //perform segue
+            self.performSegue(withIdentifier: "recorderToFeed", sender: nil)
+            
         } catch {
             print("Unable to load data: \(error)")
         }
@@ -178,6 +188,20 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     }
     
     func beginRecording () {
+        if audioRecorder == nil{
+            let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
+            let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
+            //Start Audio Recodring
+            do {
+                //pass in the URL and the settings defined above
+                audioRecorder = try AVAudioRecorder(url: filename, settings: settings)
+            }
+            catch {
+                displayALert(title: "Oh my.....", message: "Recording Failed")
+            }
+        }
+        
+        
         //pass in the URL and the settings defined above
         audioRecorder.delegate = self
         audioRecorder.record()
@@ -191,7 +215,9 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         
         //rerecord settings
         pauseBtn.setTitle("Pause", for: .normal)
+        //pauseBtn.setTitle("| |", for: .normal)
         finishedBtn.setTitle("Finished", for: .normal)
+        //finishedBtn.setTitle("[ ]", for: .normal)
         recordingImage.isHidden = false
         
         recordingImage.loadGif(name: "recording")
@@ -200,7 +226,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         
         reset()
         start()
-        //audioPlayer.stop()
     }
     
     func pauseRecorder () {
@@ -211,11 +236,13 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         audioRecorder.pause()
         stop()
         pauseBtn.setTitle("Resume", for: .normal)
+        //pauseBtn.setTitle("=.>", for: .normal)
     }
     
     func resumeRecorder () {
         //When recording is active
         pauseBtn.setTitle("Pause", for: .normal)
+        //pauseBtn.setTitle("| |", for: .normal)
         recordingImage.loadGif(name: "recording")
         recordingImage.isHidden = false
         start()
@@ -224,8 +251,11 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     func finishedAction () {
         if (finishedBtn.titleLabel?.text == "Finished") {
+        //if (finishedBtn.titleLabel?.text == "[ ]") {
             //When clicked
             pauseBtn.setTitle("Pause", for: .normal)
+            //pauseBtn.setTitle("| |", for: .normal)
+            //yourBtn.setImage( UIImage.init(named: "imagename"), for: .normal)
             
             stop()
             
@@ -248,20 +278,20 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             pauseBtn.isHidden = true
             
             finishedBtn.setTitle("Playback", for: .normal)
-           
+            //finishedBtn.setTitle("= >", for: .normal)
         }
         if (finishedBtn.titleLabel?.text == "Playback") {
-            //perform segue
-            playBack()
+        //if (finishedBtn.titleLabel?.text == "= >") {
+                playBack()
         }
     }
     
     func playBack() {
-        print("playing back")
         pauseBtn.isHidden = false
         let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
         do{
             //initialize the audio player
+            
             audioPlayer = try AVAudioPlayer(contentsOf: filename)
             audioPlayer.play()
         }
