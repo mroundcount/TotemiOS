@@ -8,7 +8,6 @@
 
 import UIKit
 import AWSS3
-import AVFoundation
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -28,7 +27,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let preferences = UserDefaults.standard
 
-    var audioPlayer: AVAudioPlayer!
+    
     
     @IBOutlet weak var tableView: UITableView!
     
