@@ -31,7 +31,6 @@
 		BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */; };
 		BF23664720FD19FB0087C7E1 /* audioRecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23664620FD19FB0087C7E1 /* audioRecTests.swift */; };
 		BF23665220FD19FB0087C7E1 /* audioRecUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */; };
-		BF6DE9CA21E5C056005FE1A9 /* myleg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF6DE9C921E5C050005FE1A9 /* myleg.mp3 */; };
 		BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFD921014F6F0001AF90 /* LoginViewController.swift */; };
 		BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */; };
 		BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C12662113DABB0086A99E /* PostTableViewCell.swift */; };
@@ -96,7 +95,6 @@
 		BF23664D20FD19FB0087C7E1 /* audioRecUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = audioRecUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioRecUITests.swift; sourceTree = "<group>"; };
 		BF23665320FD19FB0087C7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF6DE9C921E5C050005FE1A9 /* myleg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = myleg.mp3; path = ../../../../Downloads/myleg.mp3; sourceTree = "<group>"; };
 		BF70CFD921014F6F0001AF90 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		BF8C12662113DABB0086A99E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 			children = (
 				BF6DE9CB21E5C2D4005FE1A9 /* mediaIcons */,
 				5A5A4083212A331F00302124 /* recording.gif */,
-				BF6DE9C921E5C050005FE1A9 /* myleg.mp3 */,
 				5AFD7BDD2129E08B0047349C /* awsconfiguration.json */,
 				5A5A4081212A2FBE00302124 /* S3TransferUtility.swift */,
 				BF23663120FD19F50087C7E1 /* AppDelegate.swift */,
@@ -366,7 +363,6 @@
 				BF23663920FD19FA0087C7E1 /* Assets.xcassets in Resources */,
 				BF00BC922137737200AE45B2 /* buttonsLogos.xcassets in Resources */,
 				BF05B446217D7DA8003FB438 /* TotemLogo.png in Resources */,
-				BF6DE9CA21E5C056005FE1A9 /* myleg.mp3 in Resources */,
 				5A5A4084212A331F00302124 /* recording.gif in Resources */,
 				BF07810F2127674E00EB7CBE /* Main.storyboard in Resources */,
 			);
@@ -658,14 +654,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = audioRec/audioRec.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2384X3M7MT;
+				DEVELOPMENT_TEAM = DDPM5NGARH;
 				INFOPLIST_FILE = audioRec/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Totem-LLC.audioRec";
+				PRODUCT_BUNDLE_IDENTIFIER = totem.audiorec;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.0;
@@ -680,7 +676,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = audioRec/audioRec.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2384X3M7MT;
+				DEVELOPMENT_TEAM = DDPM5NGARH;
 				INFOPLIST_FILE = audioRec/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -688,7 +684,7 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "Totem-LLC.audioRec";
+				PRODUCT_BUNDLE_IDENTIFIER = totem.audiorec;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.0;

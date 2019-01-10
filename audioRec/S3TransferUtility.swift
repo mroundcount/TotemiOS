@@ -62,7 +62,7 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
     
     func downloadData(postID: Int) {
         
-        
+        print("pstid: \(postID)")
         let expression = AWSS3TransferUtilityDownloadExpression()
         expression.progressBlock = {(task, progress) in DispatchQueue.main.async(execute: {
             // Do something e.g. Update a progress bar.
@@ -115,6 +115,11 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        donePlayingAudio()
+    }
+    
+    func stopAudio(){
+        self.audioPlayer.stop()
         donePlayingAudio()
     }
 }

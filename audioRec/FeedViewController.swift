@@ -19,8 +19,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var publicBtn: UIButton!
     @IBOutlet weak var privateBtn: UIButton!
     
+    var activeTags : NSMutableArray = []
 
- 
     @IBAction func recorderNavBtn(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "feedToRecorder", sender: nil)
     }
@@ -100,17 +100,34 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
-        let postID = postCell.postID!
+        
         
         if audioPlayer != nil {
             if audioPlayer.isPlaying {
                 audioPlayer.stop()
             }
         }
-
-        downloadAudioFromS3(postID: postID)
-        postCell.contentView.backgroundColor = UIColor.green
+        
+        if(activeTags.contains(indexPath.row)){
+            print("is active cell, stopping audio")
+            s3Transfer.stopAudio()
+            activeTags.remove(indexPath.row)
+        }
+        else{
+            let postID = postCell.postID!
+            
+            if audioPlayer != nil {
+                if audioPlayer.isPlaying {
+                    audioPlayer.stop()
+                }
+            }
+            
+            downloadAudioFromS3(postID: postID)
+            postCell.contentView.backgroundColor = UIColor.green
+            activeTags.add(indexPath.row)
+        }
     }
 
     func downloadAudioFromS3(postID: Int) {
