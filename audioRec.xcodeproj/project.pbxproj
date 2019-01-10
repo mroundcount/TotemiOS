@@ -651,10 +651,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 85654FF5389973D0651155B2 /* Pods-audioRec.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = audioRec/audioRec.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DDPM5NGARH;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = audioRec/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -673,10 +672,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2F8DD6F078F747D661FC52FE /* Pods-audioRec.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = audioRec/audioRec.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DDPM5NGARH;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = audioRec/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

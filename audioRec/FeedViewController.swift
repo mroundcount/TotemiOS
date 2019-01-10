@@ -76,6 +76,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.usernameLabel.text = "By: \(username!)"
             cell.datePostedLabel.text = finalDate
             cell.postID = postID!
+            cell.countLabel.isHidden = true
+            cell.likeBtn.isEnabled = false
         }
         cell.sizeToFit()
         //Cell Styling
@@ -100,10 +102,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
-        
-        
+
         if audioPlayer != nil {
             if audioPlayer.isPlaying {
                 audioPlayer.stop()
@@ -138,8 +138,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         feedNavBtn.isEnabled = false
-        publicBtn.isEnabled = false
-        privateBtn.isEnabled = true
+        //publicBtn.isEnabled = false
+        privateBtn.isEnabled = false
+
+        privateBtn.setTitle("Coming Soon", for: .normal)
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -221,29 +223,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.tableView.reloadData()
 
-    }
-    
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        //copy this and add the variables in the return with "delete
-        let delete = UITableViewRowAction(style: .normal, title: "      Delete     ") { action, index in
-            // execute the delete
-            
-            let cell = tableView.cellForRow(at: editActionsForRowAt) as? PostTableViewCell
-
-            print("delete button tapped. going to delete post with id")
-
-            if self.audioPlayer != nil {
-                if self.audioPlayer.isPlaying {
-                    self.audioPlayer.stop()
-                }
-            }
-            tableView.reloadData()
-
-        }
-        delete.backgroundColor = .red
-        
-        return [delete]
     }
 }
 

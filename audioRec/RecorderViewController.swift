@@ -188,6 +188,11 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     }
     
     func beginRecording () {
+        
+        if audioPlayer != nil{
+            audioPlayer.stop()
+        }
+        
         if audioRecorder == nil{
             let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
             let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
@@ -200,8 +205,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
                 displayALert(title: "Oh my.....", message: "Recording Failed")
             }
         }
-        
-        
+
         //pass in the URL and the settings defined above
         audioRecorder.delegate = self
         audioRecorder.record()
@@ -263,7 +267,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             recordingImage.isHidden = true
             descriptionTxt.isHidden = false
             defaultTxt.isHidden = false
-            defaultTxt.text = "Play it back, hey if ya fucked up click anywhere to record again"
+            defaultTxt.text = "Congrats pal! Play it back, if you don't like it click anywhere to rerecord"
             
             //view.backgroundColor = UIColor.darkGray
             let greenColor = UIColor(red: 10/255.0, green: 156/255.0, blue: 54/255.0, alpha: 1.0)

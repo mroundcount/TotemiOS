@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vr6-uD-nLx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gsk-Cu-sAB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ENj-Bj-Vra">
-                                <rect key="frame" x="54" y="292" width="267" height="30"/>
+                                <rect key="frame" x="54" y="336" width="267" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJC-wq-WIf">
-                                <rect key="frame" x="54" y="238" width="267" height="30"/>
+                                <rect key="frame" x="54" y="282" width="267" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -54,7 +54,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TotemBanner.png" translatesAutoresizingMaskIntoConstraints="NO" id="lfe-FN-YrP">
-                                <rect key="frame" x="15" y="50" width="345" height="110"/>
+                                <rect key="frame" x="15" y="94" width="345" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="Ffk-Jg-KrY"/>
                                 </constraints>
@@ -146,7 +146,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TotemBanner.png" translatesAutoresizingMaskIntoConstraints="NO" id="e8M-PF-NGe">
-                                <rect key="frame" x="15" y="50" width="345" height="110"/>
+                                <rect key="frame" x="15" y="94" width="345" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="4be-4k-wM0"/>
                                 </constraints>
@@ -447,9 +447,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ouy-Q0-Ie0">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Feed" id="sXs-56-1Hd">
-                                        <barButtonItem key="rightBarButtonItem" title="Stuff" id="yDL-s6-YeM"/>
-                                    </navigationItem>
+                                    <navigationItem title="Feed" id="sXs-56-1Hd"/>
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8S4-l3-eUC">
@@ -460,6 +458,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Y6y-aJ-ll4"/>
                                     <constraint firstAttribute="height" constant="60" id="va3-eS-IC4"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Private"/>
                                 <connections>
                                     <action selector="privateBtn:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="BRt-Jr-UGu"/>
@@ -649,9 +648,9 @@
         <image name="loginButtonPurple.png" width="286" height="89"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sSE-Mw-bbN"/>
+        <segue reference="mek-Tq-dLp"/>
         <segue reference="WcJ-qf-B7z"/>
-        <segue reference="hxp-Ea-JtN"/>
-        <segue reference="nfS-jH-l8U"/>
+        <segue reference="eol-gO-uF4"/>
+        <segue reference="IYn-4w-Tem"/>
     </inferredMetricsTieBreakers>
 </document>
