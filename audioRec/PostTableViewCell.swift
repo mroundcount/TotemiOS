@@ -22,19 +22,7 @@ class PostTableViewCell: UITableViewCell {
     
     @IBAction func likeBtn(_ sender: Any) {
         likeBtn.setTitle("click", for: .normal)
-//
-//        //let url = Bundle.main.url(forResource: "myleg", withExtension: "mp3")!
-//
-//        do {
-//            player = try AVAudioPlayer(contentsOf: url)
-//            guard let player = player else { return }
-//
-//            player.prepareToPlay()
-//            player.play()
-//
-//        } catch let error as NSError {
-//            print(error.description)
-//        }
+
     }
     
     var postID: Int?

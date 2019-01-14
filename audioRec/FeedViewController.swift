@@ -22,9 +22,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var activeTags : NSMutableArray = []
 
     @IBAction func recorderNavBtn(_ sender: UIBarButtonItem) {
+        print("recordd")
+        s3Transfer.stopAudio()
         self.performSegue(withIdentifier: "feedToRecorder", sender: nil)
+        
     }
     @IBAction func profileNavBtn(_ sender: UIBarButtonItem) {
+        print("profile")
+        s3Transfer.stopAudio()
         self.performSegue(withIdentifier: "feedToProfile", sender: nil)
     }
     

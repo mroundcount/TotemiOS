@@ -13,7 +13,7 @@ class CreateAccountModel {
     init() {}
 
     func validation(username: String?, emailAddress: String?, password: String?) -> Bool {
-        if ((username?.count)! >= 3) && validateEmail(emailAddress: emailAddress!) && ((password?.count)! >= 7) {
+        if ((username?.count)! >= 3) && validateEmail(emailAddress: emailAddress!) && ((password?.count)! >= 3) {
             return true
         }else{
             return false

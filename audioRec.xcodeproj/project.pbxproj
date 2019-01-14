@@ -653,14 +653,14 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = audioRec/audioRec.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2384X3M7MT;
 				INFOPLIST_FILE = audioRec/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = totem.audiorec;
+				PRODUCT_BUNDLE_IDENTIFIER = "Totem-LLC.audioRec";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.0;
@@ -674,7 +674,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = audioRec/audioRec.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2384X3M7MT;
 				INFOPLIST_FILE = audioRec/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -682,7 +682,7 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = totem.audiorec;
+				PRODUCT_BUNDLE_IDENTIFIER = "Totem-LLC.audioRec";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.0;

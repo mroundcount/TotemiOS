@@ -25,10 +25,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let s3Transfer = S3TransferUtility()
     
     @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
+        s3Transfer.stopAudio()
         self.performSegue(withIdentifier: "profileToFeed", sender: nil)
     }
     
     @IBAction func recorderNavBtn(_ sender: Any) {
+        s3Transfer.stopAudio()
         self.performSegue(withIdentifier: "profileToRecorder", sender: nil)
     }
     
@@ -41,6 +43,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let profile = ""
     
     var audioPlayer: AVAudioPlayer!
+    
+    var activeTags : NSMutableArray = []
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -102,12 +106,32 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
-        let postID = postCell.postID!
-        downloadAudioFromS3(postID: postID)
+        if audioPlayer != nil {
+            if audioPlayer.isPlaying {
+                audioPlayer.stop()
+            }
+        }
         
-        postCell.contentView.backgroundColor = UIColor.green
-        
+        if(activeTags.contains(indexPath.row)){
+            print("is active cell, stopping audio")
+            s3Transfer.stopAudio()
+            activeTags.remove(indexPath.row)
+        }
+        else{
+            let postID = postCell.postID!
+            
+            if audioPlayer != nil {
+                if audioPlayer.isPlaying {
+                    audioPlayer.stop()
+                }
+            }
+            
+            downloadAudioFromS3(postID: postID)
+            postCell.contentView.backgroundColor = UIColor.green
+            activeTags.add(indexPath.row)
+        }
     }
+
     
     func getPosts(){
         

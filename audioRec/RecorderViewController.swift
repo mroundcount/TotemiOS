@@ -39,6 +39,9 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //dismiss keyboard
+        self.hideKeyboardWhenTappedAround()
+        
         // get token from preferences
         if preferences.value(forKey: "tokenKey") == nil {
             //  Doesn't exist
@@ -59,10 +62,16 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     }
     
     @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
+        if audioPlayer != nil{
+            audioPlayer.stop()
+        }
         self.performSegue(withIdentifier: "recorderToFeed", sender: nil)
     }
     
     @IBAction func profileNavBtn(_ sender: UIBarButtonItem) {
+        if audioPlayer != nil{
+            audioPlayer.stop()
+        }
         self.performSegue(withIdentifier: "recorderToProfile", sender: nil)
     }
     
@@ -397,7 +406,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         timerLbl.text = "\(strMinutes):\(strSeconds)"
         
         func eventTimer() {
-            if minutes == 1 {
+            if minutes == 2 {
                 finishedAction ()
                 stop()
             }
@@ -409,4 +418,16 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
     }
+    
+    // Dismissing the keyboard using the tap jester
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
+

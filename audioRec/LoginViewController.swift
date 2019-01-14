@@ -26,6 +26,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //dismiss keyboard
+        self.hideKeyboardWhenTappedAround()
+        
         _username.layer.cornerRadius = 8.0
         _username.layer.borderColor = UIColor.black.cgColor
         _username.layer.borderWidth = 1.0
@@ -46,6 +49,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         _username.delegate = self
         _password.delegate = self
         
+    }
+    
+    // Dismissing the keyboard using the tap jester
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     //MARK: UITextFieldDelegate
@@ -165,3 +179,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
 }
+

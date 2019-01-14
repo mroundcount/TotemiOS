@@ -119,7 +119,12 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
     }
     
     func stopAudio(){
-        self.audioPlayer.stop()
-        donePlayingAudio()
+        
+        if audioPlayer != nil {
+            if audioPlayer.isPlaying {
+                audioPlayer.stop()
+                donePlayingAudio()
+            }
+        }
     }
 }
