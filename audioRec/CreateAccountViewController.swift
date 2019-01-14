@@ -44,7 +44,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             print(dbManager.dataPost(endpoint: "api/user", data: variable))
 
             
-            let alert = UIAlertController(title: "Did you bring your towel?", message: "Success! Return to login", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Success!", message: "Return to login", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Congrats", style: .default, handler: nil))
             self.present(alert, animated: true)
             
