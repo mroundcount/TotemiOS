@@ -38,19 +38,19 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         if(password.text!.isEqual(repeatPassword.text!)){
             let dbManager = DatabaseManager()
             
-            let variable = "{\"User\":[{\"username\":\" " + username.text! + "\",\"password\":\" " + password.text! + "\",\"email\":\" " + emailAddress.text! + "\"}]}"
-            
+            let variable = "{\"User\":[{\"username\":\"" + username.text! + "\",\"password\":\"" + password.text! + "\",\"email\":\"" + emailAddress.text! + "\"}]}"
+            print(variable)
             print("-----------------response from dataPost-----------------------")
             print(dbManager.dataPost(endpoint: "api/user", data: variable))
 
             
             let alert = UIAlertController(title: "Success!", message: "Return to login", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Congrats", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
             self.present(alert, animated: true)
             
         } else{
             
-            let alert = UIAlertController(title: "Did you bring your towel?", message: "Passwords don't match", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Oops, sorry!", message: "Passwords don't match", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
             self.present(alert, animated: true)
 

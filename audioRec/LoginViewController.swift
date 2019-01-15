@@ -141,6 +141,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let token = String(sub1)
                 
                 print(sub1)
+                
                 if(token.starts(with: "ey")){
                     let preferences = UserDefaults.standard
                     preferences.setValue(token, forKey: "tokenKey")
