@@ -18,7 +18,6 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
     
     var audioPlayer: AVAudioPlayer!
     
-    
     override init () {
         
     }
