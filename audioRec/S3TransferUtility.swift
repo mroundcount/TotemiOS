@@ -75,6 +75,12 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
                 
                 do{
                     //initialize the audio player
+                    do {
+                        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                    }
+                    catch {
+                        // report for an error
+                    }
                     self.audioPlayer = try AVAudioPlayer(data: data!)
                     self.audioPlayer.delegate = self
                     self.audioPlayer.play()
