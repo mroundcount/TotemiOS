@@ -26,6 +26,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkIfPatientLoggedIn()
+
         //dismiss keyboard
         self.hideKeyboardWhenTappedAround()
         
@@ -48,6 +50,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         _username.delegate = self
         _password.delegate = self
+        
+    }
+    
+    func checkIfPatientLoggedIn(){
+        
+        let preferences = UserDefaults.standard
+        
+        // get token from preferences
+        if preferences.value(forKey: "tokenKey") == nil {
+            //  Doesn't exist
+            print("no toekN")
+        } else {
+            // token exists log patient in auto
+            
+            // login worked, perform segue
+            print("Performing the login segue")
+            
+            DispatchQueue.main.async(){
+                self.performSegue(withIdentifier: "loginSuccessful", sender: nil)
+            }
+        }
         
     }
     
