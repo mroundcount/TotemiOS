@@ -342,7 +342,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOz-q7-KFq">
-                                                    <rect key="frame" x="15" y="11" width="100" height="24"/>
+                                                    <rect key="frame" x="15" y="11" width="345" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -386,6 +386,7 @@
                                                 <constraint firstItem="JjU-WS-ayN" firstAttribute="top" secondItem="tga-eS-2XV" secondAttribute="bottom" constant="51" id="Icl-xH-EH5"/>
                                                 <constraint firstItem="tga-eS-2XV" firstAttribute="top" secondItem="cOz-q7-KFq" secondAttribute="bottom" constant="5" id="OYL-G7-bjF"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ykf-5A-SEI" secondAttribute="bottom" id="TVf-9i-6Ci"/>
+                                                <constraint firstItem="cOz-q7-KFq" firstAttribute="trailing" secondItem="E2k-8H-7oZ" secondAttribute="trailingMargin" id="bA8-Am-kdY"/>
                                                 <constraint firstItem="JjU-WS-ayN" firstAttribute="leading" secondItem="E2k-8H-7oZ" secondAttribute="leadingMargin" id="jJi-UT-PvW"/>
                                                 <constraint firstItem="z1A-cE-kDJ" firstAttribute="bottom" secondItem="E2k-8H-7oZ" secondAttribute="bottomMargin" id="lI6-sH-Iii"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="JjU-WS-ayN" secondAttribute="bottom" id="lX2-Jt-iMp"/>
@@ -629,8 +630,8 @@
         <image name="loginButtonPurple.png" width="286" height="89"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mek-Tq-dLp"/>
-        <segue reference="tFQ-qk-At8"/>
-        <segue reference="hxp-Ea-JtN"/>
+        <segue reference="sSE-Mw-bbN"/>
+        <segue reference="WcJ-qf-B7z"/>
+        <segue reference="eol-gO-uF4"/>
     </inferredMetricsTieBreakers>
 </document>
