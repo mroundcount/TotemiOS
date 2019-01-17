@@ -205,7 +205,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynj-9m-Iye">
-                                <rect key="frame" x="143" y="496" width="89" height="46"/>
+                                <rect key="frame" x="143" y="527" width="89" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Publish">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -260,8 +260,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FZ6-w6-JI9">
-                                <rect key="frame" x="16" y="393" width="343" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FZ6-w6-JI9">
+                                <rect key="frame" x="16" y="439" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -270,23 +270,24 @@
                         <color key="backgroundColor" red="0.19125583560000001" green="0.54957648140000004" blue="0.94226860700000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="M4x-Ti-V3q" firstAttribute="bottom" secondItem="y6b-ot-UHy" secondAttribute="top" id="4Ba-aJ-1LG"/>
-                            <constraint firstItem="FZ6-w6-JI9" firstAttribute="bottom" secondItem="Hj6-Zc-rq2" secondAttribute="bottom" id="7bB-Qw-vfD"/>
                             <constraint firstItem="M4x-Ti-V3q" firstAttribute="leading" secondItem="emV-8D-7Fo" secondAttribute="leading" id="8MI-wK-6fp"/>
+                            <constraint firstItem="FZ6-w6-JI9" firstAttribute="centerX" secondItem="Ynj-9m-Iye" secondAttribute="centerX" id="9Xa-9P-fTX"/>
+                            <constraint firstItem="y6b-ot-UHy" firstAttribute="top" secondItem="Ynj-9m-Iye" secondAttribute="bottom" constant="50" id="9eN-IB-wWk"/>
                             <constraint firstItem="M4x-Ti-V3q" firstAttribute="top" secondItem="F26-YA-y8K" secondAttribute="top" id="FVx-Cj-r5t"/>
+                            <constraint firstItem="uAA-yS-n4h" firstAttribute="trailing" secondItem="FZ6-w6-JI9" secondAttribute="trailing" constant="16" id="FYY-LQ-FQp"/>
                             <constraint firstItem="y6b-ot-UHy" firstAttribute="trailing" secondItem="uAA-yS-n4h" secondAttribute="trailing" id="HoC-JZ-YuK"/>
                             <constraint firstItem="1Fq-9P-Ufv" firstAttribute="leading" secondItem="uAA-yS-n4h" secondAttribute="leading" id="JgK-il-aM9"/>
                             <constraint firstItem="cAF-Jb-8gB" firstAttribute="top" secondItem="emV-8D-7Fo" secondAttribute="bottom" constant="70" id="Ji7-Fy-fq6"/>
-                            <constraint firstItem="FZ6-w6-JI9" firstAttribute="bottom" secondItem="IWF-2L-0Ad" secondAttribute="bottom" id="Jv5-Gd-bSf"/>
                             <constraint firstItem="emV-8D-7Fo" firstAttribute="centerX" secondItem="cAF-Jb-8gB" secondAttribute="centerX" id="L9N-YO-JVU"/>
                             <constraint firstItem="IWF-2L-0Ad" firstAttribute="leading" secondItem="Hj6-Zc-rq2" secondAttribute="trailing" constant="22" id="MVK-QR-kB2"/>
                             <constraint firstItem="Hj6-Zc-rq2" firstAttribute="top" secondItem="IWF-2L-0Ad" secondAttribute="top" id="NFP-bC-Elv"/>
                             <constraint firstItem="M4x-Ti-V3q" firstAttribute="trailing" secondItem="emV-8D-7Fo" secondAttribute="trailing" id="OyG-SI-99T"/>
                             <constraint firstItem="emV-8D-7Fo" firstAttribute="top" secondItem="uAA-yS-n4h" secondAttribute="top" constant="60" id="Pvu-hk-Ul9"/>
+                            <constraint firstItem="y6b-ot-UHy" firstAttribute="top" secondItem="FZ6-w6-JI9" secondAttribute="bottom" constant="154" id="Rqd-kg-ZVS"/>
                             <constraint firstItem="M4x-Ti-V3q" firstAttribute="top" secondItem="1Fq-9P-Ufv" secondAttribute="top" id="T5f-kX-uGZ"/>
+                            <constraint firstItem="FZ6-w6-JI9" firstAttribute="leading" secondItem="uAA-yS-n4h" secondAttribute="leading" constant="16" id="TDi-hu-SZZ"/>
                             <constraint firstItem="1Fq-9P-Ufv" firstAttribute="bottom" secondItem="uAA-yS-n4h" secondAttribute="bottom" id="VTy-br-jGC"/>
                             <constraint firstItem="IWF-2L-0Ad" firstAttribute="height" secondItem="Hj6-Zc-rq2" secondAttribute="height" id="Wnz-lY-Hh0"/>
-                            <constraint firstItem="Ynj-9m-Iye" firstAttribute="top" secondItem="IWF-2L-0Ad" secondAttribute="bottom" constant="54" id="Xli-0K-9YT"/>
-                            <constraint firstItem="FZ6-w6-JI9" firstAttribute="centerX" secondItem="Ynj-9m-Iye" secondAttribute="centerX" id="Z0o-EF-g1r"/>
                             <constraint firstItem="y6b-ot-UHy" firstAttribute="bottom" secondItem="uAA-yS-n4h" secondAttribute="bottom" id="aEX-nV-F8u"/>
                             <constraint firstItem="emV-8D-7Fo" firstAttribute="trailing" secondItem="IWF-2L-0Ad" secondAttribute="trailing" id="aZz-he-5Mw"/>
                             <constraint firstItem="cAF-Jb-8gB" firstAttribute="leading" secondItem="uAA-yS-n4h" secondAttribute="leading" constant="137" id="dyH-66-f5E"/>
@@ -297,7 +298,7 @@
                             <constraint firstItem="IWF-2L-0Ad" firstAttribute="top" secondItem="cAF-Jb-8gB" secondAttribute="bottom" constant="28" id="gpx-zo-NUr"/>
                             <constraint firstItem="emV-8D-7Fo" firstAttribute="leading" secondItem="Hj6-Zc-rq2" secondAttribute="leading" id="q62-EU-rUA"/>
                             <constraint firstItem="1Fq-9P-Ufv" firstAttribute="trailing" secondItem="uAA-yS-n4h" secondAttribute="trailing" id="rSt-e5-Jhw"/>
-                            <constraint firstItem="FZ6-w6-JI9" firstAttribute="leading" secondItem="F26-YA-y8K" secondAttribute="leadingMargin" id="xSX-CE-3co"/>
+                            <constraint firstItem="FZ6-w6-JI9" firstAttribute="leading" secondItem="F26-YA-y8K" secondAttribute="leadingMargin" id="wHS-4r-HAe"/>
                             <constraint firstItem="Hj6-Zc-rq2" firstAttribute="leading" secondItem="y6b-ot-UHy" secondAttribute="leading" id="y4s-gL-saz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uAA-yS-n4h"/>
@@ -307,6 +308,7 @@
                         <outlet property="descriptionTxt" destination="FZ6-w6-JI9" id="8tf-ld-pab"/>
                         <outlet property="feedNavBtn" destination="hYw-kt-Dde" id="TtN-4S-ts3"/>
                         <outlet property="finishedBtn" destination="IWF-2L-0Ad" id="5bF-gL-zg0"/>
+                        <outlet property="keyboardHeightLayoutConstraint" destination="Rqd-kg-ZVS" id="nLH-Ac-sdH"/>
                         <outlet property="pauseBtn" destination="Hj6-Zc-rq2" id="cQV-7O-fAw"/>
                         <outlet property="profileNavBtn" destination="xXA-gr-Drf" id="DAi-bl-GG8"/>
                         <outlet property="publishBtn" destination="Ynj-9m-Iye" id="4CG-MP-1dZ"/>
