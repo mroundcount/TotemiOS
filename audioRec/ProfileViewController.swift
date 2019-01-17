@@ -18,6 +18,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
     
+    @IBOutlet weak var profileHeader: UINavigationBar!
+    @IBOutlet weak var usernameProfile: UINavigationItem!
+    
+    
     let dbManager = DatabaseManager()
     
     var postCell: PostTableViewCell!
@@ -33,8 +37,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         s3Transfer.stopAudio()
         self.performSegue(withIdentifier: "profileToRecorder", sender: nil)
     }
-    
-    @IBOutlet weak var username: UILabel!
     
     var token = ""
     var usernameString = ""
@@ -183,7 +185,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         
         let profile = preferences.value(forKey: "username") as! String
-        username.text = "\(profile)'s Profile"
+        usernameProfile.title = "\(profile)'s Profile"
         
         profileNavBtn.isEnabled = false
         

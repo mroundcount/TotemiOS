@@ -517,7 +517,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="155" estimatedRowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NLY-4h-Z0N">
-                                <rect key="frame" x="0.0" y="101" width="375" height="522"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileTableViewCell" rowHeight="155" id="EpE-NZ-rnW" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -570,12 +570,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAX-Kd-qv4">
-                                <rect key="frame" x="148" y="35" width="79" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxw-3a-ozv">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
@@ -594,27 +588,35 @@
                                     <barButtonItem title="Profile" id="01G-WW-ery"/>
                                 </items>
                             </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ub4-fa-fQL">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="username" id="YMU-pb-xai"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="top" secondItem="ub4-fa-fQL" secondAttribute="bottom" id="09K-oJ-fdp"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="1hc-T8-zHF"/>
-                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="centerX" secondItem="MAX-Kd-qv4" secondAttribute="centerX" id="9yr-58-3Wt"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="bottom" secondItem="cxw-3a-ozv" secondAttribute="top" id="CXg-Ef-JUX"/>
+                            <constraint firstItem="ub4-fa-fQL" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="Rqe-zz-RJZ"/>
                             <constraint firstItem="gLg-GS-8uC" firstAttribute="bottom" secondItem="cxw-3a-ozv" secondAttribute="bottom" id="S8u-r0-CAo"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="TdL-KQ-Nlt"/>
                             <constraint firstItem="cxw-3a-ozv" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="Ult-17-zq3"/>
-                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="top" secondItem="MAX-Kd-qv4" secondAttribute="bottom" constant="45" id="Wgv-GH-oRN"/>
-                            <constraint firstItem="MAX-Kd-qv4" firstAttribute="top" secondItem="gLg-GS-8uC" secondAttribute="top" constant="15" id="chX-Qh-u1P"/>
+                            <constraint firstItem="ub4-fa-fQL" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="awk-hq-9MS"/>
+                            <constraint firstItem="ub4-fa-fQL" firstAttribute="top" secondItem="gLg-GS-8uC" secondAttribute="top" id="e7Z-ML-0af"/>
                             <constraint firstItem="cxw-3a-ozv" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="ntx-hi-kQ7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gLg-GS-8uC"/>
                     </view>
                     <connections>
                         <outlet property="feedNavBtn" destination="cxw-3a-ozv" id="Y5Z-Ie-8U7"/>
+                        <outlet property="profileHeader" destination="ub4-fa-fQL" id="aeP-ga-EXd"/>
                         <outlet property="profileNavBtn" destination="01G-WW-ery" id="Q1d-Hh-0Ig"/>
                         <outlet property="recorderNavBtn" destination="dTI-GZ-riZ" id="dnQ-vI-xWs"/>
                         <outlet property="tableView" destination="NLY-4h-Z0N" id="VDE-wy-Z3K"/>
-                        <outlet property="username" destination="MAX-Kd-qv4" id="e6P-bs-CjC"/>
+                        <outlet property="usernameProfile" destination="YMU-pb-xai" id="177-te-9sT"/>
                         <segue destination="Gsk-Cu-sAB" kind="show" identifier="profileToFeed" id="Mdd-V0-bt0"/>
                         <segue destination="gu6-eg-1mg" kind="show" identifier="profileToRecorder" id="hxp-Ea-JtN"/>
                     </connections>
@@ -632,6 +634,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="mek-Tq-dLp"/>
         <segue reference="Mdd-V0-bt0"/>
-        <segue reference="hxp-Ea-JtN"/>
+        <segue reference="eol-gO-uF4"/>
     </inferredMetricsTieBreakers>
 </document>
