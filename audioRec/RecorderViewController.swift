@@ -305,7 +305,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             recordingImage.isHidden = true
             descriptionTxt.isHidden = false
             defaultTxt.isHidden = false
-            defaultTxt.text = "Congrats pal! Play it back, if you don't like it click anywhere to rerecord"
+            defaultTxt.text = "Play it back, if you don't like it click anywhere to rerecord"
             
             //view.backgroundColor = UIColor.darkGray
             let greenColor = UIColor(red: 10/255.0, green: 156/255.0, blue: 54/255.0, alpha: 1.0)
@@ -376,10 +376,10 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     @objc func editingChanged(_ textField: UITextField) {
         if recorderRule.validation(description: descriptionTxt.text) == true {
-            defaultTxt.text = " Hey pal shorten the text a bit, that space costs money you know.... "
+            defaultTxt.text = " Play it back, if you don't like it click anywhere to rerecord "
             publishBtn.isHidden = true
         } else {
-            defaultTxt.text = " Play it back, hey if ya fucked up click anywhere to record again "
+            defaultTxt.text = " Play it back, if you don't like it click anywhere to rerecord"
             publishBtn.isHidden = false
         }
     }
