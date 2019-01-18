@@ -191,7 +191,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         finishedBtn.isHidden = true
         descriptionTxt.isHidden = true
         
-        defaultTxt.text = "Click anywhere and start talking"
+        defaultTxt.text = "Click the big red button and start talking"
         
         if audioRecorder == nil{
             let filename = getDirectory().appendingPathComponent("myrecorder.m4a")
@@ -305,7 +305,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             recordingImage.isHidden = true
             descriptionTxt.isHidden = false
             defaultTxt.isHidden = false
-            defaultTxt.text = "Play it back, if you don't like it click anywhere to rerecord"
+            defaultTxt.text = "Play it back, if you don't like it the big red button to rerecord"
             
             //view.backgroundColor = UIColor.darkGray
             let greenColor = UIColor(red: 10/255.0, green: 156/255.0, blue: 54/255.0, alpha: 1.0)
