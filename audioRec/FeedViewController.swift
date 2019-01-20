@@ -10,16 +10,34 @@ import UIKit
 import AWSS3
 import AVFoundation
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, DonePlayingDelegate {
+    
+    
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if(searchController.searchBar.text!.count > 0){
+            print("search text:\(searchController.searchBar.text!)")
+            filteredArray = activeTags.filter({ (NSMutableArray) -> Bool in
+                if activeTags.contains(searchController.searchBar.text!) {
+                    return true
+                } else {
+                    return false
+                }
+            }) as? NSMutableArray
+            resultsController.tableView.reloadData()
+        }
+
+    }
+    
     
     @IBOutlet weak var feedNavBtn: UIBarButtonItem!
     @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
     
-    @IBOutlet weak var publicBtn: UIButton!
-    @IBOutlet weak var privateBtn: UIButton!
-    
     var activeTags : NSMutableArray = []
+    var searchText : String = ""
+    var filteredArray : NSMutableArray?
 
     @IBAction func recorderNavBtn(_ sender: UIBarButtonItem) {
         print("recordd")
@@ -33,15 +51,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.performSegue(withIdentifier: "feedToProfile", sender: nil)
     }
     
-    @IBAction func publicBtn(_ sender: UIButton) {
-        viewDidLoad()
-        self.tableView.reloadData()
-        print("public")
-    }
-    
-    @IBAction func privateBtn(_ sender: Any) {
-        privateFeed()
-    }
     
     var postCell: PostTableViewCell!
     let s3Transfer = S3TransferUtility()
@@ -50,12 +59,19 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     let preferences = UserDefaults.standard
     var audioPlayer: AVAudioPlayer!
     
+    var searchController = UISearchController()
+    var resultsController = UITableViewController()
+    
     @IBOutlet weak var tableView: UITableView!
     
     var posts : NSArray?
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (posts?.count)!
+        if tableView == resultsController.tableView {
+            return filteredArray!.count
+        } else {
+            return (posts?.count)!
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,6 +89,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             dateFormatter.dateFormat = "MMM-dd-YYYY"
             let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated!))
             let finalDate = dateFormatter.string(from: date as Date)
+            
+            
+            
             
             print("DESCRIPTION:::   \(description!)")
             
@@ -143,11 +162,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         feedNavBtn.isEnabled = false
-        //publicBtn.isEnabled = false
-        privateBtn.isEnabled = false
-
-        privateBtn.setTitle("Coming Soon", for: .normal)
         
+        searchController = UISearchController(searchResultsController: resultsController)
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchResultsUpdater = self
+        
+        resultsController.tableView.delegate = self
+        resultsController.tableView.dataSource = self
+    
         self.tableView.dataSource = self
         self.tableView.delegate = self
         s3Transfer.delegate = self
@@ -185,49 +207,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func donePlayingAudio(){
         postCell.contentView.backgroundColor = UIColor.clear
-    }
-    
-    
-    func privateFeed() {
-        //viewDidLoad()
-        print("private")
-        
-        feedNavBtn.isEnabled = false
-        publicBtn.isEnabled = true
-        privateBtn.isEnabled = false
-        
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        s3Transfer.delegate = self
-        
-        // get token from preferences
-        if preferences.value(forKey: "tokenKey") == nil {
-            //  Doesn't exist
-        } else {
-            self.token = preferences.value(forKey: "tokenKey") as! String
-        }
-        
-        // get token from preferences
-        if preferences.value(forKey: "username") == nil {
-            //  Doesn't exist
-        } else {
-            self.usernameString = preferences.value(forKey: "username") as! String
-        }
-        print(usernameString)
-        let dbManager = DatabaseManager()
-        let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
-        
-        print(dataString)
-        
-        print("----------------------------")
-        
-        self.posts = dbManager.getPostsForFeed(token: self.token, data: dataString) as NSArray
-        self.posts = self.posts! as NSArray
-        
-        print(self.posts!)
-        
-        self.tableView.reloadData()
-
     }
 }
 

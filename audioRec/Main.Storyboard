@@ -337,7 +337,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKf-pl-Fe2">
-                                <rect key="frame" x="0.0" y="124" width="375" height="499"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="feedTableViewCell" rowHeight="153" id="sD3-hU-Jrc" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -429,70 +429,32 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0v-bs-un8">
-                                <rect key="frame" x="0.0" y="64" width="189" height="60"/>
-                                <color key="backgroundColor" red="0.90476357679999997" green="0.90476357679999997" blue="0.90476357679999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="189" id="O9Y-BE-8LJ"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="bLo-53-kDb"/>
-                                    <constraint firstAttribute="height" constant="60" id="g4Q-nm-ydi"/>
-                                    <constraint firstAttribute="width" constant="189" id="v4b-6X-4f1"/>
-                                </constraints>
-                                <state key="normal" title="Public"/>
-                                <connections>
-                                    <action selector="publicBtn:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="8PC-J3-aZO"/>
-                                </connections>
-                            </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ouy-Q0-Ie0">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Feed" id="sXs-56-1Hd"/>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8S4-l3-eUC">
-                                <rect key="frame" x="186" y="64" width="189" height="60"/>
-                                <color key="backgroundColor" red="0.86759421820000004" green="0.86759421820000004" blue="0.86759421820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="FEn-6x-G7b"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Y6y-aJ-ll4"/>
-                                    <constraint firstAttribute="height" constant="60" id="va3-eS-IC4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Private"/>
-                                <connections>
-                                    <action selector="privateBtn:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="BRt-Jr-UGu"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="8S4-l3-eUC" firstAttribute="height" secondItem="T0v-bs-un8" secondAttribute="height" id="11P-Dj-CZ9"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="1jL-SU-7E3"/>
-                            <constraint firstItem="8S4-l3-eUC" firstAttribute="leading" secondItem="T0v-bs-un8" secondAttribute="trailing" constant="-3" id="9T1-er-L6d"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="LKf-pl-Fe2" secondAttribute="bottom" id="9gK-vN-jon"/>
-                            <constraint firstItem="8S4-l3-eUC" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="DzO-vA-Xn0"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="bottom" secondItem="lyv-g5-8VA" secondAttribute="bottom" id="Gcs-7n-SN7"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="HVR-5T-6kC"/>
-                            <constraint firstItem="T0v-bs-un8" firstAttribute="baseline" secondItem="8S4-l3-eUC" secondAttribute="baseline" id="IID-e8-Zz7"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="J8w-hZ-pvQ"/>
-                            <constraint firstItem="8S4-l3-eUC" firstAttribute="width" secondItem="T0v-bs-un8" secondAttribute="width" id="JOm-dy-1fR"/>
+                            <constraint firstItem="LKf-pl-Fe2" firstAttribute="top" secondItem="Ouy-Q0-Ie0" secondAttribute="bottom" id="L7c-Nr-GAw"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="LKf-pl-Fe2" secondAttribute="bottom" id="Onb-s3-c9X"/>
-                            <constraint firstItem="T0v-bs-un8" firstAttribute="leading" secondItem="LKf-pl-Fe2" secondAttribute="leading" id="V1e-Gl-DQN"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="Xrp-66-BPs"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="Ynd-RR-hlA"/>
-                            <constraint firstItem="8S4-l3-eUC" firstAttribute="top" secondItem="Ouy-Q0-Ie0" secondAttribute="bottom" id="cyT-Tg-Rjc"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="top" secondItem="lyv-g5-8VA" secondAttribute="top" id="ebu-xv-UyD"/>
-                            <constraint firstItem="T0v-bs-un8" firstAttribute="leading" secondItem="dUX-zw-dJh" secondAttribute="leading" id="ja1-Rm-PEh"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="k8N-0M-uAD"/>
-                            <constraint firstItem="LKf-pl-Fe2" firstAttribute="top" secondItem="T0v-bs-un8" secondAttribute="bottom" id="qn2-Wd-w0S"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lyv-g5-8VA"/>
                     </view>
                     <connections>
                         <outlet property="feedNavBtn" destination="YKl-kW-MxL" id="HWg-pA-c49"/>
-                        <outlet property="privateBtn" destination="8S4-l3-eUC" id="7RI-Up-V96"/>
                         <outlet property="profileNavBtn" destination="6ck-BX-yx2" id="OD7-WG-dog"/>
-                        <outlet property="publicBtn" destination="T0v-bs-un8" id="uEV-kV-FBR"/>
                         <outlet property="recorderNavBtn" destination="e6g-DB-S1B" id="yeT-e3-vTm"/>
                         <outlet property="searchDisplayController" destination="wHw-HU-ysi" id="tt6-J7-T2I"/>
                         <outlet property="tableView" destination="LKf-pl-Fe2" id="dcO-zM-ofl"/>
@@ -638,6 +600,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="mek-Tq-dLp"/>
         <segue reference="Mdd-V0-bt0"/>
-        <segue reference="hxp-Ea-JtN"/>
+        <segue reference="eol-gO-uF4"/>
     </inferredMetricsTieBreakers>
 </document>
