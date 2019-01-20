@@ -70,7 +70,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let username = post!["username"] as? String
 
             let postID = post!["post_i_d"] as? Int
-            
+            let likes = post!["likes"] as? Int
+
             let timeCreated = post!["time_created"] as? Int
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM-dd-YYYY"
@@ -85,6 +86,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.usernameLabel.text = "By: \(username!)"
             cell.datePostedLabel.text = finalDate
             cell.postID = postID
+            cell.likes = likes!
         }
         
         cell.sizeToFit()

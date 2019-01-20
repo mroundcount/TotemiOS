@@ -17,6 +17,7 @@ class DatabaseManager {
     var endpoint : String?
     var token : String?
     var posts : NSArray? = []
+    var likes : NSArray? = []
     
     init() {
         // empty constructor
@@ -370,6 +371,74 @@ class DatabaseManager {
         }
     }
     
+    func likePost(token: String, data: String) {
+        
+        var responseCode : Int = 0
+
+        if(isInternetAvailable()){
+            
+            // get patient
+            let webUrl1 = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/like"
+            var request1 = URLRequest(url: URL(string: webUrl1)!)
+            
+            // Set method to GET and add token
+            request1.httpMethod = "POST"
+            request1.setValue("data", forHTTPHeaderField: "Content")
+            request1.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            
+            let json: NSData = data.data(using: String.Encoding.utf8)! as NSData
+            
+            request1.httpBody = json as Data
+            
+            // use DispatchGroup so you don't return token before it has a value
+            let group = DispatchGroup()
+            
+            group.enter()
+            
+            // fireoff request
+            let task1 = URLSession.shared.dataTask(with: request1) { data, response, error in
+                guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                    print("error=\(String(describing: error))")
+                    group.leave()
+                    return
+                }
+                let httpStatus = response as? HTTPURLResponse
+                
+                let responseString = String(data: data, encoding: String.Encoding.utf8)
+                
+                print(responseString!)
+                // responseString format {"status":201,"postID":305}
+                // now get that postID
+                let responseJSON = JSON(data)
+                
+                if httpStatus?.statusCode != 201 {           // check for http errors
+                    print("statusCode should be 201, but is \(String(describing: httpStatus?.statusCode))")
+                    
+                    // avoid deadlocks by not using .main queue here
+                    DispatchQueue.global().async {
+                        group.leave()
+                    }
+                    
+                } else {
+                    
+                    // avoid deadlocks by not using .main queue here
+                    DispatchQueue.global().async {
+                        do{
+                            
+                        } catch{
+                            print("Could not make obj")
+                        }
+                        group.leave()
+                    }
+                    
+                }
+                
+                
+            }
+            task1.resume()
+        }
+    }
+    
     // MARK: Methods for posting data
     // -------------------------------------------
     
@@ -487,6 +556,74 @@ class DatabaseManager {
             print("GETTING POSTS")
             // get patient
             let webUrl1 = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/allPosts"
+            var request1 = URLRequest(url: URL(string: webUrl1)!)
+            
+            // Set method to GET and add token
+            request1.httpMethod = "GET"
+            request1.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            
+            
+            // use DispatchGroup so you don't return token before it has a value
+            let group = DispatchGroup()
+            
+            group.enter()
+            
+            // fireoff request
+            let task1 = URLSession.shared.dataTask(with: request1) { data, response, error in
+                guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                    print("error=\(String(describing: error))")
+                    self.likes = []
+                    group.leave()
+                    return
+                }
+                
+                let httpStatus = response as? HTTPURLResponse
+                
+                if httpStatus?.statusCode != 200 {           // check for http errors
+                    print("statusCode should be 200, but is \(String(describing: httpStatus?.statusCode))")
+                    
+                    // avoid deadlocks by not using .main queue here
+                    DispatchQueue.global().async {
+                        group.leave()
+                    }
+                    
+                } else {
+                    
+                    // avoid deadlocks by not using .main queue here
+                    DispatchQueue.global().async {
+                        do{
+                            self.likes = try JSONSerialization.jsonObject(with: data as Data) as? NSArray
+                            
+                        } catch{
+                            print("Could not make obj")
+                        }
+                        group.leave()
+                    }
+                    
+                }
+                
+                
+            }
+            task1.resume()
+            
+            // wait ...
+            group.wait()
+            // ... and return as soon as "posts" has a value
+            return self.likes!
+        }
+        else {
+            return []
+        }
+    }
+    
+    
+    func getLikedPosts(token: String) -> NSArray {
+        
+        if(isInternetAvailable()){
+            
+            print("GETTING likes")
+            // get patient
+            let webUrl1 = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/getLikesForUser"
             var request1 = URLRequest(url: URL(string: webUrl1)!)
             
             // Set method to GET and add token

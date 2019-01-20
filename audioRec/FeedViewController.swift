@@ -10,8 +10,7 @@ import UIKit
 import AWSS3
 import AVFoundation
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, DonePlayingDelegate {
-    
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, DonePlayingDelegate, CustomCellUpdater {
     
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -51,7 +50,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.performSegue(withIdentifier: "feedToProfile", sender: nil)
     }
     
-    
     var postCell: PostTableViewCell!
     let s3Transfer = S3TransferUtility()
     var token = ""
@@ -61,6 +59,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var searchController = UISearchController()
     var resultsController = UITableViewController()
+    var likedPosts : NSMutableArray = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -82,7 +81,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let post = posts?[indexPath.row] as? [String: Any]
             let description = post!["description"] as? String
             let postID = post!["post_i_d"] as? Int
-            print(postID)
+            let likes = post!["likes"] as? Int
             let username = post!["username"] as? String
             let timeCreated = post!["time_created"] as? Int
             let dateFormatter = DateFormatter()
@@ -91,17 +90,23 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let finalDate = dateFormatter.string(from: date as Date)
             
             
-            
-            
-            print("DESCRIPTION:::   \(description!)")
-            
             cell = tableView.dequeueReusableCell(withIdentifier: "feedTableViewCell") as! PostTableViewCell
             cell.postDescription.text = description!
             cell.usernameLabel.text = "By: \(username!)"
             cell.datePostedLabel.text = finalDate
             cell.postID = postID!
-            cell.countLabel.isHidden = true
-            cell.likeBtn.isEnabled = false
+            cell.likes = likes!
+            cell.token = self.token
+            
+            if((likedPosts.contains(postID))){
+                cell.likeBtn.isEnabled = false
+                cell.likeBtn.setTitle("Liked", for: .normal)
+                cell.likeBtn.setTitleColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), for: .normal)
+            } else {
+                cell.likeBtn.isEnabled = true
+                cell.likeBtn.setTitle("Like", for: .normal)
+                cell.likeBtn.setTitleColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), for: .normal)
+            }
         }
         cell.sizeToFit()
         //Cell Styling
@@ -120,9 +125,19 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.contentView.backgroundColor = UIColor.orange
         }
         
+        cell.delegate = self
+        
         return cell
     }
     
+    
+    func updateTableView() {
+        
+        getPosts()
+        tableView.reloadData()
+        print("updating tblviewcell")
+        
+    }
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -157,7 +172,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func downloadAudioFromS3(postID: Int) {
         s3Transfer.downloadData(postID: postID)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -187,18 +202,26 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             self.usernameString = preferences.value(forKey: "username") as! String
         }
-        print(usernameString)
+        
+        getPosts()
+        
+    }
+    
+    func getPosts(){
         let dbManager = DatabaseManager()
         let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
         
-        print(dataString)
-        
-        print("----------------------------")
-
         self.posts = dbManager.getPostsForFeed(token: self.token, data: dataString) as NSArray
         self.posts = self.posts!.reversed() as NSArray
-
-        print(self.posts!)
+        print("Posts: \(posts)")
+        let array = dbManager.getLikedPosts(token: self.token) as NSArray
+        
+        for (index, element) in array.enumerated() {
+            let post = array[index] as? [String: Any]
+            let postID = post!["post_i_d"] as? Int
+            likedPosts.add(postID)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
