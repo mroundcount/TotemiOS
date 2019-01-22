@@ -45,8 +45,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
 
             
             let alert = UIAlertController(title: "Success!", message: "Return to login", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in self.performSegue(withIdentifier: "backToLogIn", sender: self) }))
             self.present(alert, animated: true)
+
+            //{ action in self.performSegueWithIdentifier("backToLogIn", sender: self) }
             
         } else{
             

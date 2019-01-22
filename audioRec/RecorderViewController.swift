@@ -340,6 +340,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         catch{
             displayALert(title: "Oh no.....", message: "Playback Failed")
         }
+        pauseBtn.setTitle("Pause", for: .normal)
     }
     
     //Recording functions

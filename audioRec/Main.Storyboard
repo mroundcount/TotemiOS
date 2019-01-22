@@ -168,11 +168,12 @@
                         <outlet property="registrationButton" destination="SFp-5h-Dn0" id="hm5-O1-zwU"/>
                         <outlet property="repeatPassword" destination="X2C-1k-5fc" id="kq9-GN-UA6"/>
                         <outlet property="username" destination="lTC-lt-afO" id="Aba-pB-dhe"/>
+                        <segue destination="rZ9-7n-uVR" kind="modal" identifier="backToLogIn" id="cNL-YJ-xqq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJN-Ai-3H3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-354.39999999999998" y="-542.87856071964018"/>
+            <point key="canvasLocation" x="-353" y="-691"/>
         </scene>
         <!--Recorder View Controller-->
         <scene sceneID="WAT-uo-Zxa">
@@ -336,6 +337,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUX-zw-dJh">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Feed" id="YKl-kW-MxL"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Bag-2e-aua"/>
+                                    <barButtonItem title="Recorder" id="e6g-DB-S1B">
+                                        <connections>
+                                            <action selector="recorderNavBtn:" destination="Gsk-Cu-sAB" id="gMo-cf-MtK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9VA-dP-SIY"/>
+                                    <barButtonItem title="Profile" id="6ck-BX-yx2">
+                                        <connections>
+                                            <action selector="profileNavBtn:" destination="Gsk-Cu-sAB" id="qjE-2s-Bol"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ouy-Q0-Ie0">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Feed" id="sXs-56-1Hd">
+                                        <barButtonItem key="rightBarButtonItem" title="sort" id="6ge-l6-VKS">
+                                            <connections>
+                                                <action selector="sortBtn:" destination="Gsk-Cu-sAB" id="aZs-6o-ddr"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKf-pl-Fe2">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -411,30 +442,32 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUX-zw-dJh">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem title="Feed" id="YKl-kW-MxL"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Bag-2e-aua"/>
-                                    <barButtonItem title="Recorder" id="e6g-DB-S1B">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="X7b-7z-QMy">
+                                <rect key="frame" x="0.0" y="563" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWu-cs-SJx">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                        <color key="backgroundColor" red="0.86759421820000004" green="0.86759421820000004" blue="0.86759421820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Most Popular"/>
                                         <connections>
-                                            <action selector="recorderNavBtn:" destination="Gsk-Cu-sAB" id="gMo-cf-MtK"/>
+                                            <action selector="OptTapped:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="gAL-fT-nsy"/>
                                         </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9VA-dP-SIY"/>
-                                    <barButtonItem title="Profile" id="6ck-BX-yx2">
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7jY-dF-Muq">
+                                        <rect key="frame" x="0.0" y="30" width="375" height="30"/>
+                                        <color key="backgroundColor" red="0.86759421820000004" green="0.86759421820000004" blue="0.86759421820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Newest"/>
                                         <connections>
-                                            <action selector="profileNavBtn:" destination="Gsk-Cu-sAB" id="qjE-2s-Bol"/>
+                                            <action selector="OptTapped:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="iAa-wH-72R"/>
                                         </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ouy-Q0-Ie0">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Feed" id="sXs-56-1Hd"/>
-                                </items>
-                            </navigationBar>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.86759421820000004" green="0.86759421820000004" blue="0.86759421820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="EWu-cs-SJx" secondAttribute="trailing" id="8n5-SL-Gnj"/>
+                                    <constraint firstItem="EWu-cs-SJx" firstAttribute="leading" secondItem="X7b-7z-QMy" secondAttribute="leading" id="I9R-Zc-hhs"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -444,20 +477,26 @@
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="HVR-5T-6kC"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="J8w-hZ-pvQ"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="top" secondItem="Ouy-Q0-Ie0" secondAttribute="bottom" id="L7c-Nr-GAw"/>
+                            <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="X7b-7z-QMy" secondAttribute="bottom" id="OWI-Fs-5Qm"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="LKf-pl-Fe2" secondAttribute="bottom" id="Onb-s3-c9X"/>
+                            <constraint firstItem="lyv-g5-8VA" firstAttribute="trailing" secondItem="X7b-7z-QMy" secondAttribute="trailing" id="Sbs-N7-LJU"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="Xrp-66-BPs"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="Ynd-RR-hlA"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="top" secondItem="lyv-g5-8VA" secondAttribute="top" id="ebu-xv-UyD"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="k8N-0M-uAD"/>
+                            <constraint firstItem="X7b-7z-QMy" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="sK9-jG-w7T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lyv-g5-8VA"/>
                     </view>
                     <connections>
                         <outlet property="feedNavBtn" destination="YKl-kW-MxL" id="HWg-pA-c49"/>
-                        <outlet property="profileNavBtn" destination="6ck-BX-yx2" id="OD7-WG-dog"/>
                         <outlet property="recorderNavBtn" destination="e6g-DB-S1B" id="yeT-e3-vTm"/>
                         <outlet property="searchDisplayController" destination="wHw-HU-ysi" id="tt6-J7-T2I"/>
+                        <outlet property="sortBtn" destination="6ge-l6-VKS" id="rra-fo-7s6"/>
                         <outlet property="tableView" destination="LKf-pl-Fe2" id="dcO-zM-ofl"/>
+                        <outletCollection property="sortOpt" destination="EWu-cs-SJx" collectionClass="NSMutableArray" id="lnc-2T-N0y"/>
+                        <outletCollection property="sortOpt" destination="EWu-cs-SJx" collectionClass="NSMutableArray" id="F3s-Jl-HRP"/>
+                        <outletCollection property="sortOpt" destination="7jY-dF-Muq" collectionClass="NSMutableArray" id="a2D-X9-97K"/>
                         <segue destination="gu6-eg-1mg" kind="show" identifier="feedToRecorder" id="eol-gO-uF4"/>
                         <segue destination="u83-tG-Pf8" kind="show" identifier="feedToProfile" id="mek-Tq-dLp"/>
                     </connections>
@@ -599,7 +638,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mek-Tq-dLp"/>
-        <segue reference="Mdd-V0-bt0"/>
+        <segue reference="tFQ-qk-At8"/>
         <segue reference="eol-gO-uF4"/>
+        <segue reference="cNL-YJ-xqq"/>
     </inferredMetricsTieBreakers>
 </document>

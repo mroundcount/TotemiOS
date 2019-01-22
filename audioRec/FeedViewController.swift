@@ -10,33 +10,40 @@ import UIKit
 import AWSS3
 import AVFoundation
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, DonePlayingDelegate, CustomCellUpdater {
-    
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        if(searchController.searchBar.text!.count > 0){
-            print("search text:\(searchController.searchBar.text!)")
-            filteredArray = activeTags.filter({ (NSMutableArray) -> Bool in
-                if activeTags.contains(searchController.searchBar.text!) {
-                    return true
-                } else {
-                    return false
-                }
-            }) as? NSMutableArray
-            resultsController.tableView.reloadData()
-        }
-
-    }
-    
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate, CustomCellUpdater {
     
     @IBOutlet weak var feedNavBtn: UIBarButtonItem!
     @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
+
+    @IBOutlet weak var sortBtn: UIBarButtonItem!
     
     var activeTags : NSMutableArray = []
-    var searchText : String = ""
-    var filteredArray : NSMutableArray?
+    
+
+    
+    @IBAction func sortBtn(_ sender: Any) {
+        sortOpt.forEach { (button) in
+            UIView.animate(withDuration: 0.3, animations: {
+                button.isHidden = false
+                self.view.layoutIfNeeded()
+            })
+        }    }
+    
+    @IBOutlet var sortOpt: [UIButton]!
+    
+    @IBAction func OptTapped(_ sender: UIButton) {
+        
+        if(sender.tag == 0){
+            // most popular button
+            print("most pop")
+        } else if (sender.tag == 1) {
+            // newest button
+            print("newest")
+        }
+    }
+    
+    
 
     @IBAction func recorderNavBtn(_ sender: UIBarButtonItem) {
         print("recordd")
@@ -64,14 +71,29 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     
     var posts : NSArray?
+    /*
+    var searchText : String = ""
+    var filteredArray : NSArray?
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == resultsController.tableView {
-            return filteredArray!.count
-        } else {
-            return (posts?.count)!
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if(searchController.searchBar.text!.count > 0){
+            print("search text:\(searchController.searchBar.text!)")
+            filteredArray = activeTags.filter({ (NSMutableArray) -> Bool in
+                if activeTags.contains(searchController.searchBar.text!) {
+                    return true
+                } else {
+                    return false
+                }
+            }) as? NSMutableArray
+            resultsController.tableView.reloadData()
         }
     }
+     */
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return (posts?.count)!
+    }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell : PostTableViewCell!
@@ -132,11 +154,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func updateTableView() {
-        
         getPosts()
         tableView.reloadData()
         print("updating tblviewcell")
-        
     }
 
     
@@ -177,14 +197,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         feedNavBtn.isEnabled = false
+        sortBtn.title = "Sort"
         
+        /*
         searchController = UISearchController(searchResultsController: resultsController)
         tableView.tableHeaderView = searchController.searchBar
         searchController.searchResultsUpdater = self
         
         resultsController.tableView.delegate = self
         resultsController.tableView.dataSource = self
-    
+        */
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         s3Transfer.delegate = self
@@ -221,6 +244,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let postID = post!["post_i_d"] as? Int
             likedPosts.add(postID)
         }
+        
+//        func getPopular(){
+//            let PostsGroupByLike = Dictionary(grouping: posts, by: {$0.week!}).sorted {$0.0 < $1.0}
+//        }
+        
+        
         
     }
     
