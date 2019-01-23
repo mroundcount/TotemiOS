@@ -23,12 +23,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     @IBAction func sortBtn(_ sender: Any) {
+
         sortOpt.forEach { (button) in
             UIView.animate(withDuration: 0.3, animations: {
                 button.isHidden = false
                 self.view.layoutIfNeeded()
             })
-        }    }
+        }
+    }
     
     @IBOutlet var sortOpt: [UIButton]!
     
@@ -37,9 +39,24 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         if(sender.tag == 0){
             // most popular button
             print("most pop")
+            
+            sortOpt.forEach { (button) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    button.isHidden = true
+                    self.view.layoutIfNeeded()
+                })
+            }
+            
         } else if (sender.tag == 1) {
             // newest button
             print("newest")
+            
+            sortOpt.forEach { (button) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    button.isHidden = true
+                    self.view.layoutIfNeeded()
+                })
+            }
         }
     }
     
