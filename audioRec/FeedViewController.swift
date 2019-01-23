@@ -21,6 +21,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var activeTags : NSMutableArray = []
     
     @IBAction func sortBtn(_ sender: Any) {
+
         sortOpt.forEach { (button) in
             UIView.animate(withDuration: 0.3, animations: {
                 button.isHidden = false
@@ -35,7 +36,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if(sender.tag == 0){
             // most popular button
-            print("most pop")
+            print("most pop")   
+          
+            sortOpt.forEach { (button) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    button.isHidden = true
+                    self.view.layoutIfNeeded()
+                })
+            }
             updateTableView()
             let sortedPosts = posts.sorted(by: {$0.likes! > $1.likes!})
 
@@ -55,6 +63,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("newest")
             self.posts = []
             updateTableView()
+          sortOpt.forEach { (button) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    button.isHidden = true
+                    self.view.layoutIfNeeded()
+                })
+            }
         }
     }
     
