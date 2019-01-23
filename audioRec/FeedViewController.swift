@@ -229,6 +229,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         feedNavBtn.isEnabled = false
         sortBtn.title = "Sort"
         
+        let fontSize:CGFloat = 25;
+        let font:UIFont = UIFont.boldSystemFont(ofSize: fontSize);
+        let attributes:[NSAttributedStringKey : Any] = [NSAttributedStringKey.font: font];
+        sortBtn.setTitleTextAttributes(attributes, for: UIControlState.normal);
+        
         /*
         searchController = UISearchController(searchResultsController: resultsController)
         tableView.tableHeaderView = searchController.searchBar

@@ -359,7 +359,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Feed" id="sXs-56-1Hd">
-                                        <barButtonItem key="rightBarButtonItem" title="sort" id="6ge-l6-VKS">
+                                        <barButtonItem key="rightBarButtonItem" title="Sort" id="6ge-l6-VKS">
                                             <connections>
                                                 <action selector="sortBtn:" destination="Gsk-Cu-sAB" id="aZs-6o-ddr"/>
                                             </connections>
