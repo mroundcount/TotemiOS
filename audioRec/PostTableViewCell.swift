@@ -32,9 +32,15 @@ class PostTableViewCell: UITableViewCell {
     
     @IBAction func likeBtn(_ sender: Any) {
         
-        likeBtn.isEnabled = false
-        likeBtn.setTitle("Liked", for: .normal)
-        likeBtn.setTitleColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), for: .normal)
+        DispatchQueue.main.async
+        {
+            self.likeBtn.isEnabled = false
+            self.likeBtn.setTitle("Liked", for: .normal)
+            self.likeBtn.setTitleColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), for: .normal)
+            self.likes = self.likes! + 1
+            self.countLabel.text = "\(self.likes!)"
+        }
+        
         
         // post new likes
         let variable = "{\"postID\": \(postID!)}"
@@ -46,10 +52,7 @@ class PostTableViewCell: UITableViewCell {
         // TODO: update the dbManager thing with a post that uses a token
         dbManager.likePost(token: token!, data: variable)
     
-        delegate?.updateTableView()
-
-        likes = likes! + 1
-        countLabel.text = "\(likes!)"
+        
     }
 
     override func awakeFromNib() {
@@ -62,9 +65,9 @@ class PostTableViewCell: UITableViewCell {
         super.didMoveToSuperview()
         if superview != nil {
             // Update the cell
-            if let label = countLabel {
-                label.text = "\(likes!)"
-            }
+//            if let label = countLabel {
+//                label.text = "\(likes!)"
+//            }
         }
     }
     
