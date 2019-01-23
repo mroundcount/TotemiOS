@@ -20,8 +20,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var activeTags : NSMutableArray = []
     
-
-    
     @IBAction func sortBtn(_ sender: Any) {
 
         sortOpt.forEach { (button) in
@@ -38,20 +36,34 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if(sender.tag == 0){
             // most popular button
-            print("most pop")
-            
+            print("most pop")   
+          
             sortOpt.forEach { (button) in
                 UIView.animate(withDuration: 0.3, animations: {
                     button.isHidden = true
                     self.view.layoutIfNeeded()
                 })
             }
-            
+            updateTableView()
+            let sortedPosts = posts.sorted(by: {$0.likes! > $1.likes!})
+
+            self.posts = []
+            for (index, post) in sortedPosts.enumerated() {
+                print(sortedPosts[index].description)
+                print(sortedPosts[index].likes)
+                self.posts.append(sortedPosts[index])
+            }
+            for post in posts {
+                print(post.description)
+            }
+            print(likedPosts)
+            tableView.reloadData()
         } else if (sender.tag == 1) {
             // newest button
             print("newest")
-            
-            sortOpt.forEach { (button) in
+            self.posts = []
+            updateTableView()
+          sortOpt.forEach { (button) in
                 UIView.animate(withDuration: 0.3, animations: {
                     button.isHidden = true
                     self.view.layoutIfNeeded()
@@ -87,7 +99,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var tableView: UITableView!
     
-    var posts : NSArray?
+    var posts : [Post] = []
     /*
     var searchText : String = ""
     var filteredArray : NSArray?
@@ -108,33 +120,32 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return (posts?.count)!
+            return (posts.count)
     }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell : PostTableViewCell!
  
-        if((posts?.count)! > 0){
-            
-            let post = posts?[indexPath.row] as? [String: Any]
-            let description = post!["description"] as? String
-            let postID = post!["post_i_d"] as? Int
-            let likes = post!["likes"] as? Int
-            let username = post!["username"] as? String
-            let timeCreated = post!["time_created"] as? Int
+        if((posts.count) > 0){
+            let post = posts[indexPath.row]
+            let description = post.description!
+            let postID = post.postID!
+            let likes = post.likes!
+            let username = post.username!
+            let timeCreated = post.timeCreated!
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM-dd-YYYY"
-            let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated!))
+            let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated))
             let finalDate = dateFormatter.string(from: date as Date)
-            
-            
-            cell = tableView.dequeueReusableCell(withIdentifier: "feedTableViewCell") as! PostTableViewCell
-            cell.postDescription.text = description!
-            cell.usernameLabel.text = "By: \(username!)"
+            cell = tableView.dequeueReusableCell(withIdentifier: "feedTableViewCell") as? PostTableViewCell
+            cell.postDescription.text = description
+            cell.usernameLabel.text = "By: \(username)"
             cell.datePostedLabel.text = finalDate
-            cell.postID = postID!
-            cell.likes = likes!
+            cell.postID = postID
+            cell.likes = likes + 1
+            print("likefdasfsddds: \(likes + 1)")
+            cell.countLabel.text = "\(likes + 1)"
             cell.token = self.token
             
             if((likedPosts.contains(postID))){
@@ -172,7 +183,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func updateTableView() {
         getPosts()
+        
         tableView.reloadData()
+        
         print("updating tblviewcell")
     }
 
@@ -248,11 +261,32 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getPosts(){
+        posts = []
         let dbManager = DatabaseManager()
         let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
         
-        self.posts = dbManager.getPostsForFeed(token: self.token, data: dataString) as NSArray
-        self.posts = self.posts!.reversed() as NSArray
+        var postsArray = dbManager.getPostsForFeed(token: self.token, data: dataString) as NSArray
+        
+        if((postsArray.count) > 0){
+            for (index, element) in postsArray.enumerated() {
+                let newPost = Post()
+                let post = postsArray[index] as? [String: Any]
+                let description = post!["description"] as? String
+                newPost.description = description!
+                let postID = post!["post_i_d"] as? Int
+                newPost.postID = postID!
+                let likes = post!["likes"] as? Int
+                newPost.likes = likes!
+                let username = post!["username"] as? String
+                newPost.username = username!
+                let timeCreated = post!["time_created"] as? Int
+                newPost.timeCreated = timeCreated!
+                posts.append(newPost)
+            }
+        }
+        
+        self.posts = self.posts.reversed()
+        
         print("Posts: \(posts)")
         let array = dbManager.getLikedPosts(token: self.token) as NSArray
         

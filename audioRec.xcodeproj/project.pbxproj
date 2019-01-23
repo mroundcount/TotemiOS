@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A54C5ED21F7E6F100C35C8A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54C5EC21F7E6F100C35C8A /* Post.swift */; };
 		5A5A4078212A2F0E00302124 /* AWSAuthCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5A4077212A2F0E00302124 /* AWSAuthCore.framework */; };
 		5A5A407A212A2F0E00302124 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5A4079212A2F0E00302124 /* AWSCognito.framework */; };
 		5A5A407C212A2F0E00302124 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5A407B212A2F0E00302124 /* AWSCore.framework */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		2F8DD6F078F747D661FC52FE /* Pods-audioRec.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-audioRec.release.xcconfig"; path = "Pods/Target Support Files/Pods-audioRec/Pods-audioRec.release.xcconfig"; sourceTree = "<group>"; };
+		5A54C5EC21F7E6F100C35C8A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		5A5A4077212A2F0E00302124 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A5A4079212A2F0E00302124 /* AWSCognito.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCognito.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A5A407B212A2F0E00302124 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +205,7 @@
 				5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */,
 				BF05B445217D7DA7003FB438 /* TotemLogo.png */,
 				BF145F822195136E00450A88 /* DonePlayingDelegate.swift */,
+				5A54C5EC21F7E6F100C35C8A /* Post.swift */,
 			);
 			path = audioRec;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				5AB7DCAA2110D34A00464C93 /* DatabaseManager.swift in Sources */,
 				BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */,
 				BF07810921268F6200EB7CBE /* gifFile.swift in Sources */,
+				5A54C5ED21F7E6F100C35C8A /* Post.swift in Sources */,
 				BF078107212655FF00EB7CBE /* RecorderViewController.swift in Sources */,
 				BF145F832195136E00450A88 /* DonePlayingDelegate.swift in Sources */,
 				BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */,
