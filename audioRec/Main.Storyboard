@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rZ9-7n-uVR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rZ9-7n-uVR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -368,7 +368,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKf-pl-Fe2">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="469"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="feedTableViewCell" rowHeight="153" id="sD3-hU-Jrc" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -470,21 +470,30 @@
                                     <constraint firstItem="EWu-cs-SJx" firstAttribute="leading" secondItem="X7b-7z-QMy" secondAttribute="leading" id="I9R-Zc-hhs"/>
                                 </constraints>
                             </stackView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YWU-IV-qV5">
+                                <rect key="frame" x="14" y="563" width="347" height="31"/>
+                                <connections>
+                                    <action selector="changeAudioTime:" destination="Gsk-Cu-sAB" eventType="valueChanged" id="ADb-aG-Er6"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="lyv-g5-8VA" firstAttribute="trailing" secondItem="YWU-IV-qV5" secondAttribute="trailing" constant="16" id="0Pg-im-xS4"/>
+                            <constraint firstItem="YWU-IV-qV5" firstAttribute="top" secondItem="LKf-pl-Fe2" secondAttribute="bottom" constant="30" id="10b-gK-7h6"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="1jL-SU-7E3"/>
-                            <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="LKf-pl-Fe2" secondAttribute="bottom" id="9gK-vN-jon"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="bottom" secondItem="lyv-g5-8VA" secondAttribute="bottom" id="Gcs-7n-SN7"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="HVR-5T-6kC"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="J8w-hZ-pvQ"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="top" secondItem="Ouy-Q0-Ie0" secondAttribute="bottom" id="L7c-Nr-GAw"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="X7b-7z-QMy" secondAttribute="bottom" id="OWI-Fs-5Qm"/>
-                            <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="LKf-pl-Fe2" secondAttribute="bottom" id="Onb-s3-c9X"/>
+                            <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="YWU-IV-qV5" secondAttribute="bottom" constant="30" id="RKO-Du-M3a"/>
                             <constraint firstItem="lyv-g5-8VA" firstAttribute="trailing" secondItem="X7b-7z-QMy" secondAttribute="trailing" id="Sbs-N7-LJU"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="Xrp-66-BPs"/>
                             <constraint firstItem="dUX-zw-dJh" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="Ynd-RR-hlA"/>
+                            <constraint firstItem="YWU-IV-qV5" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" constant="16" id="ahW-U1-viz"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="top" secondItem="lyv-g5-8VA" secondAttribute="top" id="ebu-xv-UyD"/>
+                            <constraint firstItem="YWU-IV-qV5" firstAttribute="top" secondItem="LKf-pl-Fe2" secondAttribute="bottom" constant="30" id="gCa-co-mdp"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="k8N-0M-uAD"/>
                             <constraint firstItem="X7b-7z-QMy" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="sK9-jG-w7T"/>
                         </constraints>
@@ -494,6 +503,7 @@
                         <outlet property="feedNavBtn" destination="YKl-kW-MxL" id="HWg-pA-c49"/>
                         <outlet property="recorderNavBtn" destination="e6g-DB-S1B" id="yeT-e3-vTm"/>
                         <outlet property="searchDisplayController" destination="wHw-HU-ysi" id="tt6-J7-T2I"/>
+                        <outlet property="slider" destination="YWU-IV-qV5" id="DXY-Aq-p04"/>
                         <outlet property="sortBtn" destination="6ge-l6-VKS" id="rra-fo-7s6"/>
                         <outlet property="tableView" destination="LKf-pl-Fe2" id="dcO-zM-ofl"/>
                         <outletCollection property="sortOpt" destination="EWu-cs-SJx" collectionClass="NSMutableArray" id="lnc-2T-N0y"/>

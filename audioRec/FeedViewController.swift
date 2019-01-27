@@ -18,6 +18,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var sortBtn: UIBarButtonItem!
     
+    
+    @IBOutlet weak var slider: UISlider!
+    
     var activeTags : NSMutableArray = []
     
     @IBAction func sortBtn(_ sender: Any) {
@@ -100,25 +103,24 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     
     var posts : [Post] = []
-    /*
-    var searchText : String = ""
-    var filteredArray : NSArray?
-
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        if(searchController.searchBar.text!.count > 0){
-            print("search text:\(searchController.searchBar.text!)")
-            filteredArray = activeTags.filter({ (NSMutableArray) -> Bool in
-                if activeTags.contains(searchController.searchBar.text!) {
-                    return true
-                } else {
-                    return false
-                }
-            }) as? NSMutableArray
-            resultsController.tableView.reloadData()
-        }
+    
+    
+    //Look Luke
+    //this function will allow you to scroll through the audio using the slider
+    @IBAction func changeAudioTime(_ sender: Any) {
+        audioPlayer.stop()
+        audioPlayer.currentTime = TimeInterval(slider.value)
+        //after the time is changed we want it to start playing again
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
     }
-     */
+    
+    //Look Luke
+    //changing the value of the slider as you are going though the audio
+    func updateSlider() {
+        slider.value = Float(audioPlayer.currentTime)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return (posts.count)
     }
@@ -165,8 +167,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
         whiteRoundedView.layer.masksToBounds = false
         whiteRoundedView.layer.cornerRadius = 2.0
-        //whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        //whiteRoundedView.layer.shadowOpacity = 0.2
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubview(toBack: whiteRoundedView)
@@ -216,6 +216,19 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             downloadAudioFromS3(postID: postID)
             postCell.contentView.backgroundColor = UIColor.green
             activeTags.add(indexPath.row)
+            
+        }
+        //Look Luke
+        //Getting errors about this being nil
+        if audioPlayer != nil {
+            if audioPlayer.isPlaying {
+                
+                //The value of the slider needs to be set to the duration of the audio to
+                //divy up the sliding motion
+                slider.maximumValue = Float(audioPlayer.duration)
+                //creating the timer for the slider... it updates every 0.1 seconds
+                var sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: Selector("updateSlider"), userInfo: nil, repeats: true)
+            }
         }
     }
 
@@ -233,6 +246,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let font:UIFont = UIFont.boldSystemFont(ofSize: fontSize);
         let attributes:[NSAttributedStringKey : Any] = [NSAttributedStringKey.font: font];
         sortBtn.setTitleTextAttributes(attributes, for: UIControlState.normal);
+
+        
         
         /*
         searchController = UISearchController(searchResultsController: resultsController)

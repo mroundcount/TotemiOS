@@ -85,6 +85,7 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
                     self.audioPlayer.delegate = self
                     self.audioPlayer.play()
                     print("playing")
+                    
                 }
                 catch{
                     print("bummer")
