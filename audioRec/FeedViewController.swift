@@ -108,17 +108,22 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     //Look Luke
     //this function will allow you to scroll through the audio using the slider
     @IBAction func changeAudioTime(_ sender: Any) {
-        audioPlayer.stop()
-        audioPlayer.currentTime = TimeInterval(slider.value)
-        //after the time is changed we want it to start playing again
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
+        
+        if let player = s3Transfer.audioPlayer {
+            player.stop()
+            player.currentTime = TimeInterval(slider.value)
+            //after the time is changed we want it to start playing again
+            player.prepareToPlay()
+            player.play()
+        }
     }
     
     //Look Luke
     //changing the value of the slider as you are going though the audio
-    func updateSlider() {
-        slider.value = Float(audioPlayer.currentTime)
+    @objc func updateSlider() {
+        
+        slider.value = Float(s3Transfer.getCurrentTime())
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -216,20 +221,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             downloadAudioFromS3(postID: postID)
             postCell.contentView.backgroundColor = UIColor.green
             activeTags.add(indexPath.row)
-            
+           
         }
-        //Look Luke
-        //Getting errors about this being nil
-        if audioPlayer != nil {
-            if audioPlayer.isPlaying {
-                
-                //The value of the slider needs to be set to the duration of the audio to
-                //divy up the sliding motion
-                slider.maximumValue = Float(audioPlayer.duration)
-                //creating the timer for the slider... it updates every 0.1 seconds
-                var sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: Selector("updateSlider"), userInfo: nil, repeats: true)
-            }
-        }
+        
     }
 
     func downloadAudioFromS3(postID: Int) {
@@ -330,6 +324,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func donePlayingAudio(){
         postCell.contentView.backgroundColor = UIColor.clear
+    }
+    
+    func gotAudioLength() {
+        
+        //The value of the slider needs to be set to the duration of the audio to
+        //divy up the sliding motion
+        slider.maximumValue = Float(s3Transfer.getLengthOfAudio())
+        print("duration!")
+        print(s3Transfer.getLengthOfAudio())
+        //creating the timer for the slider... it updates every 0.1 seconds
+        var sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+        
     }
 }
 

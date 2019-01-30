@@ -225,6 +225,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("Done")
         postCell.contentView.backgroundColor = UIColor.clear
     }
+    
+    func gotAudioLength() {
+        print("got audio len")
+    }
 }
 
 

@@ -11,5 +11,6 @@ import Foundation
 protocol DonePlayingDelegate {
     
     func donePlayingAudio()
+    func gotAudioLength()
     
 }

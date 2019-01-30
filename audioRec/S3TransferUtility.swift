@@ -85,6 +85,7 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
                     self.audioPlayer.delegate = self
                     self.audioPlayer.play()
                     print("playing")
+                    self.gotAudioLength()
                     
                 }
                 catch{
@@ -120,6 +121,10 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
         self.delegate.donePlayingAudio()
     }
     
+    func gotAudioLength() {
+        self.delegate.gotAudioLength()
+    }
+    
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         donePlayingAudio()
     }
@@ -132,5 +137,23 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
                 donePlayingAudio()
             }
         }
+    }
+    
+    func getLengthOfAudio() -> TimeInterval {
+        if audioPlayer != nil {
+            if audioPlayer.isPlaying {
+                return audioPlayer.duration
+            }
+        }
+        return 0.0
+    }
+    
+    func getCurrentTime() -> TimeInterval {
+        if audioPlayer != nil {
+            if audioPlayer.isPlaying {
+                return audioPlayer.currentTime
+            }
+        }
+        return 0.0
     }
 }
