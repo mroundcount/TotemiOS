@@ -30,7 +30,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 button.isHidden = false
                 self.view.layoutIfNeeded()
             })
-        }
+        } 
     }
     
     @IBOutlet var sortOpt: [UIButton]!
@@ -67,6 +67,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.posts = []
             updateTableView()
           sortOpt.forEach { (button) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    button.isHidden = true
+                    self.view.layoutIfNeeded()
+                })
+            }
+        } else if (sender.tag == 2) {
+            print("cancel")
+            sortOpt.forEach { (button) in
                 UIView.animate(withDuration: 0.3, animations: {
                     button.isHidden = true
                     self.view.layoutIfNeeded()
@@ -147,7 +155,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let finalDate = dateFormatter.string(from: date as Date)
             cell = tableView.dequeueReusableCell(withIdentifier: "feedTableViewCell") as? PostTableViewCell
             cell.postDescription.text = description
-            cell.usernameLabel.text = "By: \(username)"
+            cell.usernameLabel.text = username
             cell.datePostedLabel.text = finalDate
             cell.postID = postID
             cell.likes = likes + 1
@@ -309,13 +317,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let postID = post!["post_i_d"] as? Int
             likedPosts.add(postID)
         }
-        
-//        func getPopular(){
-//            let PostsGroupByLike = Dictionary(grouping: posts, by: {$0.week!}).sorted {$0.0 < $1.0}
-//        }
-        
-        
-        
+
+ 
     }
     
     override func didReceiveMemoryWarning() {
