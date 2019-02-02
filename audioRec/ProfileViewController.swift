@@ -25,10 +25,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     let dbManager = DatabaseManager()
-    
     var postCell: PostTableViewCell!
-    
     let s3Transfer = S3TransferUtility()
+    var indexOfSelectedCell = -1
     
     @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
         s3Transfer.stopAudio()
@@ -100,24 +99,44 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.sizeToFit()
         
-        //Cell Styling
-        cell.contentView.backgroundColor = UIColor.clear
-        
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: self.view.frame.size.height))
-        
-        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
-        whiteRoundedView.layer.masksToBounds = false
-        whiteRoundedView.layer.cornerRadius = 2.0
-        //whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        //whiteRoundedView.layer.shadowOpacity = 0.2
-        
-        cell.contentView.addSubview(whiteRoundedView)
-        cell.contentView.sendSubview(toBack: whiteRoundedView)
+        if(indexOfSelectedCell == indexPath.row){
+            cell.contentView.backgroundColor = UIColor.green
+        } else {
+            //Cell Styling
+            cell.contentView.backgroundColor = UIColor.clear
+            
+            let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: self.view.frame.size.height))
+            
+            whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+            whiteRoundedView.layer.masksToBounds = false
+            whiteRoundedView.layer.cornerRadius = 2.0
+            //whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+            //whiteRoundedView.layer.shadowOpacity = 0.2
+            
+            cell.contentView.addSubview(whiteRoundedView)
+            cell.contentView.sendSubview(toBack: whiteRoundedView)
+        }
         
         return cell
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if(indexOfSelectedCell == indexPath.row)
+        {
+            return 250
+        } else {
+            return 153
+        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(indexOfSelectedCell == indexPath.row) {
+            indexOfSelectedCell = -1
+        } else {
+            indexOfSelectedCell = indexPath.row
+        }
+        
         postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
         if audioPlayer != nil {
             if audioPlayer.isPlaying {
@@ -143,6 +162,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             postCell.contentView.backgroundColor = UIColor.green
             activeTags.add(indexPath.row)
         }
+        
+        tableView.reloadData()
     }
 
     
