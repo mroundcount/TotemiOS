@@ -20,6 +20,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var profileHeader: UINavigationBar!
     @IBOutlet weak var usernameProfile: UINavigationItem!
+    @IBOutlet weak var profileMenu: UIBarButtonItem!
+    
     
     
     let dbManager = DatabaseManager()
@@ -37,6 +39,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         s3Transfer.stopAudio()
         self.performSegue(withIdentifier: "profileToRecorder", sender: nil)
     }
+    
+    @IBAction func profileMenuBtn(_ sender: UIBarButtonItem) {
+        s3Transfer.stopAudio()
+        self.preferences.removeObject(forKey:"tokenKey")
+        self.performSegue(withIdentifier: "logout", sender: nil)
+    }
+    
     
     var token = ""
     var usernameString = ""

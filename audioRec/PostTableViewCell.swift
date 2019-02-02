@@ -25,6 +25,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var datePostedLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var testLabel: UILabel!
+    
     
     var postID: Int?
     var likes: Int?

@@ -103,6 +103,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var usernameString = ""
     let preferences = UserDefaults.standard
     var audioPlayer: AVAudioPlayer!
+    var selectedIndex : NSInteger! = -1
     
     var searchController = UISearchController()
     var resultsController = UITableViewController()
@@ -176,17 +177,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.sizeToFit()
         //Cell Styling
         cell.contentView.backgroundColor = UIColor.clear
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: self.view.frame.size.height))
-        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
-        whiteRoundedView.layer.masksToBounds = false
-        whiteRoundedView.layer.cornerRadius = 2.0
-        
-        cell.contentView.addSubview(whiteRoundedView)
-        cell.contentView.sendSubview(toBack: whiteRoundedView)
-        
-        func change() {
-            cell.contentView.backgroundColor = UIColor.orange
-        }
         
         cell.delegate = self
         
@@ -203,8 +193,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
+        
+        if indexPath.row == selectedIndex{
+            selectedIndex = -1
+        }else{
+            selectedIndex = indexPath.row
+        }
+        //may move
+        tableView.reloadData()
 
         if audioPlayer != nil {
             if audioPlayer.isPlaying {
@@ -231,8 +231,21 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             activeTags.add(indexPath.row)
            
         }
-        
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == selectedIndex
+        {
+            return 300
+        }else{
+            return 125
+        }
+    }
+
+
+
+   
+
 
     func downloadAudioFromS3(postID: Int) {
         s3Transfer.downloadData(postID: postID)
@@ -249,16 +262,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let attributes:[NSAttributedStringKey : Any] = [NSAttributedStringKey.font: font];
         sortBtn.setTitleTextAttributes(attributes, for: UIControlState.normal);
 
-        
-        
-        /*
-        searchController = UISearchController(searchResultsController: resultsController)
-        tableView.tableHeaderView = searchController.searchBar
-        searchController.searchResultsUpdater = self
-        
-        resultsController.tableView.delegate = self
-        resultsController.tableView.dataSource = self
-        */
         
         self.tableView.dataSource = self
         self.tableView.delegate = self

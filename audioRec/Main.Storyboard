@@ -371,11 +371,11 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="499"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="feedTableViewCell" rowHeight="141" id="sD3-hU-Jrc" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="141"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="feedTableViewCell" rowHeight="213" id="sD3-hU-Jrc" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="213"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sD3-hU-Jrc" id="E2k-8H-7oZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="212.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOz-q7-KFq">
@@ -433,6 +433,12 @@
                                                         <action selector="likeBtn:" destination="sD3-hU-Jrc" eventType="touchUpInside" id="uQX-ij-Xr8"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqK-cB-EwU">
+                                                    <rect key="frame" x="25" y="167" width="291" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cOz-q7-KFq" firstAttribute="leading" secondItem="BDK-X1-nvG" secondAttribute="trailing" constant="15" id="3o6-Ya-u4x"/>
@@ -440,7 +446,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="z1A-cE-kDJ" secondAttribute="bottom" constant="8" id="KPF-Er-GCt"/>
                                                 <constraint firstItem="z1A-cE-kDJ" firstAttribute="leading" secondItem="ykf-5A-SEI" secondAttribute="trailing" constant="50" id="KWj-tA-5Xt"/>
                                                 <constraint firstItem="tga-eS-2XV" firstAttribute="top" secondItem="BDK-X1-nvG" secondAttribute="bottom" constant="6" id="Mln-Ei-cFH"/>
+                                                <constraint firstItem="HqK-cB-EwU" firstAttribute="top" secondItem="z1A-cE-kDJ" secondAttribute="bottom" constant="45" id="UNl-cg-guy"/>
                                                 <constraint firstItem="z1A-cE-kDJ" firstAttribute="trailing" secondItem="E2k-8H-7oZ" secondAttribute="trailingMargin" constant="10" id="Vbl-7V-09x"/>
+                                                <constraint firstItem="HqK-cB-EwU" firstAttribute="leading" secondItem="E2k-8H-7oZ" secondAttribute="leadingMargin" constant="10" id="YkY-xa-WvO"/>
                                                 <constraint firstItem="JjU-WS-ayN" firstAttribute="top" secondItem="cOz-q7-KFq" secondAttribute="bottom" constant="1" id="fRd-yi-zx6"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="cOz-q7-KFq" secondAttribute="trailing" constant="10" id="hdP-aC-YgS"/>
                                                 <constraint firstItem="ykf-5A-SEI" firstAttribute="top" secondItem="cOz-q7-KFq" secondAttribute="bottom" constant="1" id="hfc-Ay-tSz"/>
@@ -456,6 +464,7 @@
                                             <outlet property="datePostedLabel" destination="z1A-cE-kDJ" id="E7f-Rr-6TD"/>
                                             <outlet property="likeBtn" destination="JjU-WS-ayN" id="XWC-cu-Vnh"/>
                                             <outlet property="postDescription" destination="cOz-q7-KFq" id="P2k-yd-c1L"/>
+                                            <outlet property="testLabel" destination="HqK-cB-EwU" id="oyG-MG-PHE"/>
                                             <outlet property="usernameLabel" destination="tga-eS-2XV" id="IjH-9R-Eab"/>
                                         </connections>
                                     </tableViewCell>
@@ -650,7 +659,13 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ub4-fa-fQL">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="username" id="YMU-pb-xai"/>
+                                    <navigationItem title="username" id="YMU-pb-xai">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" id="Ajj-Xs-IJJ">
+                                            <connections>
+                                                <action selector="profileMenuBtn:" destination="u83-tG-Pf8" id="dVd-Pn-vAW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -672,12 +687,14 @@
                     <connections>
                         <outlet property="feedNavBtn" destination="cxw-3a-ozv" id="Y5Z-Ie-8U7"/>
                         <outlet property="profileHeader" destination="ub4-fa-fQL" id="aeP-ga-EXd"/>
+                        <outlet property="profileMenu" destination="Ajj-Xs-IJJ" id="BUS-U6-CWq"/>
                         <outlet property="profileNavBtn" destination="01G-WW-ery" id="Q1d-Hh-0Ig"/>
                         <outlet property="recorderNavBtn" destination="dTI-GZ-riZ" id="dnQ-vI-xWs"/>
                         <outlet property="tableView" destination="NLY-4h-Z0N" id="VDE-wy-Z3K"/>
                         <outlet property="usernameProfile" destination="YMU-pb-xai" id="177-te-9sT"/>
                         <segue destination="Gsk-Cu-sAB" kind="show" identifier="profileToFeed" id="Mdd-V0-bt0"/>
                         <segue destination="gu6-eg-1mg" kind="show" identifier="profileToRecorder" id="hxp-Ea-JtN"/>
+                        <segue destination="rZ9-7n-uVR" kind="presentation" identifier="logout" id="FuC-k1-iXr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0u-J8-7l3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -694,7 +711,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="mek-Tq-dLp"/>
         <segue reference="Mdd-V0-bt0"/>
-        <segue reference="eol-gO-uF4"/>
-        <segue reference="cNL-YJ-xqq"/>
+        <segue reference="hxp-Ea-JtN"/>
+        <segue reference="FuC-k1-iXr"/>
     </inferredMetricsTieBreakers>
 </document>
