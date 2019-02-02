@@ -15,6 +15,7 @@
 		5A5A4080212A2F0E00302124 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5A407F212A2F0E00302124 /* AWSS3.framework */; };
 		5A5A4082212A2FBE00302124 /* S3TransferUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5A4081212A2FBE00302124 /* S3TransferUtility.swift */; };
 		5A5A4084212A331F00302124 /* recording.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5A5A4083212A331F00302124 /* recording.gif */; };
+		5A786E9622053955003CEB98 /* AudioLengthForCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A786E9522053955003CEB98 /* AudioLengthForCellDelegate.swift */; };
 		5AB7DCA7210FC76600464C93 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AB7DCA6210FC76600464C93 /* ExternalAccessory.framework */; };
 		5AB7DCAA2110D34A00464C93 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */; };
 		5AFD7BDE2129E08B0047349C /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 5AFD7BDD2129E08B0047349C /* awsconfiguration.json */; };
@@ -66,6 +67,7 @@
 		5A5A407F212A2F0E00302124 /* AWSS3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSS3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A5A4081212A2FBE00302124 /* S3TransferUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3TransferUtility.swift; sourceTree = "<group>"; };
 		5A5A4083212A331F00302124 /* recording.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = recording.gif; sourceTree = "<group>"; };
+		5A786E9522053955003CEB98 /* AudioLengthForCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLengthForCellDelegate.swift; sourceTree = "<group>"; };
 		5AB7DCA6210FC76600464C93 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		5AB7DCA8210FC76600464C93 /* audioRec.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = audioRec.entitlements; sourceTree = "<group>"; };
 		5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				BF05B445217D7DA7003FB438 /* TotemLogo.png */,
 				BF145F822195136E00450A88 /* DonePlayingDelegate.swift */,
 				5A54C5EC21F7E6F100C35C8A /* Post.swift */,
+				5A786E9522053955003CEB98 /* AudioLengthForCellDelegate.swift */,
 			);
 			path = audioRec;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */,
 				BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */,
 				BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */,
+				5A786E9622053955003CEB98 /* AudioLengthForCellDelegate.swift in Sources */,
 				5A5A4082212A2FBE00302124 /* S3TransferUtility.swift in Sources */,
 				BF078105212640FA00EB7CBE /* recorderModel.swift in Sources */,
 				BFE030012111128300376B16 /* FeedViewController.swift in Sources */,

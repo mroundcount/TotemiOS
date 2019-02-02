@@ -21,7 +21,6 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
         print("done")
     }
     
-    
     var player: AVAudioPlayer?
     weak var delegate: CustomCellUpdater?
     
@@ -30,17 +29,16 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     @IBOutlet weak var datePostedLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
-   
     @IBOutlet weak var slider: UISlider!
     
     
     var postID: Int?
     var likes: Int?
     var token: String?
+    var audioLengthDelegate : AudioLengthForCellDelegate!
     
-    let s3Transfer = S3TransferUtility()
+    var s3Transfer = S3TransferUtility()
     //s3Transfer.delegate = self
-    
     
     @IBAction func likeBtn(_ sender: Any) {
         
@@ -52,7 +50,6 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
             self.likes = self.likes! + 1
             self.countLabel.text = "\(self.likes!)"
         }
-        
         
         // post new likes
         let variable = "{\"postID\": \(postID!)}"
@@ -70,7 +67,7 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-
+        
     }
     
     override func didMoveToSuperview() {
@@ -88,11 +85,6 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
         
         //The value of the slider needs to be set to the duration of the audio to
         //divy up the sliding motion
-        slider.maximumValue = Float(s3Transfer.getLengthOfAudio())
-        print("duration!")
-        print(s3Transfer.getLengthOfAudio())
-        //creating the timer for the slider... it updates every 0.1 seconds
-        var sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
         
     }
     
@@ -117,7 +109,22 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        s3Transfer.delegate = self
+        
+    }
+
+    
+    func selectedThisCell(length : TimeInterval, s3trans: S3TransferUtility) {
+        
+        print("length from sel \(length)")
+        self.s3Transfer = s3trans
+        
+        print("s3 trans \(s3trans.getLengthOfAudio())")
+        
+        slider.maximumValue = Float(length)
+        //creating the timer for the slider... it updates every 0.1 seconds
+        var sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+        
+        
     }
 
 }

@@ -86,7 +86,6 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
                     self.audioPlayer.play()
                     print("playing")
                     self.gotAudioLength()
-                    
                 }
                 catch{
                     print("bummer")
@@ -122,6 +121,7 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
     }
     
     func gotAudioLength() {
+        print("s3 transfer delegate got audio length")
         self.delegate.gotAudioLength()
     }
     

@@ -15,10 +15,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var feedNavBtn: UIBarButtonItem!
     @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
-
     @IBOutlet weak var sortBtn: UIBarButtonItem!
-    
-    
     @IBOutlet weak var slider: UISlider!
     
     var activeTags : NSMutableArray = []
@@ -83,8 +80,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    var audioLengthDelegate : AudioLengthForCellDelegate!
     
-
     @IBAction func recorderNavBtn(_ sender: UIBarButtonItem) {
         print("recordd")
         s3Transfer.stopAudio()
@@ -104,6 +101,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     let preferences = UserDefaults.standard
     var audioPlayer: AVAudioPlayer!
     var selectedIndex : NSInteger! = -1
+    var selectedIndexPath : IndexPath!
     
     var searchController = UISearchController()
     var resultsController = UITableViewController()
@@ -180,6 +178,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.contentView.backgroundColor = UIColor.clear
         
         cell.delegate = self
+        cell.audioLengthDelegate = self.audioLengthDelegate
         
         return cell
     }
@@ -201,11 +200,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if indexPath.row == selectedIndex{
             selectedIndex = -1
+            selectedIndexPath = nil
         }else{
             selectedIndex = indexPath.row
+            selectedIndexPath = indexPath
         }
-        //may move
-        tableView.reloadData()
 
         if audioPlayer != nil {
             if audioPlayer.isPlaying {
@@ -232,6 +231,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             activeTags.add(indexPath.row)
            
         }
+        
+        tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -242,11 +243,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             return 125
         }
     }
-
-
-
-   
-
 
     func downloadAudioFromS3(postID: Int) {
         s3Transfer.downloadData(postID: postID)
@@ -331,17 +327,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func donePlayingAudio(){
         postCell.contentView.backgroundColor = UIColor.clear
+        tableView.reloadData()
     }
     
     func gotAudioLength() {
-        
-        //The value of the slider needs to be set to the duration of the audio to
-        //divy up the sliding motion
-        slider.maximumValue = Float(s3Transfer.getLengthOfAudio())
-        print("duration!")
-        print(s3Transfer.getLengthOfAudio())
-        //creating the timer for the slider... it updates every 0.1 seconds
-        var sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+        print("got audio in feed control")
+        print("got length for index path : \(selectedIndexPath)")
+        var newPostCell = tableView.cellForRow(at: selectedIndexPath) as! PostTableViewCell
+        newPostCell.selectedThisCell(length: s3Transfer.getLengthOfAudio(), s3trans: s3Transfer)
         
     }
 }
