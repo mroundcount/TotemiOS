@@ -15,7 +15,12 @@ protocol CustomCellUpdater : class {
     
 }
 
-class PostTableViewCell: UITableViewCell {
+class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
+    
+    func donePlayingAudio() {
+        print("done")
+    }
+    
     
     var player: AVAudioPlayer?
     weak var delegate: CustomCellUpdater?
@@ -25,12 +30,17 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var datePostedLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
-    @IBOutlet weak var testLabel: UILabel!
+   
+    @IBOutlet weak var slider: UISlider!
     
     
     var postID: Int?
     var likes: Int?
     var token: String?
+    
+    let s3Transfer = S3TransferUtility()
+    //s3Transfer.delegate = self
+    
     
     @IBAction func likeBtn(_ sender: Any) {
         
@@ -73,10 +83,41 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
+    
+    func gotAudioLength() {
+        
+        //The value of the slider needs to be set to the duration of the audio to
+        //divy up the sliding motion
+        slider.maximumValue = Float(s3Transfer.getLengthOfAudio())
+        print("duration!")
+        print(s3Transfer.getLengthOfAudio())
+        //creating the timer for the slider... it updates every 0.1 seconds
+        var sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+        
+    }
+    
+    @objc func updateSlider() {
+        
+        slider.value = Float(s3Transfer.getCurrentTime())
+        
+    }
+    
+    @IBAction func changeAudioTime(_ sender: Any) {
+        
+        if let player = s3Transfer.audioPlayer {
+            player.stop()
+            player.currentTime = TimeInterval(slider.value)
+            //after the time is changed we want it to start playing again
+            player.prepareToPlay()
+            player.play()
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        s3Transfer.delegate = self
     }
 
 }

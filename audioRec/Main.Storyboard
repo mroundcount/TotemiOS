@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rZ9-7n-uVR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rZ9-7n-uVR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -433,8 +433,17 @@
                                                         <constraint firstAttribute="height" constant="30" id="tZN-SB-JMI"/>
                                                     </constraints>
                                                 </stackView>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="0hX-Kc-csl">
+                                                    <rect key="frame" x="13" y="142" width="349" height="31"/>
+                                                    <connections>
+                                                        <action selector="changeAudioTime:" destination="sD3-hU-Jrc" eventType="valueChanged" id="SAC-LS-c2S"/>
+                                                    </connections>
+                                                </slider>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="0hX-Kc-csl" secondAttribute="trailing" constant="15" id="03f-k2-XvN"/>
+                                                <constraint firstItem="0hX-Kc-csl" firstAttribute="top" secondItem="qC8-Qb-W9h" secondAttribute="bottom" constant="30" id="0qY-vB-uDh"/>
+                                                <constraint firstItem="0hX-Kc-csl" firstAttribute="leading" secondItem="E2k-8H-7oZ" secondAttribute="leading" constant="15" id="6Iu-XS-dvO"/>
                                                 <constraint firstItem="z1A-cE-kDJ" firstAttribute="leading" secondItem="E2k-8H-7oZ" secondAttribute="leading" constant="10" id="Btw-p3-Hoh"/>
                                                 <constraint firstItem="cOz-q7-KFq" firstAttribute="top" secondItem="E2k-8H-7oZ" secondAttribute="topMargin" constant="-7" id="CmV-M7-oNM"/>
                                                 <constraint firstItem="tga-eS-2XV" firstAttribute="top" secondItem="BDK-X1-nvG" secondAttribute="bottom" constant="4" id="Olj-Ms-AtA"/>
@@ -453,6 +462,7 @@
                                             <outlet property="datePostedLabel" destination="z1A-cE-kDJ" id="E7f-Rr-6TD"/>
                                             <outlet property="likeBtn" destination="JjU-WS-ayN" id="XWC-cu-Vnh"/>
                                             <outlet property="postDescription" destination="cOz-q7-KFq" id="P2k-yd-c1L"/>
+                                            <outlet property="slider" destination="0hX-Kc-csl" id="Kmp-Rw-LrR"/>
                                             <outlet property="usernameLabel" destination="tga-eS-2XV" id="IjH-9R-Eab"/>
                                         </connections>
                                     </tableViewCell>

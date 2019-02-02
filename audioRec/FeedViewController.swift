@@ -154,6 +154,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             dateFormatter.dateFormat = "MMM-dd-YYYY"
             let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated))
             let finalDate = dateFormatter.string(from: date as Date)
+
             cell = tableView.dequeueReusableCell(withIdentifier: "feedTableViewCell") as? PostTableViewCell
             cell.postDescription.text = description
             cell.usernameLabel.text = username
