@@ -148,6 +148,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let likes = post.likes!
             let username = post.username!
             let timeCreated = post.timeCreated!
+            let duration = post.duration!
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM-dd-YYYY"
             let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated))
@@ -162,6 +163,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("likefdasfsddds: \(likes + 1)")
             cell.countLabel.text = "\(likes + 1)"
             cell.token = self.token
+            cell.durationLabel.text = "\(duration)s"
             
             if((likedPosts.contains(postID))){
                 cell.likeBtn.isEnabled = false
@@ -299,6 +301,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 newPost.username = username!
                 let timeCreated = post!["time_created"] as? Int
                 newPost.timeCreated = timeCreated!
+                let duration = post!["duration"] as? Int
+                newPost.duration = duration!
                 posts.append(newPost)
             }
         }

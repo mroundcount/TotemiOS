@@ -15,6 +15,7 @@ class Post {
     var timeCreated: Int?
     var description: String?
     var likes: Int?
+    var duration: Int?
     
     init(){
         

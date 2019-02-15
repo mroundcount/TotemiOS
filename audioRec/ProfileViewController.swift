@@ -38,14 +38,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.performSegue(withIdentifier: "profileToRecorder", sender: nil)
     }
     
-    @IBAction func profileMenuBtn(_ sender: UIBarButtonItem) {
-        profileMenu.forEach { (button) in
-            UIView.animate(withDuration: 0.3, animations: {
-                button.isHidden = false
-                self.view.layoutIfNeeded()
-            })
-        }
-    }
+
     
     
     var token = ""
@@ -215,16 +208,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return [delete]
     }
     
-
-    
-   //@IBOutlet var sortOpt: [UIButton]!
-    @IBAction func profileMenuBtn(_ sender: UIButton) {
+    @IBAction func profileMenuBtn(_ sender: UIBarButtonItem) {
+        profileMenu.forEach { (button) in
+            UIView.animate(withDuration: 0.3, animations: {
+                button.isHidden = false
+                self.view.layoutIfNeeded()
+            })
+        }
     }
+
+    //@IBOutlet var sortOpt: [UIButton]!
+    @IBOutlet var profileMenu: [UIButton]!
     
+
     @IBAction func OptTapped(_ sender: UIButton) {
-        
         if(sender.tag == 0){
             print("tapped 1")
+            self.performSegue(withIdentifier: "editProfile", sender: nil)
         }
             
         else if (sender.tag == 1) {

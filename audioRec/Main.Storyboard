@@ -743,7 +743,7 @@
                                             <action selector="OptTapped:" destination="u83-tG-Pf8" eventType="touchUpInside" id="bjO-Eo-y5g"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEq-tO-fC4">
+                                    <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEq-tO-fC4">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="0.0"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
@@ -778,22 +778,17 @@
                     <connections>
                         <outlet property="feedNavBtn" destination="cxw-3a-ozv" id="Y5Z-Ie-8U7"/>
                         <outlet property="profileHeader" destination="ub4-fa-fQL" id="aeP-ga-EXd"/>
-                        <outlet property="profileMenu" destination="wjJ-Rn-fkS" id="K5V-XR-aEd"/>
                         <outlet property="profileNavBtn" destination="01G-WW-ery" id="Q1d-Hh-0Ig"/>
                         <outlet property="recorderNavBtn" destination="dTI-GZ-riZ" id="dnQ-vI-xWs"/>
                         <outlet property="tableView" destination="NLY-4h-Z0N" id="VDE-wy-Z3K"/>
                         <outlet property="usernameProfile" destination="YMU-pb-xai" id="177-te-9sT"/>
-                        <outletCollection property="profileMenu" destination="wjJ-Rn-fkS" collectionClass="NSMutableArray" id="bRg-um-hfI"/>
                         <outletCollection property="profileMenu" destination="Zpe-TK-VGA" collectionClass="NSMutableArray" id="sC3-TD-w1G"/>
-                        <outletCollection property="profileMenu" destination="Zpe-TK-VGA" collectionClass="NSMutableArray" id="PzL-Sj-eku"/>
-                        <outletCollection property="profileMenu" destination="jTK-yi-ilt" collectionClass="NSMutableArray" id="AKi-or-1Mk"/>
                         <outletCollection property="profileMenu" destination="WEq-tO-fC4" collectionClass="NSMutableArray" id="5oI-xW-Vk4"/>
-                        <outletCollection property="profileMenu" destination="Zpe-TK-VGA" collectionClass="NSMutableArray" id="dfG-6O-vWT"/>
-                        <outletCollection property="profileMenu" destination="jTK-yi-ilt" collectionClass="NSMutableArray" id="LHd-zt-uAt"/>
-                        <outletCollection property="profileMenu" destination="WEq-tO-fC4" collectionClass="NSMutableArray" id="7jr-1L-2aV"/>
+                        <outletCollection property="profileMenu" destination="jTK-yi-ilt" collectionClass="NSMutableArray" id="NrN-NM-Uwb"/>
                         <segue destination="Gsk-Cu-sAB" kind="show" identifier="profileToFeed" id="Mdd-V0-bt0"/>
                         <segue destination="gu6-eg-1mg" kind="show" identifier="profileToRecorder" id="hxp-Ea-JtN"/>
                         <segue destination="rZ9-7n-uVR" kind="presentation" identifier="logout" id="FuC-k1-iXr"/>
+                        <segue destination="SjM-k2-6w1" kind="show" identifier="editProfile" id="Ybd-JP-scY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0u-J8-7l3" userLabel="First Responder" sceneMemberID="firstResponder"/>

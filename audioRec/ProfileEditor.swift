@@ -24,12 +24,17 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         myPickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         self.present(myPickerController, animated: true, completion: nil)
     }
-    /*
+
+        
+      /*
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        profilePicture.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        profilePicture.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        //profilePicture.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         profilePicture.backgroundColor = UIColor.clear
         self.dismiss(animated: true, completion: nil)
         //uploadImage()
     }
-    */
+ */
+
 }

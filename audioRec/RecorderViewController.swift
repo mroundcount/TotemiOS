@@ -7,7 +7,7 @@
 //
 import UIKit
 import AVFoundation
-
+import SwiftyJSON
 
 class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextFieldDelegate {
     
@@ -34,6 +34,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     @IBOutlet weak var defaultTxt: UILabel!
     
     @IBOutlet weak var descriptionTxt: UITextField!
+    
+    var duration = 0
     
     // user variables
     var userID : Int = 0
@@ -162,15 +164,23 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         let timeInterval = Int(NSDate().timeIntervalSince1970)
         let likes : Int = 0
         
-        //
-        let variable = "{\"Post\":[{\"username\":\"\(self.username)\",\"description\":\"" + descriptionTxt.text! + "\",\"timeCreated\":\"" + String(timeInterval) + "\",\"likes\":" + String(likes) + "}]}"
+        let data = JSON([
+            "username": self.username,
+            "description": descriptionTxt.text!,
+            "timeCreated": String(timeInterval),
+            "likes": String(likes),
+            "duration": elapsed
+            ])
+        
+        let array : [JSON] = [data]
+        let variable = JSON(["Post" : array])
         
         print(variable)
         
         let dbManager = DatabaseManager()
         
         // TODO: update the dbManager thing with a post that uses a token
-        let postID = dbManager.createNewPost(token: self.token, data: variable)
+        let postID = dbManager.createNewPost(token: self.token, data: variable.rawString()!)
         print("ID of the post just returned \(postID)")
         
         
@@ -428,7 +438,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     @objc func updateCounter() {
         // Calculate total time since timer started in seconds
         time = Date().timeIntervalSinceReferenceDate - startTime
-        
+        print("time: \(time)")
         // Calculate minutes
         let minutes = UInt8(time / 60.0)
         time -= (TimeInterval(minutes) * 60)
