@@ -25,6 +25,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var repeatPassword: UITextField!
     @IBOutlet weak var emailAddress: UITextField!
     
+    @IBOutlet weak var usernameLbl: UILabel!
+    @IBOutlet weak var passwordLbl: UILabel!
+    @IBOutlet weak var emailLbl: UILabel!
+    
+    
     @IBOutlet weak var registrationButton: UIButton!
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -62,6 +67,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        usernameLbl.text = "Username must be between 4 and 16 characters"
+        passwordLbl.text = "Password must be least 4 characters"
+        emailLbl.text = "Please enter a valid email address"
+        
         self.hideKeyboardWhenTappedAround()
         
         username.delegate = self
@@ -84,6 +93,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
     // Dismissing the keyboard using the tap jester
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -101,6 +111,27 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         } else {
             self.registrationButton.isEnabled = false
         }
+        
+        if createAccountModel.validateUsername(username: username.text!) == true {
+            usernameLbl.textColor = UIColor.green
+        } else {
+            usernameLbl.textColor = UIColor.red
+        }
+        
+        if createAccountModel.validatePassword(password: password.text!) == true {
+            passwordLbl.textColor = UIColor.green
+        } else {
+            passwordLbl.textColor = UIColor.red
+        }
+
+        //if (password.text!.isEqual(repeatPassword.text!)) {
+
+        if createAccountModel.validateEmail(emailAddress: emailAddress.text!) == true {
+            emailLbl.textColor = UIColor.green
+        } else {
+            emailLbl.textColor = UIColor.red
+        }
+
     }
     
     

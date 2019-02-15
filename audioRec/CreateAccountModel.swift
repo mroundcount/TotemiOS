@@ -23,14 +23,14 @@ class CreateAccountModel {
     
     //function for name validation
     func validateUsername(username:String) -> Bool {
-        if (username.count) >= 3 {
+        if (username.count) >= 4 && (username.count) <= 16 {
             return true
         } else { return false }
     }
     
     //function for Password validation
     func validatePassword(password:String) -> Bool {
-        if (password.count) >= 3 {
+        if (password.count) >= 4 {
             return true
         } else { return false }
     }

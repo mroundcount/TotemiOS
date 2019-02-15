@@ -35,6 +35,7 @@
 		BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFD921014F6F0001AF90 /* LoginViewController.swift */; };
 		BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */; };
 		BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C12662113DABB0086A99E /* PostTableViewCell.swift */; };
+		BF9614C722151814008806AE /* ProfileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9614C622151814008806AE /* ProfileEditor.swift */; };
 		BFE02FFD210FF7EB00376B16 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */; };
 		BFE030012111128300376B16 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE030002111128300376B16 /* FeedViewController.swift */; };
 		BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE030022111183600376B16 /* CreateAccountModel.swift */; };
@@ -97,6 +98,7 @@
 		BF70CFD921014F6F0001AF90 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		BF8C12662113DABB0086A99E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		BF9614C622151814008806AE /* ProfileEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileEditor.swift; path = /Users/michaelroundcount/Desktop/Totem1.2/TotemiOS2/audioRec/ProfileEditor.swift; sourceTree = "<absolute>"; };
 		BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BFE030002111128300376B16 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		BFE030022111183600376B16 /* CreateAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountModel.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */,
 				BFE030002111128300376B16 /* FeedViewController.swift */,
 				BF70CFD921014F6F0001AF90 /* LoginViewController.swift */,
+				BF9614C622151814008806AE /* ProfileEditor.swift */,
 				BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */,
 				BF8C12662113DABB0086A99E /* PostTableViewCell.swift */,
 				BF078104212640FA00EB7CBE /* recorderModel.swift */,
@@ -436,6 +439,7 @@
 				BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */,
 				BF07810921268F6200EB7CBE /* gifFile.swift in Sources */,
 				5A54C5ED21F7E6F100C35C8A /* Post.swift in Sources */,
+				BF9614C722151814008806AE /* ProfileEditor.swift in Sources */,
 				BF078107212655FF00EB7CBE /* RecorderViewController.swift in Sources */,
 				BF145F832195136E00450A88 /* DonePlayingDelegate.swift in Sources */,
 				BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */,

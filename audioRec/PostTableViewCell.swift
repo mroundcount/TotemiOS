@@ -30,6 +30,8 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var durationLabel: UILabel!
+    
     
     
     var postID: Int?
@@ -83,15 +85,10 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     
     func gotAudioLength() {
         
-        //The value of the slider needs to be set to the duration of the audio to
-        //divy up the sliding motion
-        
     }
     
     @objc func updateSlider() {
-        
         slider.value = Float(s3Transfer.getCurrentTime())
-        
     }
     
     @IBAction func changeAudioTime(_ sender: Any) {

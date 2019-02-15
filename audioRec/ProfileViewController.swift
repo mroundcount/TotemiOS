@@ -20,10 +20,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var profileHeader: UINavigationBar!
     @IBOutlet weak var usernameProfile: UINavigationItem!
-    @IBOutlet weak var profileMenu: UIBarButtonItem!
+    @IBOutlet weak var profileMenuBtn: UIBarButtonItem!
     
-    
-    
+
     let dbManager = DatabaseManager()
     var postCell: PostTableViewCell!
     let s3Transfer = S3TransferUtility()
@@ -40,9 +39,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func profileMenuBtn(_ sender: UIBarButtonItem) {
-        s3Transfer.stopAudio()
-        self.preferences.removeObject(forKey:"tokenKey")
-        self.performSegue(withIdentifier: "logout", sender: nil)
+        profileMenu.forEach { (button) in
+            UIView.animate(withDuration: 0.3, animations: {
+                button.isHidden = false
+                self.view.layoutIfNeeded()
+            })
+        }
     }
     
     
@@ -212,6 +214,37 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return [delete]
     }
+    
+
+    
+   //@IBOutlet var sortOpt: [UIButton]!
+    @IBAction func profileMenuBtn(_ sender: UIButton) {
+    }
+    
+    @IBAction func OptTapped(_ sender: UIButton) {
+        
+        if(sender.tag == 0){
+            print("tapped 1")
+        }
+            
+        else if (sender.tag == 1) {
+            s3Transfer.stopAudio()
+            self.preferences.removeObject(forKey:"tokenKey")
+            self.performSegue(withIdentifier: "logout", sender: nil)
+            
+        } else if (sender.tag == 2) {
+            print("cancel")
+            profileMenu.forEach { (button) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    button.isHidden = true
+                    self.view.layoutIfNeeded()
+                })
+            }
+        }
+    }
+  
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

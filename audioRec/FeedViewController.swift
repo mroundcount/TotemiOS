@@ -229,9 +229,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             downloadAudioFromS3(postID: postID)
             postCell.contentView.backgroundColor = UIColor.green
             activeTags.add(indexPath.row)
-           
         }
-        
         tableView.reloadData()
     }
 
@@ -252,13 +250,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         feedNavBtn.isEnabled = false
-        sortBtn.title = "Sort"
         
         let fontSize:CGFloat = 25;
         let font:UIFont = UIFont.boldSystemFont(ofSize: fontSize);
         let attributes:[NSAttributedStringKey : Any] = [NSAttributedStringKey.font: font];
         sortBtn.setTitleTextAttributes(attributes, for: UIControlState.normal);
-
         
         self.tableView.dataSource = self
         self.tableView.delegate = self

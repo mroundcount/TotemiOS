@@ -11,6 +11,9 @@ import AVFoundation
 
 class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextFieldDelegate {
     
+    
+    // MARK: - Variables
+    
     private let recorderRule = recorderCharLimit()
     
     @IBOutlet weak var feedNavBtn: UIBarButtonItem!
@@ -20,7 +23,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var recordingImage: UIImageView!
-    
+    // MARK: - Buttons
+
     @IBOutlet weak var recordBtn: UIButton!
     @IBOutlet weak var finishedBtn: UIButton!
     @IBOutlet weak var pauseBtn: UIButton!
@@ -39,6 +43,9 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //phone cannot go into sleep mode while in this view
+        UIApplication.shared.isIdleTimerDisabled = true
         
         //dismiss keyboard
         self.hideKeyboardWhenTappedAround()
@@ -67,6 +74,11 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
                                                selector: #selector(self.keyboardNotification(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("view did disappear")
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     @objc func keyboardNotification(notification: NSNotification) {
@@ -179,7 +191,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     }
     
     
-    //Functions
+    //MARK: - Functions
     func buttonsOnLoad () {
         descriptionTxt.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         
