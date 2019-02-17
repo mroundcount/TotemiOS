@@ -7,34 +7,32 @@
 import UIKit
 
 class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-     
-    @IBOutlet weak var profilePicture: UIImageView!
-     @IBOutlet weak var uploadBtn: UIButton!
     
-    override func viewDidLoad() {
+    
+    @IBOutlet weak var profilePic: UIImageView!
+    
+        override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
      
      
-    @IBAction func uploadBtnTapped(_ sender: UIButton) {
-  
-        var myPickerController = UIImagePickerController()
-        myPickerController.delegate = self;
-        myPickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-        self.present(myPickerController, animated: true, completion: nil)
+    @IBAction func uploadBtn(_ sender: UIButton) {
+        let image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        image.allowsEditing = false
+        self.present(image, animated: true) {
+            //After it is complete
+        }
     }
-
-        
-      /*
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        profilePicture.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
-        //profilePicture.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        profilePicture.backgroundColor = UIColor.clear
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profilePic.image = image
+        } else {
+            print("you suck")
+        }
         self.dismiss(animated: true, completion: nil)
-        //uploadImage()
     }
- */
 
 }
