@@ -11,9 +11,17 @@ import AWSCore
 import AWSS3
 import AVFoundation
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate, CustomCellUpdater {
     
+    func updateTableView() {
+        getPosts()
+        
+        tableView.reloadData()
+        
+        print("updating tblviewcell")
+    }
     
+ 
     @IBOutlet weak var feedNavBtn: UIToolbar!
     @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
@@ -21,6 +29,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var profileHeader: UINavigationBar!
     @IBOutlet weak var usernameProfile: UINavigationItem!
     @IBOutlet weak var profileMenuBtn: UIBarButtonItem!
+    
+    @IBOutlet weak var slider: UISlider!
+    
     
 
     let dbManager = DatabaseManager()
@@ -46,6 +57,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let preferences = UserDefaults.standard
     var userID : Int = 0
     let profile = ""
+    var selectedIndexPath : IndexPath!
     
     var audioPlayer: AVAudioPlayer!
     
@@ -86,31 +98,32 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell = tableView.dequeueReusableCell(withIdentifier: "profileTableViewCell") as! PostTableViewCell
             
             cell.postDescription.text = description!
-            cell.usernameLabel.text = "By: \(username!)"
+            cell.usernameLabel.text = "\(username!)"
             cell.datePostedLabel.text = finalDate
             cell.postID = postID
             cell.likes = likes!
         }
         
         cell.sizeToFit()
+
+        //Cell Styling
+        cell.contentView.backgroundColor = UIColor.clear
         
-        if(indexOfSelectedCell == indexPath.row){
-            cell.contentView.backgroundColor = UIColor.green
-        } else {
-            //Cell Styling
-            cell.contentView.backgroundColor = UIColor.clear
-            
-            let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: self.view.frame.size.height))
-            
-            whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
-            whiteRoundedView.layer.masksToBounds = false
-            whiteRoundedView.layer.cornerRadius = 2.0
-            //whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-            //whiteRoundedView.layer.shadowOpacity = 0.2
-            
-            cell.contentView.addSubview(whiteRoundedView)
-            cell.contentView.sendSubview(toBack: whiteRoundedView)
-        }
+
+        cell.delegate = self
+        cell.audioLengthDelegate = self.audioLengthDelegate
+        
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: self.view.frame.size.height))
+        
+        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 2.0
+        //whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        //whiteRoundedView.layer.shadowOpacity = 0.2
+        
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubview(toBack: whiteRoundedView)
+
         
         return cell
     }
@@ -119,17 +132,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if(indexOfSelectedCell == indexPath.row)
         {
-            return 250
+            return 200
         } else {
-            return 153
+            return 125
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if(indexOfSelectedCell == indexPath.row) {
             indexOfSelectedCell = -1
+            selectedIndexPath = nil
         } else {
             indexOfSelectedCell = indexPath.row
+            selectedIndexPath = indexPath
         }
         
         postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
@@ -154,7 +169,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             downloadAudioFromS3(postID: postID)
-            postCell.contentView.backgroundColor = UIColor.green
+            //postCell.contentView.backgroundColor = UIColor.green
             activeTags.add(indexPath.row)
         }
         
@@ -187,6 +202,31 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         print("Finished playing from feed view controller")
+    }
+    
+    var audioLengthDelegate : AudioLengthForCellDelegate!
+    
+    func gotAudioLength() {
+        print("got audio in feed control")
+        print("got length for index path : \(selectedIndexPath)")
+        var newPostCell = tableView.cellForRow(at: selectedIndexPath) as! PostTableViewCell
+        newPostCell.selectedThisCell(length: s3Transfer.getLengthOfAudio(), s3trans: s3Transfer)
+        
+    }
+    
+    @IBAction func changeAudioTime(_ sender: Any) {
+    
+        if let player = s3Transfer.audioPlayer {
+        player.stop()
+        player.currentTime = TimeInterval(slider.value)
+        //after the time is changed we want it to start playing again
+        player.prepareToPlay()
+        player.play()
+        }
+    }
+
+    @objc func updateSlider() {
+        slider.value = Float(s3Transfer.getCurrentTime())
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
@@ -224,7 +264,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func OptTapped(_ sender: UIButton) {
         if(sender.tag == 0){
             print("tapped 1")
-            self.performSegue(withIdentifier: "editProfile", sender: nil)
+            self.performSegue(withIdentifier: "profileEditor", sender: nil)
         }
             
         else if (sender.tag == 1) {
@@ -288,10 +328,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("Done")
         postCell.contentView.backgroundColor = UIColor.clear
     }
-    
-    func gotAudioLength() {
-        print("got audio len")
-    }
+
 }
 
 

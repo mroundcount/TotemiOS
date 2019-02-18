@@ -164,6 +164,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.countLabel.text = "\(likes + 1)"
             cell.token = self.token
             cell.durationLabel.text = "\(duration)s"
+            //cell.durationLabel.text = "\(minutes):\(seconds)"
             
             if((likedPosts.contains(postID))){
                 cell.likeBtn.isEnabled = false
@@ -238,7 +239,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == selectedIndex
         {
-            return 300
+            return 200
         }else{
             return 125
         }
@@ -252,7 +253,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         feedNavBtn.isEnabled = false
-        
+     
         let fontSize:CGFloat = 25;
         let font:UIFont = UIFont.boldSystemFont(ofSize: fontSize);
         let attributes:[NSAttributedStringKey : Any] = [NSAttributedStringKey.font: font];
@@ -301,8 +302,28 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 newPost.username = username!
                 let timeCreated = post!["time_created"] as? Int
                 newPost.timeCreated = timeCreated!
-                let duration = post!["duration"] as? Int
+                var duration = post!["duration"] as? Int
+                //do the math here
                 newPost.duration = duration!
+                
+            
+                /*
+                let minutes = UInt8(duration! / 60)
+                //duration! -= (TimeInterval(minutes) * 60)
+                
+                // Calculate seconds
+                let seconds = UInt8(duration!)
+                //duration! -= TimeInterval(seconds)
+
+                
+                // Format time vars with leading zero
+                let strMinutes = String(format: "%02d", minutes)
+                let strSeconds = String(format: "%02d", seconds)
+                
+
+                timerLbl.text = "\(strMinutes):\(strSeconds)"
+                */
+                
                 posts.append(newPost)
             }
         }
