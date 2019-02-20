@@ -837,16 +837,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vns-oa-dPY">
-                                <rect key="frame" x="140" y="318" width="94" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vns-oa-dPY">
+                                <rect key="frame" x="140" y="319" width="94" height="29"/>
                                 <state key="normal" title="Upload Photo"/>
                                 <connections>
                                     <action selector="uploadPhoto:" destination="lOL-JV-8ST" eventType="touchUpInside" id="fNu-4J-Ryd"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EhQ-co-vQn">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="374" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Wxa-Nv-onZ"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Title" id="DDP-uI-Tlf">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="ptf-7j-8rs">
@@ -857,29 +859,57 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQn-UT-Sw0">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQn-UT-Sw0">
                                 <rect key="frame" x="164" y="487" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="saveBtn:" destination="lOL-JV-8ST" eventType="touchUpInside" id="A4H-DX-hdC"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cWa-NN-NIw">
-                                <rect key="frame" x="67" y="110" width="240" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Shc-cQ-Mwo">
+                                <rect key="frame" x="67" y="351" width="240" height="128"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="NSx-7f-jcV"/>
+                                    <constraint firstAttribute="height" constant="128" id="r50-VQ-RSo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="lOL-JV-8ST" id="rDI-ST-yaQ"/>
+                                </connections>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cWa-NN-NIw">
+                                <rect key="frame" x="67" y="111" width="240" height="200"/>
                                 <color key="backgroundColor" red="0.86759421820000004" green="0.86759421820000004" blue="0.86759421820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="B0a-Vo-Eci"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="EhQ-co-vQn" firstAttribute="leading" secondItem="UXA-kE-fJe" secondAttribute="leading" id="2iv-I5-jLa"/>
-                            <constraint firstAttribute="trailing" secondItem="EhQ-co-vQn" secondAttribute="trailing" id="IV4-rQ-12l"/>
+                            <constraint firstItem="Shc-cQ-Mwo" firstAttribute="top" secondItem="vns-oa-dPY" secondAttribute="bottom" constant="3" id="5EK-Kh-FKr"/>
+                            <constraint firstItem="cWa-NN-NIw" firstAttribute="centerX" secondItem="vns-oa-dPY" secondAttribute="centerX" id="5xI-R5-w8A"/>
+                            <constraint firstItem="cWa-NN-NIw" firstAttribute="top" secondItem="EhQ-co-vQn" secondAttribute="bottom" constant="46" id="COa-I4-Sgu"/>
+                            <constraint firstItem="cQn-UT-Sw0" firstAttribute="top" secondItem="Shc-cQ-Mwo" secondAttribute="bottom" constant="8" id="G0i-xS-qkX"/>
+                            <constraint firstItem="UXA-kE-fJe" firstAttribute="bottom" secondItem="cQn-UT-Sw0" secondAttribute="bottom" constant="150" id="GvM-wV-0ns"/>
+                            <constraint firstItem="cWa-NN-NIw" firstAttribute="trailing" secondItem="Shc-cQ-Mwo" secondAttribute="trailing" id="X2Q-Kh-qed"/>
+                            <constraint firstItem="cWa-NN-NIw" firstAttribute="centerX" secondItem="cQn-UT-Sw0" secondAttribute="centerX" id="Xhq-rz-FE4"/>
+                            <constraint firstItem="vns-oa-dPY" firstAttribute="centerX" secondItem="EhQ-co-vQn" secondAttribute="centerX" id="bhr-ur-1L0"/>
+                            <constraint firstItem="Shc-cQ-Mwo" firstAttribute="leading" secondItem="UXA-kE-fJe" secondAttribute="leading" constant="67" id="eXE-EM-xdT"/>
+                            <constraint firstItem="EhQ-co-vQn" firstAttribute="leading" secondItem="iz0-jX-KTN" secondAttribute="leading" id="esK-a7-tKX"/>
+                            <constraint firstItem="cWa-NN-NIw" firstAttribute="centerX" secondItem="EhQ-co-vQn" secondAttribute="centerX" id="lYD-Jy-uD0"/>
+                            <constraint firstItem="cWa-NN-NIw" firstAttribute="leading" secondItem="Shc-cQ-Mwo" secondAttribute="leading" id="r7n-L2-UxW"/>
+                            <constraint firstItem="vns-oa-dPY" firstAttribute="centerY" secondItem="iz0-jX-KTN" secondAttribute="centerY" id="tBd-Le-99G"/>
+                            <constraint firstItem="cQn-UT-Sw0" firstAttribute="centerX" secondItem="EhQ-co-vQn" secondAttribute="centerX" id="vOy-jt-6bx"/>
                             <constraint firstItem="EhQ-co-vQn" firstAttribute="top" secondItem="UXA-kE-fJe" secondAttribute="top" id="w4T-U3-rPv"/>
+                            <constraint firstItem="vns-oa-dPY" firstAttribute="top" secondItem="cWa-NN-NIw" secondAttribute="bottom" constant="8" symbolic="YES" id="zwE-28-Wvf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UXA-kE-fJe"/>
                     </view>
                     <connections>
+                        <outlet property="aboutMeTxt" destination="Shc-cQ-Mwo" id="7wi-LP-aqy"/>
                         <outlet property="backProfile" destination="ptf-7j-8rs" id="ha4-ER-FWu"/>
                         <outlet property="profilePicture" destination="cWa-NN-NIw" id="vrz-d8-lGs"/>
                         <outlet property="saveBtn" destination="cQn-UT-Sw0" id="ZZa-7i-bEe"/>
@@ -899,7 +929,7 @@
         <image name="profilePic" width="219" height="230"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mek-Tq-dLp"/>
+        <segue reference="GOb-Jf-t7F"/>
         <segue reference="Mdd-V0-bt0"/>
         <segue reference="eol-gO-uF4"/>
         <segue reference="FuC-k1-iXr"/>

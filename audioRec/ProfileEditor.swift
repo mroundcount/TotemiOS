@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     //Roundcount added 2/18
     var username : String = ""
@@ -21,14 +21,16 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var uploadPhoto: UIButton!
     @IBOutlet weak var backProfile: UIBarButtonItem!
     @IBOutlet weak var saveBtn: UIButton!
-    
+    @IBOutlet weak var aboutMeTxt: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Roundcount added 2/18
         //dismiss keyboard
+
         self.hideKeyboardWhenTappedAround()
+        aboutMeTxt!.layer.borderWidth = 1
         
         // get token from preferences
         if preferences.value(forKey: "tokenKey") == nil {
@@ -49,8 +51,16 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBAction func backProfile(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "backProfile", sender: nil)
     }
+   
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = aboutMeTxt.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        
+        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
+        
+        return changedText.count <= 5
+    }
     
-
     @IBAction func uploadPhoto(_ sender: UIButton) {
         let image = UIImagePickerController()
         image.delegate = self
