@@ -108,12 +108,9 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
                     
                     if let _ = task.result {
                         // Do something with downloadTask.
-                        
                     }
                     return nil;
             }
-                
-    
     }
     //changed self.delegate!.donePlayingAudio()
     func donePlayingAudio() {
@@ -130,7 +127,6 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
     }
     
     func stopAudio(){
-        
         if audioPlayer != nil {
             if audioPlayer.isPlaying {
                 audioPlayer.stop()
@@ -155,5 +151,83 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
             }
         }
         return 0.0
+    }
+}
+
+
+
+
+
+
+
+func uploadProfilePic(data : Data, picID: Int) {
+    
+    let expression = AWSS3TransferUtilityUploadExpression()
+    expression.progressBlock = {(task, progress) in
+        DispatchQueue.main.async(execute: {
+            // Do something e.g. Update a progress bar.
+        })
+    }
+    
+    var completionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock?
+    completionHandler = { (task, error) -> Void in
+        DispatchQueue.main.async(execute: {
+            // Do something e.g. Alert a user for transfer completion.
+            // On failed uploads, `error` contains the error object.
+        })
+    }
+    
+    let transferUtility = AWSS3TransferUtility.default()
+    
+    transferUtility.uploadData(data,
+                               bucket: "totemprofilepicture",
+                               key: "\(picID).jpg",
+        contentType: "jpg",
+        expression: expression,
+        completionHandler: completionHandler).continueWith {
+            (task) -> AnyObject! in
+            if let error = task.error {
+                print("Error: \(error.localizedDescription)")
+            }
+            
+            if let _ = task.result {
+                // Do something with uploadTask.
+            }
+            return nil;
+    }
+}
+
+func downloadProfilePicture(picID: Int) {
+    
+    print("pstid: \(picID)")
+    let expression = AWSS3TransferUtilityDownloadExpression()
+    expression.progressBlock = {(task, progress) in DispatchQueue.main.async(execute: {
+        // Do something e.g. Update a progress bar.
+    })
+    }
+    
+    var completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
+    completionHandler = { (task, URL, data, error) -> Void in
+        DispatchQueue.main.async(execute: {
+            print("completed download of file")
+           
+        })
+    }
+    
+    let transferUtility = AWSS3TransferUtility.default()
+    transferUtility.downloadData(
+        fromBucket: "totemprofilepicture",
+        key: "\(picID).jpg",
+        expression: expression,
+        completionHandler: completionHandler
+        ).continueWith {
+            (task) -> AnyObject! in if let error = task.error {
+                print("Error: \(error.localizedDescription)")
+            }
+            
+            if let _ = task.result {
+                // Do something with downloadTask.
+            }
+            return nil;
     }
 }

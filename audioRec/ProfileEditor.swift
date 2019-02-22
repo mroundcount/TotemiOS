@@ -26,12 +26,14 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Roundcount added 2/18
+        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
+        profilePicture.clipsToBounds = true
+        
         //dismiss keyboard
-
         self.hideKeyboardWhenTappedAround()
         aboutMeTxt!.layer.borderWidth = 1
         
+        //Roundcount added 2/18
         // get token from preferences
         if preferences.value(forKey: "tokenKey") == nil {
             //  Doesn't exist
@@ -72,41 +74,38 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profilePicture.image = image
         } else {
-            print("you suck")
+            print("upload failed")
         }
+        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
         self.dismiss(animated: true, completion: nil)
+        
     }
     
-    
+    /*
     @IBAction func saveBtn(_ sender: UIButton) {
-        //Roundcount added 2/18
-        
+   
+        //Roundcount added 2/18        
         let data = JSON([
-           
             ])
         
         let array : [JSON] = [data]
         let variable = JSON(["Post" : array])
-        
         let dbManager = DatabaseManager()
         
         // TODO: update the dbManager thing with a post that uses a token
-        let postID = dbManager.createNewPost(token: self.token, data: variable.rawString()!)
-        print("ID of the post just returned \(postID)")
-        
+        let picID = dbManager.createNewPost(token: self.token, data: variable.rawString()!)
+        print("ID of the post just returned \(picID)")
         
         // This is just a test to upload to s3
-        let dataURL = getDirectory().appendingPathComponent("myrecorder.m4a")
+        let dataURL = getDirectory().appendingPathComponent("myprofilepicture.jpg")
         let s3Transfer = S3TransferUtility()
         do {
             let audioData = try Data(contentsOf: dataURL as URL)
-            s3Transfer.uploadData(data: audioData, postID: postID)
-            
-            //perform segue
-            self.performSegue(withIdentifier: "recorderToFeed", sender: nil)
+            s3Transfer.uploadData(data: audioData, picID: picID)
             
         } catch {
             print("Unable to load data: \(error)")
@@ -123,6 +122,7 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         let documentDirectory = paths[0]
         return documentDirectory
     }
+ */
     
     
     
@@ -137,7 +137,5 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    
 
 }
