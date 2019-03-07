@@ -28,6 +28,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var profileHeader: UINavigationBar!
     @IBOutlet weak var usernameProfile: UINavigationItem!
+    
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var aboutTxt: UILabel!
+    
+    
     @IBOutlet weak var profileMenuBtn: UIBarButtonItem!
     
     @IBOutlet weak var slider: UISlider!

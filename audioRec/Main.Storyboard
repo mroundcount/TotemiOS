@@ -648,7 +648,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="215" estimatedRowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NLY-4h-Z0N">
-                                <rect key="frame" x="0.0" y="214" width="375" height="409"/>
+                                <rect key="frame" x="0.0" y="259" width="375" height="364"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileTableViewCell" rowHeight="215" id="EpE-NZ-rnW" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -786,20 +786,31 @@
                                 <color key="backgroundColor" red="0.86759421820000004" green="0.86759421820000004" blue="0.86759421820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilePic" translatesAutoresizingMaskIntoConstraints="NO" id="QS1-ck-e9L">
-                                <rect key="frame" x="137.5" y="89" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="79" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="jcm-PB-HLP"/>
                                     <constraint firstAttribute="width" constant="100" id="pfl-xc-0OV"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Me" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlZ-iQ-wPW">
+                                <rect key="frame" x="27.5" y="204" width="320" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Ze7-Ur-MxX"/>
+                                    <constraint firstAttribute="height" constant="40" id="fyP-UO-iT3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="1Ga-cl-Cxr"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="1hc-T8-zHF"/>
-                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="top" secondItem="QS1-ck-e9L" secondAttribute="bottom" constant="25" id="9EN-Ef-x0d"/>
+                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="top" secondItem="nlZ-iQ-wPW" secondAttribute="bottom" constant="15" id="4BR-OX-yWC"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="bottom" secondItem="cxw-3a-ozv" secondAttribute="top" id="CXg-Ef-JUX"/>
-                            <constraint firstItem="QS1-ck-e9L" firstAttribute="top" secondItem="ub4-fa-fQL" secondAttribute="bottom" constant="25" id="IE5-mm-jZv"/>
+                            <constraint firstItem="QS1-ck-e9L" firstAttribute="top" secondItem="ub4-fa-fQL" secondAttribute="bottom" constant="15" id="Dey-dh-ipy"/>
+                            <constraint firstItem="nlZ-iQ-wPW" firstAttribute="centerX" secondItem="yj0-f0-bIz" secondAttribute="centerX" id="E21-jo-dl3"/>
                             <constraint firstItem="QS1-ck-e9L" firstAttribute="centerX" secondItem="yj0-f0-bIz" secondAttribute="centerX" id="M2i-HY-ft8"/>
                             <constraint firstItem="ub4-fa-fQL" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="Rqe-zz-RJZ"/>
                             <constraint firstItem="gLg-GS-8uC" firstAttribute="bottom" secondItem="cxw-3a-ozv" secondAttribute="bottom" id="S8u-r0-CAo"/>
@@ -808,6 +819,7 @@
                             <constraint firstItem="cxw-3a-ozv" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="Ult-17-zq3"/>
                             <constraint firstItem="ub4-fa-fQL" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="awk-hq-9MS"/>
                             <constraint firstItem="ub4-fa-fQL" firstAttribute="top" secondItem="gLg-GS-8uC" secondAttribute="top" id="e7Z-ML-0af"/>
+                            <constraint firstItem="nlZ-iQ-wPW" firstAttribute="top" secondItem="QS1-ck-e9L" secondAttribute="bottom" constant="25" id="ewS-hl-cyx"/>
                             <constraint firstItem="wjJ-Rn-fkS" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="gaz-TV-WYb"/>
                             <constraint firstItem="cxw-3a-ozv" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="ntx-hi-kQ7"/>
                             <constraint firstItem="cxw-3a-ozv" firstAttribute="top" secondItem="wjJ-Rn-fkS" secondAttribute="bottom" id="pQe-Hx-1yC"/>
@@ -817,9 +829,11 @@
                         <viewLayoutGuide key="safeArea" id="gLg-GS-8uC"/>
                     </view>
                     <connections>
+                        <outlet property="aboutTxt" destination="nlZ-iQ-wPW" id="TZM-6A-Y7a"/>
                         <outlet property="feedNavBtn" destination="cxw-3a-ozv" id="Y5Z-Ie-8U7"/>
                         <outlet property="profileHeader" destination="ub4-fa-fQL" id="aeP-ga-EXd"/>
                         <outlet property="profileNavBtn" destination="01G-WW-ery" id="Q1d-Hh-0Ig"/>
+                        <outlet property="profilePicture" destination="QS1-ck-e9L" id="a0C-r1-8E7"/>
                         <outlet property="recorderNavBtn" destination="dTI-GZ-riZ" id="dnQ-vI-xWs"/>
                         <outlet property="tableView" destination="NLY-4h-Z0N" id="VDE-wy-Z3K"/>
                         <outlet property="usernameProfile" destination="YMU-pb-xai" id="177-te-9sT"/>
@@ -929,7 +943,8 @@
         <image name="profilePic" width="219" height="230"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mek-Tq-dLp"/>
+        <segue reference="rTX-a7-dTc"/>
+        <segue reference="GOb-Jf-t7F"/>
         <segue reference="Mdd-V0-bt0"/>
         <segue reference="hxp-Ea-JtN"/>
         <segue reference="FuC-k1-iXr"/>
