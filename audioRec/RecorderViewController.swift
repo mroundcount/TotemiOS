@@ -9,8 +9,7 @@ import UIKit
 import AVFoundation
 import SwiftyJSON
 
-class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextFieldDelegate {
-    
+class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     // MARK: - Variables
     
@@ -33,7 +32,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     @IBOutlet weak var timerLbl: UILabel!
     @IBOutlet weak var defaultTxt: UILabel!
     
-    @IBOutlet weak var descriptionTxt: UITextField!
+    @IBOutlet weak var descriptionTxt: UITextView!
     
     var duration = 0
     
@@ -203,7 +202,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     //MARK: - Functions
     func buttonsOnLoad () {
-        descriptionTxt.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        //descriptionTxt.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         
         recorderNavBtn.isEnabled = false
         
@@ -395,6 +394,15 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = descriptionTxt.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        
+        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
+        
+        return changedText.count <= 5
     }
     
     @objc func editingChanged(_ textField: UITextField) {

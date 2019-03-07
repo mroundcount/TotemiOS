@@ -30,6 +30,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         } 
     }
     
+    @IBAction func helpBtn(_ sender: UIBarButtonItem) {
+        UIApplication.shared.openURL(URL(string: "https://www.facebook.com/roundcount")!)
+    }
+    
     @IBOutlet var sortOpt: [UIButton]!
     
     @IBAction func OptTapped(_ sender: UIButton) {
@@ -148,7 +152,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let likes = post.likes!
             let username = post.username!
             let timeCreated = post.timeCreated!
-            let duration = post.duration!
+            //let duration = post.duration?
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM-dd-YYYY"
             let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated))
@@ -163,7 +167,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("likefdasfsddds: \(likes + 1)")
             cell.countLabel.text = "\(likes + 1)"
             cell.token = self.token
-            cell.durationLabel.text = "\(duration)s"
+            //cell.durationLabel.text = "\(duration)s"
             //cell.durationLabel.text = "\(minutes):\(seconds)"
             
             if((likedPosts.contains(postID))){
@@ -254,11 +258,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         feedNavBtn.isEnabled = false
      
+        /*
         let fontSize:CGFloat = 25;
         let font:UIFont = UIFont.boldSystemFont(ofSize: fontSize);
         let attributes:[NSAttributedStringKey : Any] = [NSAttributedStringKey.font: font];
         sortBtn.setTitleTextAttributes(attributes, for: UIControlState.normal);
-        
+        */
         self.tableView.dataSource = self
         self.tableView.delegate = self
         s3Transfer.delegate = self
@@ -302,9 +307,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 newPost.username = username!
                 let timeCreated = post!["time_created"] as? Int
                 newPost.timeCreated = timeCreated!
-                var duration = post!["duration"] as? Int
+                //var duration = post!["duration"] as? Int
                 //do the math here
-                newPost.duration = duration!
+                //newPost.duration = duration!
                 
             
                 /*

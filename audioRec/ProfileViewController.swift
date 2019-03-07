@@ -77,15 +77,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         var cell : PostTableViewCell!
     
         if((posts?.count)! > 0){
-            
             let post = posts?[indexPath.row] as? [String: Any]
-            
             let description = post!["description"] as? String
-            
-            let username = post!["username"] as? String
-
+            //let username = post!["username"] as? String
             let postID = post!["post_i_d"] as? Int
             let likes = post!["likes"] as? Int
+            //let likes = post.likes!
+            //let duration = post.duration?
 
             let timeCreated = post!["time_created"] as? Int
             let dateFormatter = DateFormatter()
@@ -98,10 +96,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell = tableView.dequeueReusableCell(withIdentifier: "profileTableViewCell") as! PostTableViewCell
             
             cell.postDescription.text = description!
-            cell.usernameLabel.text = "\(username!)"
+            //cell.usernameLabel.text = "\(username!)"
             cell.datePostedLabel.text = finalDate
             cell.postID = postID
-            cell.likes = likes!
+            //cell.likes = likes!
+            cell.likes = likes! + 1
+            cell.countLabel.text = "Likes: \(likes! + 1)"
+            //cell.durationLabel.text = "\(duration)s"
         }
         
         cell.sizeToFit()
@@ -134,7 +135,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         {
             return 200
         } else {
-            return 125
+            return 150
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -187,6 +188,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.posts = self.posts!.reversed() as NSArray
         
         print(self.posts!)
+        
     }
 
 
