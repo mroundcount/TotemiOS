@@ -88,26 +88,33 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let postID = post!["post_i_d"] as? Int
             let likes = post!["likes"] as? Int
             //let likes = post.likes!
-            //let duration = post.duration?
+            
+            let duration = post!["duration"] as? Int
 
             let timeCreated = post!["time_created"] as? Int
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM-dd-YYYY"
             let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated!))
             let finalDate = dateFormatter.string(from: date as Date)
-
+            
+            /*
+            //var duration = post!["duration"] as? Int
+            post.duration = duration!
+            let durationMin = (duration/60)
+            let durationSec = (duration%60)
+            cell.durationLabel.text = "\(durationMin):\(durationSec)"
+            */
+            
             print("DESCRIPTION:::   \(description!)")
             
             cell = tableView.dequeueReusableCell(withIdentifier: "profileTableViewCell") as! PostTableViewCell
             
             cell.postDescription.text = description!
-            //cell.usernameLabel.text = "\(username!)"
             cell.datePostedLabel.text = finalDate
             cell.postID = postID
             //cell.likes = likes!
             cell.likes = likes! + 1
             cell.countLabel.text = "Likes: \(likes! + 1)"
-            //cell.durationLabel.text = "\(duration)s"
         }
         
         cell.sizeToFit()
@@ -249,6 +256,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.dbManager.deletePost(token: self.token, data: postData)
             self.getPosts()
             tableView.reloadData()
+            
         }
         delete.backgroundColor = .red
         
@@ -296,6 +304,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
+        profilePicture.clipsToBounds = true
+        
         let profile = preferences.value(forKey: "username") as! String
         usernameProfile.title = "\(profile)'s Profile"
         
@@ -318,6 +329,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             self.usernameString = preferences.value(forKey: "username") as! String
         }
+        let image = s3Transfer.downloadProfilePicture(picID: usernameString)
+        profilePicture.image = image
+        
         print(usernameString)
         
         preferences.setValue(self.userID, forKey: "userid")

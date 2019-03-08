@@ -31,6 +31,7 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var profilePicture: UIImageView!
     
     
     
@@ -42,6 +43,7 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     var s3Transfer = S3TransferUtility()
     //s3Transfer.delegate = self
     
+   
     @IBAction func likeBtn(_ sender: Any) {
         
         DispatchQueue.main.async
@@ -69,7 +71,8 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
+        profilePicture.clipsToBounds = true
     }
     
     override func didMoveToSuperview() {

@@ -545,6 +545,7 @@
                                             <outlet property="durationLabel" destination="wM2-c8-8Ic" id="UB6-qo-RgM"/>
                                             <outlet property="likeBtn" destination="JjU-WS-ayN" id="XWC-cu-Vnh"/>
                                             <outlet property="postDescription" destination="cOz-q7-KFq" id="P2k-yd-c1L"/>
+                                            <outlet property="profilePicture" destination="BDK-X1-nvG" id="0mn-EA-3WG"/>
                                             <outlet property="slider" destination="0hX-Kc-csl" id="Kmp-Rw-LrR"/>
                                             <outlet property="usernameLabel" destination="tga-eS-2XV" id="IjH-9R-Eab"/>
                                         </connections>
@@ -943,10 +944,9 @@
         <image name="profilePic" width="219" height="230"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rTX-a7-dTc"/>
-        <segue reference="GOb-Jf-t7F"/>
+        <segue reference="mek-Tq-dLp"/>
         <segue reference="Mdd-V0-bt0"/>
-        <segue reference="hxp-Ea-JtN"/>
+        <segue reference="eol-gO-uF4"/>
         <segue reference="FuC-k1-iXr"/>
     </inferredMetricsTieBreakers>
 </document>

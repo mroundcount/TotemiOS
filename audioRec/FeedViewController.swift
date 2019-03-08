@@ -152,11 +152,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let likes = post.likes!
             let username = post.username!
             let timeCreated = post.timeCreated!
-            //let duration = post.duration?
+            let duration = post.duration!
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM-dd-YYYY"
             let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated))
             let finalDate = dateFormatter.string(from: date as Date)
+            let image = s3Transfer.downloadProfilePicture(picID: username)
+            
 
             cell = tableView.dequeueReusableCell(withIdentifier: "feedTableViewCell") as? PostTableViewCell
             cell.postDescription.text = description
@@ -167,8 +169,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("likefdasfsddds: \(likes + 1)")
             cell.countLabel.text = "\(likes + 1)"
             cell.token = self.token
-            //cell.durationLabel.text = "\(duration)s"
-            //cell.durationLabel.text = "\(minutes):\(seconds)"
+            let durationMin = (duration/60)
+            let durationSec = (duration%60)
+            cell.durationLabel.text = "\(durationMin):\(durationSec)"
+            
+            cell.profilePicture.image = image
             
             if((likedPosts.contains(postID))){
                 cell.likeBtn.isEnabled = false
@@ -182,6 +187,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         cell.sizeToFit()
         //Cell Styling
+        
+        //self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
+        //profilePicture.clipsToBounds = true
+        
         cell.contentView.backgroundColor = UIColor.clear
         
         cell.delegate = self
@@ -257,6 +266,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         feedNavBtn.isEnabled = false
+        
      
         /*
         let fontSize:CGFloat = 25;
@@ -281,6 +291,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             self.usernameString = preferences.value(forKey: "username") as! String
         }
+        
         
         getPosts()
         
@@ -307,27 +318,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 newPost.username = username!
                 let timeCreated = post!["time_created"] as? Int
                 newPost.timeCreated = timeCreated!
-                //var duration = post!["duration"] as? Int
-                //do the math here
-                //newPost.duration = duration!
-                
-            
-                /*
-                let minutes = UInt8(duration! / 60)
-                //duration! -= (TimeInterval(minutes) * 60)
-                
-                // Calculate seconds
-                let seconds = UInt8(duration!)
-                //duration! -= TimeInterval(seconds)
-
-                
-                // Format time vars with leading zero
-                let strMinutes = String(format: "%02d", minutes)
-                let strSeconds = String(format: "%02d", seconds)
-                
-
-                timerLbl.text = "\(strMinutes):\(strSeconds)"
-                */
+                var duration = post!["duration"] as? Int
+                newPost.duration = duration!
                 
                 posts.append(newPost)
             }

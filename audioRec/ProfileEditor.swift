@@ -115,7 +115,7 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         } catch {
             print("Unable to load data: \(error)")
         }
-//        end Roundcount add
+        self.performSegue(withIdentifier: "backProfile", sender: nil)
     }
     
     //Function that get's path to direcotry
