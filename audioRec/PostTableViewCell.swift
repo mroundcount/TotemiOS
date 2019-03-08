@@ -71,8 +71,8 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
-        profilePicture.clipsToBounds = true
+//        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
+//        profilePicture.clipsToBounds = true
     }
     
     override func didMoveToSuperview() {

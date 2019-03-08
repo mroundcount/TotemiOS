@@ -88,22 +88,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let postID = post!["post_i_d"] as? Int
             let likes = post!["likes"] as? Int
             //let likes = post.likes!
-            
-            let duration = post!["duration"] as? Int
-
+        
             let timeCreated = post!["time_created"] as? Int
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM-dd-YYYY"
             let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated!))
             let finalDate = dateFormatter.string(from: date as Date)
             
-            /*
-            //var duration = post!["duration"] as? Int
-            post.duration = duration!
-            let durationMin = (duration/60)
-            let durationSec = (duration%60)
-            cell.durationLabel.text = "\(durationMin):\(durationSec)"
-            */
+            let duration = post!["duration"] as? Int
+            let durationMin = (duration!/60)
+            let durationSec = (duration!%60)
             
             print("DESCRIPTION:::   \(description!)")
             
@@ -115,6 +109,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             //cell.likes = likes!
             cell.likes = likes! + 1
             cell.countLabel.text = "Likes: \(likes! + 1)"
+            cell.durationLabel.text = "\(durationMin):\(durationSec)"
+
         }
         
         cell.sizeToFit()
