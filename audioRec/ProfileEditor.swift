@@ -47,8 +47,11 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         } else {
             self.username = preferences.value(forKey: "username") as! String
         }
-        //Roundcount edit stop
-        
+//        Roundcount edit stop
+        let s3Transfer = S3TransferUtility()
+        let image = s3Transfer.downloadProfilePicture(picID: username)
+        profilePicture.image = image
+
     }
     @IBAction func backProfile(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "backProfile", sender: nil)
@@ -77,6 +80,9 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profilePicture.image = image
+            let success = self.saveImage(image: image)
+            print("success?: \(success)")
+            
         } else {
             print("upload failed")
         }
@@ -85,32 +91,31 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
     }
     
-    /*
+    
     @IBAction func saveBtn(_ sender: UIButton) {
    
-        //Roundcount added 2/18        
-        let data = JSON([
-            ])
-        
-        let array : [JSON] = [data]
-        let variable = JSON(["Post" : array])
-        let dbManager = DatabaseManager()
-        
-        // TODO: update the dbManager thing with a post that uses a token
-        let picID = dbManager.createNewPost(token: self.token, data: variable.rawString()!)
-        print("ID of the post just returned \(picID)")
-        
-        // This is just a test to upload to s3
+//        Roundcount added 2/18
+//        let data = JSON([
+//            ])
+//
+//        let array : [JSON] = [data]
+//        let variable = JSON(["Post" : array])
+//        let dbManager = DatabaseManager()
+//
+////         TODO: update the dbManager thing with a post that uses a token
+//        let picID = dbManager.createNewPost(token: self.token, data: variable.rawString()!)
+//        print("ID of the post just returned \(picID)")
+     
+//         This is just a test to upload to s3
         let dataURL = getDirectory().appendingPathComponent("myprofilepicture.jpg")
         let s3Transfer = S3TransferUtility()
         do {
-            let audioData = try Data(contentsOf: dataURL as URL)
-            s3Transfer.uploadData(data: audioData, picID: picID)
-            
+            let imageData = try Data(contentsOf: dataURL as URL)
+            s3Transfer.uploadProfilePic(data: imageData, picID: username)
         } catch {
             print("Unable to load data: \(error)")
         }
-        //end Roundcount add
+//        end Roundcount add
     }
     
     //Function that get's path to direcotry
@@ -122,9 +127,22 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         let documentDirectory = paths[0]
         return documentDirectory
     }
- */
-    
-    
+
+    func saveImage(image: UIImage) -> Bool {
+        guard let data = UIImageJPEGRepresentation(image, 1) ?? UIImagePNGRepresentation(image) else {
+            return false
+        }
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+            return false
+        }
+        do {
+            try data.write(to: directory.appendingPathComponent("myprofilepicture.jpg")!)
+            return true
+        } catch {
+            print(error.localizedDescription)
+            return false
+        }
+    }
     
     // Dismissing the keyboard using the tap jester
     //for later use
