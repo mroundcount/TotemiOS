@@ -390,6 +390,71 @@
             </objects>
             <point key="canvasLocation" x="-354.39999999999998" y="814.54272863568224"/>
         </scene>
+        <!--Publish Selection View Controller-->
+        <scene sceneID="Q1A-Lx-QEI">
+            <objects>
+                <viewController id="DlC-cG-HMH" customClass="PublishSelectionViewController" customModule="audioRec" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lc9-H4-Sm8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FKV-sj-0Zz">
+                                <rect key="frame" x="0.0" y="20" width="375" height="537"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PublishTableViewCell" rowHeight="84" id="5AQ-bc-bG4" customClass="PublishTableViewCell" customModule="audioRec" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="84"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5AQ-bc-bG4" id="XwA-9D-Vsn">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgA-eS-Vv1">
+                                                    <rect key="frame" x="166.5" y="31.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mgA-eS-Vv1" firstAttribute="centerY" secondItem="XwA-9D-Vsn" secondAttribute="centerY" id="0u5-1b-zNC"/>
+                                                <constraint firstItem="mgA-eS-Vv1" firstAttribute="centerX" secondItem="XwA-9D-Vsn" secondAttribute="centerX" id="e6k-o1-oQK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="usernameLabel" destination="mgA-eS-Vv1" id="feO-zy-Ya5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="DlC-cG-HMH" id="Yit-RM-XgJ"/>
+                                    <outlet property="delegate" destination="DlC-cG-HMH" id="0Iz-Wf-Mif"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmx-kv-hF0">
+                                <rect key="frame" x="164.5" y="577" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="publishBtn:" destination="DlC-cG-HMH" eventType="touchUpInside" id="HIs-j1-nWu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FKV-sj-0Zz" firstAttribute="top" secondItem="KrF-fi-hes" secondAttribute="top" id="H1R-W6-SdY"/>
+                            <constraint firstItem="FKV-sj-0Zz" firstAttribute="trailing" secondItem="KrF-fi-hes" secondAttribute="trailing" id="Jlv-I9-M3x"/>
+                            <constraint firstItem="KrF-fi-hes" firstAttribute="bottom" secondItem="Tmx-kv-hF0" secondAttribute="bottom" constant="60" id="NQP-cY-c3d"/>
+                            <constraint firstItem="Tmx-kv-hF0" firstAttribute="top" secondItem="FKV-sj-0Zz" secondAttribute="bottom" constant="20" id="SYf-1Q-Jrh"/>
+                            <constraint firstItem="Tmx-kv-hF0" firstAttribute="centerX" secondItem="lc9-H4-Sm8" secondAttribute="centerX" id="WsG-m6-MTY"/>
+                            <constraint firstItem="FKV-sj-0Zz" firstAttribute="leading" secondItem="KrF-fi-hes" secondAttribute="leading" id="qiP-gG-pds"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KrF-fi-hes"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lIi-sE-xZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="879" y="950"/>
+        </scene>
         <!--Feed View Controller-->
         <scene sceneID="wrU-M7-VSp">
             <objects>
@@ -403,6 +468,12 @@
                                 <items>
                                     <barButtonItem title="Feed" id="YKl-kW-MxL"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Bag-2e-aua"/>
+                                    <barButtonItem title="Private" id="bCi-YS-mUV">
+                                        <connections>
+                                            <action selector="privateBtn:" destination="Gsk-Cu-sAB" id="e9Z-sE-AW6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bcn-nr-inx"/>
                                     <barButtonItem title="Recorder" id="e6g-DB-S1B">
                                         <connections>
                                             <action selector="recorderNavBtn:" destination="Gsk-Cu-sAB" id="gMo-cf-MtK"/>
@@ -626,6 +697,7 @@
                         <outletCollection property="sortOpt" destination="fAu-bQ-knW" collectionClass="NSMutableArray" id="QDk-CK-R8O"/>
                         <segue destination="gu6-eg-1mg" kind="show" identifier="feedToRecorder" id="eol-gO-uF4"/>
                         <segue destination="u83-tG-Pf8" kind="show" identifier="feedToProfile" id="mek-Tq-dLp"/>
+                        <segue destination="DlC-cG-HMH" kind="show" identifier="toPublishSelection" id="6Ft-bu-0Qp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgH-Cw-kkc" userLabel="First Responder" sceneMemberID="firstResponder"/>

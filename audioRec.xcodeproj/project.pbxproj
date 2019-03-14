@@ -32,6 +32,8 @@
 		BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */; };
 		BF23664720FD19FB0087C7E1 /* audioRecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23664620FD19FB0087C7E1 /* audioRecTests.swift */; };
 		BF23665220FD19FB0087C7E1 /* audioRecUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */; };
+		BF6960B7223587E800ED1A6A /* PublishSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6960B6223587E800ED1A6A /* PublishSelectionViewController.swift */; };
+		BF6960B9223592DA00ED1A6A /* PublishTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6960B8223592DA00ED1A6A /* PublishTableViewCell.swift */; };
 		BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFD921014F6F0001AF90 /* LoginViewController.swift */; };
 		BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */; };
 		BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C12662113DABB0086A99E /* PostTableViewCell.swift */; };
@@ -95,6 +97,8 @@
 		BF23664D20FD19FB0087C7E1 /* audioRecUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = audioRecUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioRecUITests.swift; sourceTree = "<group>"; };
 		BF23665320FD19FB0087C7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF6960B6223587E800ED1A6A /* PublishSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishSelectionViewController.swift; sourceTree = "<group>"; };
+		BF6960B8223592DA00ED1A6A /* PublishTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishTableViewCell.swift; sourceTree = "<group>"; };
 		BF70CFD921014F6F0001AF90 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		BF8C12662113DABB0086A99E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -197,9 +201,11 @@
 				BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */,
 				BFE030002111128300376B16 /* FeedViewController.swift */,
 				BF70CFD921014F6F0001AF90 /* LoginViewController.swift */,
+				BF8C12662113DABB0086A99E /* PostTableViewCell.swift */,
 				BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */,
 				BF9614C82219D36F008806AE /* ProfileEditor.swift */,
-				BF8C12662113DABB0086A99E /* PostTableViewCell.swift */,
+				BF6960B6223587E800ED1A6A /* PublishSelectionViewController.swift */,
+				BF6960B8223592DA00ED1A6A /* PublishTableViewCell.swift */,
 				BF078104212640FA00EB7CBE /* recorderModel.swift */,
 				BF078106212655FF00EB7CBE /* RecorderViewController.swift */,
 				BF07810E2127674E00EB7CBE /* Main.storyboard */,
@@ -435,6 +441,8 @@
 			files = (
 				BFE02FFD210FF7EB00376B16 /* ProfileViewController.swift in Sources */,
 				BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */,
+				BF6960B7223587E800ED1A6A /* PublishSelectionViewController.swift in Sources */,
+				BF6960B9223592DA00ED1A6A /* PublishTableViewCell.swift in Sources */,
 				5AB7DCAA2110D34A00464C93 /* DatabaseManager.swift in Sources */,
 				BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */,
 				BF07810921268F6200EB7CBE /* gifFile.swift in Sources */,

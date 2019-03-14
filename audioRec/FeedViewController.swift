@@ -98,6 +98,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.performSegue(withIdentifier: "feedToProfile", sender: nil)
     }
     
+    @IBAction func privateBtn(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "toPublishSelection", sender: nil)
+    }
+    
+    
     var postCell: PostTableViewCell!
     let s3Transfer = S3TransferUtility()
     var token = ""
