@@ -28,11 +28,14 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     @IBOutlet weak var finishedBtn: UIButton!
     @IBOutlet weak var pauseBtn: UIButton!
     @IBOutlet weak var publishBtn: UIButton!
+    @IBOutlet weak var publishPrivateBtn: UIButton!
     
     @IBOutlet weak var timerLbl: UILabel!
     @IBOutlet weak var defaultTxt: UILabel!
     
     @IBOutlet weak var descriptionTxt: UITextView!
+    @IBOutlet weak var selectionNavigationBar: UINavigationBar!
+    
     
     var duration = 0
     
@@ -41,6 +44,12 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     var username : String = ""
     var token : String = ""
     let preferences = UserDefaults.standard
+    var variable = JSON([])
+    var timeCreated : String?
+    var desc : String?
+    var audioData : URL?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,22 +168,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     @IBAction func publishBtn(_ sender: UIButton) {
         print("publishing")
-        
-        let timeInterval = Int(NSDate().timeIntervalSince1970)
-        let likes : Int = 0
-        
-        let data = JSON([
-            "username": self.username,
-            "description": descriptionTxt.text!,
-            "timeCreated": String(timeInterval),
-            "likes": String(likes),
-            "duration": elapsed
-            ])
-        
-        let array : [JSON] = [data]
-        let variable = JSON(["Post" : array])
-        
-        print(variable)
+        prepToPublish()
         
         let dbManager = DatabaseManager()
         
@@ -196,9 +190,49 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         } catch {
             print("Unable to load data: \(error)")
         }
+    }
+    
+    func prepToPublish() {
+        let timeInterval = Int(NSDate().timeIntervalSince1970)
+        let likes : Int = 0
+        self.timeCreated = String(timeInterval)
+        self.desc = descriptionTxt.text!
+        let data = JSON([
+            "username": self.username,
+            "description": descriptionTxt.text!,
+            "timeCreated": String(timeInterval),
+            "likes": String(likes),
+            "duration": elapsed
+            ])
+        
+        let array : [JSON] = [data]
+        variable = JSON(["Post" : array])
+        
+        print(variable)
+    }
+    
+    @IBAction func publishPrivate(_ sender: UIButton) {
+        
+        prepToPublish()
+        self.performSegue(withIdentifier: "recorderToSelection", sender: nil)
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "recorderToSelection"){
+            let destinationVC = segue.destination as! PublishSelectionViewController
+            destinationVC.token = self.token
+            destinationVC.username = self.username
+            //destinationVC.description = self.desc
+            destinationVC.desc = self.desc
+            destinationVC.timeCreated = self.timeCreated
+            destinationVC.duration = self.elapsed
+            destinationVC.variable = self.variable.rawString()
+            destinationVC.audioData = self.audioData
+            
+        }
+        
+    }
     
     //MARK: - Functions
     func buttonsOnLoad () {
@@ -208,6 +242,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         
         timerLbl.isHidden = true
         publishBtn.isHidden = true
+        publishPrivateBtn.isHidden = true
         pauseBtn.isHidden = true
         finishedBtn.isHidden = true
         descriptionTxt.isHidden = true
@@ -287,6 +322,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         
         timerLbl.isHidden = false
         publishBtn.isHidden = true
+        publishPrivateBtn.isHidden = true
         pauseBtn.isHidden = false
         finishedBtn.isHidden = false
         recordBtn.isHidden = true
@@ -339,6 +375,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             stop()
             
             publishBtn.isHidden = false
+            publishPrivateBtn.isHidden = false
             recordingImage.isHidden = true
             descriptionTxt.isHidden = false
             defaultTxt.isHidden = false
@@ -425,9 +462,11 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         if recorderRule.validation(description: descriptionTxt.text) == true {
             defaultTxt.text = " Play it back, if you don't like it click anywhere to rerecord "
             publishBtn.isHidden = true
+            publishPrivateBtn.isHidden = true
         } else {
             defaultTxt.text = " Play it back, if you don't like it click anywhere to rerecord"
             publishBtn.isHidden = false
+            publishPrivateBtn.isHidden = false
         }
     }
     
@@ -506,4 +545,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         view.endEditing(true)
     }
 }
+
+
 

@@ -192,10 +192,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         cell.sizeToFit()
         //Cell Styling
-        
-        //self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
-        //profilePicture.clipsToBounds = true
-        
+
         cell.contentView.backgroundColor = UIColor.clear
         
         cell.delegate = self
