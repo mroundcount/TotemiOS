@@ -11,6 +11,11 @@ import AWSS3
 import SwiftyJSON
 //PublishTableViewCell
 
+
+struct GetUsernames: Decodable {
+    let username: String
+}
+
 class PublishSelectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var activeTags : NSMutableArray = []
@@ -34,6 +39,24 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     
     //need to change post type
     var selectionArray: [Any] = []
+    
+    
+    func getUsernames(){
+        
+        let url = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/getAllUsernames"
+        let urlObj = URL(string: url)
+        
+        URLSession.shared.dataTask(with: urlObj!) {(data, response, error) in
+            do {
+                var usernames = try JSONDecoder().decode([GetUsernames].self, from: data!)
+                for GetUsernames in usernames {
+                    print(GetUsernames.username)
+                }
+            } catch {
+                print("fail")
+            }
+            }.resume()
+    }
     
     @IBAction func backBtn(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "selectorToRecorder", sender: nil)
@@ -134,17 +157,7 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     
     
     
-    func getUsernames(){
-        let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
-        
-        self.usernames = []
-        print("-------------- getting usernames --------------")
-        self.usernames = dbManager.getUsernames(token: self.token!) as NSArray
-        
-        self.usernames = self.usernames!.reversed() as NSArray
-        
-        print(self.usernames!)
-    }
+
 
     
 

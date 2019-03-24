@@ -504,10 +504,7 @@ class DatabaseManager {
                             responseCode = httpStatus?.statusCode
                             group.leave()
                         }
-                        
-                        
                     }
-                    
                 }
                 task1.resume()
             }
