@@ -31,7 +31,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func helpBtn(_ sender: UIBarButtonItem) {
-        UIApplication.shared.openURL(URL(string: "https://www.facebook.com/roundcount")!)
+        UIApplication.shared.openURL(URL(string: "https://www.facebook.com/TotemLLC/?modal=admin_todo_tour")!)
     }
     
     @IBOutlet var sortOpt: [UIButton]!
