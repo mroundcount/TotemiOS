@@ -99,7 +99,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func privateBtn(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "toPublishSelection", sender: nil)
+        getPrivatePosts()
+        tableView.reloadData()
     }
     
     
@@ -337,8 +338,47 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let postID = post!["post_i_d"] as? Int
             likedPosts.add(postID)
         }
-
- 
+    }
+    
+    func getPrivatePosts(){
+        posts = []
+        let dbManager = DatabaseManager()
+        let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
+        
+        var postsArray = dbManager.getPrivatePostsForUser(token: self.token, data: dataString) as NSArray
+        
+        if((postsArray.count) > 0){
+            for (index, element) in postsArray.enumerated() {
+                let newPost = Post()
+                let post = postsArray[index] as? [String: Any]
+                let description = post!["description"] as? String
+                newPost.description = description!
+                let postID = post!["post_i_d"] as? Int
+                newPost.postID = postID!
+                let likes = post!["likes"] as? Int
+                newPost.likes = likes!
+                let username = post!["username"] as? String
+                newPost.username = username!
+                let timeCreated = post!["time_created"] as? Int
+                newPost.timeCreated = timeCreated!
+                var duration = post!["duration"] as? Int
+                newPost.duration = duration!
+                
+                posts.append(newPost)
+            }
+        }
+        
+        self.posts = self.posts.reversed()
+        
+        print("Posts: \(posts)")
+        let array = dbManager.getLikedPosts(token: self.token) as NSArray
+        
+        for (index, element) in array.enumerated() {
+            let post = array[index] as? [String: Any]
+            let postID = post!["post_i_d"] as? Int
+            likedPosts.add(postID)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

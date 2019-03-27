@@ -11,11 +11,6 @@ import AWSS3
 import SwiftyJSON
 //PublishTableViewCell
 
-
-struct GetUsernames: Decodable {
-    let username: String
-}
-
 class PublishSelectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var activeTags : NSMutableArray = []
@@ -36,26 +31,15 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     
     var usernames : NSArray?
     let dbManager = DatabaseManager()
+    var usersToSendArray : [String] = []
     
     //need to change post type
     var selectionArray: [Any] = []
     
     
     func getUsernames(){
-        
-        let url = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/getAllUsernames"
-        let urlObj = URL(string: url)
-        
-        URLSession.shared.dataTask(with: urlObj!) {(data, response, error) in
-            do {
-                var usernames = try JSONDecoder().decode([GetUsernames].self, from: data!)
-                for GetUsernames in usernames {
-                    print(GetUsernames.username)
-                }
-            } catch {
-                print("fail")
-            }
-            }.resume()
+        usernames = dbManager.getUsernames(token: self.token!)
+        print(usernames)
     }
     
     @IBAction func backBtn(_ sender: UIBarButtonItem) {
@@ -64,12 +48,16 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (posts.count)
+        return (usernames!.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell : PublishTableViewCell!
 
+        cell = tableView.dequeueReusableCell(withIdentifier: "PublishTableViewCell") as! PublishTableViewCell
+
+        cell.usernameLabel.text = usernames![indexPath.row] as! String
+        
         cell.sizeToFit()
         return cell
     }
@@ -78,13 +66,11 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-            //selectionArray.remove(usernameString, at: selectionArray.endIndex)
-            //selectionArray.remove(at: index)
+            usersToSendArray = usersToSendArray.filter{$0 != usernames![indexPath.row] as! String}
         } else {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             print(tableView.indexPathForSelectedRow)
-            // Add your username detail to the array
-            //selectionArray.insert(posts.username, at: selectionArray.endIndex)
+            usersToSendArray.append(usernames![indexPath.row] as! String)
         }
     }
     
@@ -107,7 +93,7 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     
     func publish() {
         print("publishing")
-        
+        print(usersToSendArray)
         let timeInterval = Int(NSDate().timeIntervalSince1970)
         let likes : Int = 0
         self.timeCreated = String(timeInterval)
@@ -116,32 +102,29 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
             "description": desc,
             "timeCreated": String(timeInterval),
             "likes": String(likes),
-            "duration": duration
+            "duration": duration,
+            "toUser": usersToSendArray
             ])
         
         let array : [JSON] = [data]
         let variableJson = JSON(["Post" : array])
         
-        
+        print(variableJson)
         let dbManager = DatabaseManager()
         
         // TODO: update the dbManager thing with a post that uses a token
-        let postID = dbManager.createNewPost(token: self.token!, data: variableJson.rawString()!)
-        print("ID of the post just returned \(postID)")
-        
+//        let postID = dbManager.createNewPost(token: self.token!, data: variableJson.rawString()!)
+//        print("ID of the post just returned \(postID)")
         
         // This is just a test to upload to s3
         let dataURL = getDirectory().appendingPathComponent("myrecorder.m4a")
         let s3Transfer = S3TransferUtility()
         do {
             let audioData = try Data(contentsOf: dataURL as URL)
-            s3Transfer.uploadData(data: audioData, postID: postID)
-            
-            
+//            s3Transfer.uploadData(data: audioData, postID: postID)
         } catch {
             print("Unable to load data: \(error)")
         }
-        
     }
     
     func getDirectory() -> URL{
@@ -154,14 +137,7 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     
-    
-    
-    
 
-
-    
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsernames()
