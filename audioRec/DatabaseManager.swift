@@ -224,7 +224,7 @@ class DatabaseManager {
             
             print("GETTING POSTS")
             // get patient
-            let webUrl1 = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/getPrivatePostsForUser"
+            let webUrl1 = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/getPostsForUser"
             var request1 = URLRequest(url: URL(string: webUrl1)!)
             
             // Set method to GET and add token

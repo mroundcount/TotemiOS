@@ -37,16 +37,16 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     var selectionArray: [Any] = []
     
     
+    @IBAction func Back(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     func getUsernames(){
         usernames = dbManager.getUsernames(token: self.token!)
         print(usernames)
     }
-    
-    @IBAction func backBtn(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "selectorToRecorder", sender: nil)
-    }
-    
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (usernames!.count)
     }
@@ -61,7 +61,6 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
         cell.sizeToFit()
         return cell
     }
-    
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark {

@@ -30,8 +30,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var usernameProfile: UINavigationItem!
     
     @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var aboutTxt: UILabel!
-    
     
     @IBOutlet weak var profileMenuBtn: UIBarButtonItem!
     

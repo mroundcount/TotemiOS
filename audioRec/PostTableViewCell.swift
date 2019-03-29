@@ -31,7 +31,7 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var profilePicture: UIImageView?
     
     
     
@@ -71,8 +71,10 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
-//        profilePicture.clipsToBounds = true
+        if let profPic = self.profilePicture {
+            profPic.layer.cornerRadius = profPic.frame.size.width / 2;
+            profPic.clipsToBounds = true
+        }
     }
     
     override func didMoveToSuperview() {

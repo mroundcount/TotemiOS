@@ -17,6 +17,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var profileNavBtn: UIBarButtonItem!
     @IBOutlet weak var sortBtn: UIBarButtonItem!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var privateNavBtn: UIBarButtonItem!
     
     var activeTags : NSMutableArray = []
     
@@ -101,7 +102,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func privateBtn(_ sender: UIBarButtonItem) {
         getPrivatePosts()
         tableView.reloadData()
+        feedNavBtn.isEnabled = true
+        privateNavBtn.isEnabled = false
     }
+    
+    @IBAction func feedBtn(_ sender: UIBarButtonItem) {
+        viewDidLoad()
+        tableView.reloadData()
+        feedNavBtn.isEnabled = false
+    }
+    
     
     
     var postCell: PostTableViewCell!
@@ -179,7 +189,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let durationSec = (duration%60)
             cell.durationLabel.text = "\(durationMin):\(durationSec)"
             
-            cell.profilePicture.image = image
+            cell.profilePicture!.image = image
             
             if((likedPosts.contains(postID))){
                 cell.likeBtn.isEnabled = false
@@ -269,14 +279,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         feedNavBtn.isEnabled = false
-        
-     
-        /*
-        let fontSize:CGFloat = 25;
-        let font:UIFont = UIFont.boldSystemFont(ofSize: fontSize);
-        let attributes:[NSAttributedStringKey : Any] = [NSAttributedStringKey.font: font];
-        sortBtn.setTitleTextAttributes(attributes, for: UIControlState.normal);
-        */
+
         self.tableView.dataSource = self
         self.tableView.delegate = self
         s3Transfer.delegate = self
@@ -326,6 +329,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 posts.append(newPost)
             }
+            privateNavBtn.isEnabled = true
         }
         
         self.posts = self.posts.reversed()
@@ -378,7 +382,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let postID = post!["post_i_d"] as? Int
             likedPosts.add(postID)
         }
-        
+        privateNavBtn.isEnabled = false
     }
     
     override func didReceiveMemoryWarning() {

@@ -53,6 +53,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @IBAction func HelpBtn(_ sender: UIButton) {
+        UIApplication.shared.openURL(URL(string: "https://www.facebook.com/TotemLLC/?modal=admin_todo_tour")!)
+    }
+    
+    
     func checkIfPatientLoggedIn(){
         
         let preferences = UserDefaults.standard

@@ -220,6 +220,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "recorderToSelection"){
+            //let navVC = segue.destination as! PublishSelectionViewController
             let destinationVC = segue.destination as! PublishSelectionViewController
             destinationVC.token = self.token
             destinationVC.username = self.username

@@ -21,7 +21,6 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var uploadPhoto: UIButton!
     @IBOutlet weak var backProfile: UIBarButtonItem!
     @IBOutlet weak var saveBtn: UIButton!
-    @IBOutlet weak var aboutMeTxt: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +30,6 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         //dismiss keyboard
         self.hideKeyboardWhenTappedAround()
-        aboutMeTxt!.layer.borderWidth = 1
         
         //Roundcount added 2/18
         // get token from preferences
@@ -57,6 +55,7 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.performSegue(withIdentifier: "backProfile", sender: nil)
     }
    
+    /*
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let currentText = aboutMeTxt.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
@@ -65,6 +64,7 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         return changedText.count <= 5
     }
+ */
     
     @IBAction func uploadPhoto(_ sender: UIButton) {
         let image = UIImagePickerController()
