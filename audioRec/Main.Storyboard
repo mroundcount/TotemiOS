@@ -258,7 +258,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Fq-9P-Ufv">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWF-2L-0Ad">
                                 <rect key="frame" x="194" y="233" width="181" height="145"/>
@@ -271,7 +271,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynj-9m-Iye">
-                                <rect key="frame" x="143" y="513" width="89" height="46"/>
+                                <rect key="frame" x="143" y="557" width="89" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Publish">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -303,7 +303,7 @@
                                 </connections>
                             </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6b-ot-UHy">
-                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Feed" id="hYw-kt-Dde">
                                         <connections>
@@ -341,7 +341,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y5x-Do-ish">
-                                <rect key="frame" x="67.5" y="347" width="240" height="80"/>
+                                <rect key="frame" x="67.5" y="391" width="240" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="PPz-Lf-wiU"/>
@@ -351,7 +351,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hph-Gj-iGN">
-                                <rect key="frame" x="146" y="452" width="83" height="46"/>
+                                <rect key="frame" x="146" y="496" width="83" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Private">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -519,7 +519,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUX-zw-dJh">
-                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Feed" id="YKl-kW-MxL">
                                         <connections>
@@ -565,7 +565,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKf-pl-Fe2">
-                                <rect key="frame" x="0.0" y="64" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="feedTableViewCell" rowHeight="213" id="sD3-hU-Jrc" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -575,10 +575,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="212.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="cOz-q7-KFq">
-                                                    <rect key="frame" x="109.5" y="4" width="156" height="70"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="cOz-q7-KFq">
+                                                    <rect key="frame" x="95" y="4" width="185" height="70"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="156" id="8yc-KN-477"/>
+                                                        <constraint firstAttribute="width" constant="185" id="8yc-KN-477"/>
                                                         <constraint firstAttribute="height" constant="70" id="LvP-Zp-BWu"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
@@ -659,8 +659,8 @@
                                                 <constraint firstItem="cOz-q7-KFq" firstAttribute="top" secondItem="E2k-8H-7oZ" secondAttribute="topMargin" constant="-7" id="CmV-M7-oNM"/>
                                                 <constraint firstItem="wM2-c8-8Ic" firstAttribute="trailing" secondItem="E2k-8H-7oZ" secondAttribute="trailingMargin" constant="10" id="MNt-Yn-kTp"/>
                                                 <constraint firstItem="tga-eS-2XV" firstAttribute="top" secondItem="BDK-X1-nvG" secondAttribute="bottom" constant="4" id="Olj-Ms-AtA"/>
+                                                <constraint firstItem="cOz-q7-KFq" firstAttribute="centerX" secondItem="E2k-8H-7oZ" secondAttribute="centerX" id="WNy-ry-gTh"/>
                                                 <constraint firstItem="qC8-Qb-W9h" firstAttribute="top" secondItem="cOz-q7-KFq" secondAttribute="bottom" constant="8" id="YkZ-7z-FmV"/>
-                                                <constraint firstItem="cOz-q7-KFq" firstAttribute="centerX" secondItem="E2k-8H-7oZ" secondAttribute="centerX" id="bbj-2f-Uv0"/>
                                                 <constraint firstItem="z1A-cE-kDJ" firstAttribute="top" secondItem="tga-eS-2XV" secondAttribute="bottom" constant="4" id="cxI-o5-I6w"/>
                                                 <constraint firstItem="qC8-Qb-W9h" firstAttribute="centerX" secondItem="E2k-8H-7oZ" secondAttribute="centerX" id="h0f-z8-yB0"/>
                                                 <constraint firstItem="BDK-X1-nvG" firstAttribute="top" secondItem="E2k-8H-7oZ" secondAttribute="top" constant="10" id="lCF-4B-fU8"/>
@@ -683,7 +683,7 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="X7b-7z-QMy">
-                                <rect key="frame" x="0.0" y="579" width="375" height="0.0"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="0.0"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWu-cs-SJx">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -780,7 +780,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="215" estimatedRowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NLY-4h-Z0N">
-                                <rect key="frame" x="0.0" y="259" width="375" height="320"/>
+                                <rect key="frame" x="0.0" y="259" width="375" height="364"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileTableViewCell" rowHeight="215" id="EpE-NZ-rnW" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -855,7 +855,7 @@
                                 </prototypes>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxw-3a-ozv">
-                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Feed" id="OUn-Du-IGM">
                                         <connections>
@@ -885,7 +885,7 @@
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wjJ-Rn-fkS">
-                                <rect key="frame" x="0.0" y="579" width="375" height="0.0"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="0.0"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpe-TK-VGA">
                                         <rect key="frame" x="0.0" y="0.0" width="102" height="0.0"/>
@@ -1045,8 +1045,8 @@
         <image name="profilePic" width="219" height="230"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sSE-Mw-bbN"/>
-        <segue reference="63W-FS-sd7"/>
+        <segue reference="mek-Tq-dLp"/>
+        <segue reference="tFQ-qk-At8"/>
         <segue reference="FuC-k1-iXr"/>
     </inferredMetricsTieBreakers>
 </document>

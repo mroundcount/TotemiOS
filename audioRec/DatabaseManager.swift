@@ -372,6 +372,89 @@ class DatabaseManager {
         }
     }
     
+    // Requires valid JSON Web token
+    //
+    // Returns Posts as NSArray
+    func createNewPrivatePost(token: String, data: String) -> Int {
+        
+        var responseCode : Int = 0
+        var postID = 0
+        if(isInternetAvailable()){
+            
+            // get patient
+            let webUrl1 = "http://totem-env.qqkpcqqjfi.us-east-1.elasticbeanstalk.com/api/privatePost"
+            var request1 = URLRequest(url: URL(string: webUrl1)!)
+            
+            // Set method to GET and add token
+            request1.httpMethod = "POST"
+            request1.setValue("data", forHTTPHeaderField: "Content")
+            request1.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            
+            let json: NSData = data.data(using: String.Encoding.utf8)! as NSData
+            
+            request1.httpBody = json as Data
+            
+            // use DispatchGroup so you don't return token before it has a value
+            let group = DispatchGroup()
+            
+            group.enter()
+            
+            // fireoff request
+            let task1 = URLSession.shared.dataTask(with: request1) { data, response, error in
+                guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                    print("error=\(String(describing: error))")
+                    self.posts = []
+                    group.leave()
+                    return
+                }
+                let httpStatus = response as? HTTPURLResponse
+                
+                let responseString = String(data: data, encoding: String.Encoding.utf8)
+                
+                print(responseString!)
+                // responseString format {"status":201,"postID":305}
+                // now get that postID
+                let responseJSON = JSON(data)
+                
+                postID = responseJSON["postID"].intValue
+                print("after json \(postID)")
+                
+                if httpStatus?.statusCode != 201 {           // check for http errors
+                    print("statusCode should be 201, but is \(String(describing: httpStatus?.statusCode))")
+                    
+                    // avoid deadlocks by not using .main queue here
+                    DispatchQueue.global().async {
+                        group.leave()
+                    }
+                    
+                } else {
+                    
+                    // avoid deadlocks by not using .main queue here
+                    DispatchQueue.global().async {
+                        do{
+                            
+                        } catch{
+                            print("Could not make obj")
+                        }
+                        group.leave()
+                    }
+                    
+                }
+                
+                
+            }
+            task1.resume()
+            
+            // wait ...
+            group.wait()
+            // ... and return as soon as "postID" has a value
+            return postID
+        }
+        else {
+            return 0
+        }
+    }
+    
     func likePost(token: String, data: String) {
         
         var responseCode : Int = 0

@@ -112,8 +112,8 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
         let dbManager = DatabaseManager()
         
         // TODO: update the dbManager thing with a post that uses a token
-//        let postID = dbManager.createNewPost(token: self.token!, data: variableJson.rawString()!)
-//        print("ID of the post just returned \(postID)")
+        let postID = dbManager.createNewPrivatePost(token: self.token!, data: variableJson.rawString()!)
+        print("ID of the post just returned \(postID)")
         
         // This is just a test to upload to s3
         let dataURL = getDirectory().appendingPathComponent("myrecorder.m4a")
