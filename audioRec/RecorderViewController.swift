@@ -84,6 +84,9 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
                                                selector: #selector(self.keyboardNotification(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -112,6 +115,23 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         }
     }
     
+    @objc func keyboardWillAppear(_ notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillDisappear(_ notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
     @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
         if audioPlayer != nil{
             audioPlayer.stop()
@@ -454,10 +474,16 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         let currentText = descriptionTxt.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         
+        if(text == "\n") {
+            descriptionTxt.resignFirstResponder()
+            return false
+        }
+        
         let changedText = currentText.replacingCharacters(in: stringRange, with: text)
         
-        return changedText.count <= 5
+        return changedText.count <= 80
     }
+
     
     @objc func editingChanged(_ textField: UITextField) {
         if recorderRule.validation(description: descriptionTxt.text) == true {
@@ -545,6 +571,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+
 }
 
 

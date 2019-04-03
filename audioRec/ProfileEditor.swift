@@ -52,7 +52,7 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
 
     }
     @IBAction func backProfile(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "backProfile", sender: nil)
+        dismiss(animated: true, completion: nil)
     }
    
     /*

@@ -75,6 +75,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 })
             }
         } else if (sender.tag == 2) {
+            print("profile")
+            self.performSegue(withIdentifier: "feedToProfile", sender: nil)
+            sortOpt.forEach { (button) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    button.isHidden = true
+                    self.view.layoutIfNeeded()
+                })
+            }
+        } else if (sender.tag == 3) {
             print("cancel")
             sortOpt.forEach { (button) in
                 UIView.animate(withDuration: 0.3, animations: {
@@ -83,7 +92,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 })
             }
         }
+
     }
+    
+    
     
     var audioLengthDelegate : AudioLengthForCellDelegate!
     
@@ -116,6 +128,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var postCell: PostTableViewCell!
     let s3Transfer = S3TransferUtility()
+    let s3TransferPhoto = S3TransferUtilityPhoto()
     var token = ""
     var usernameString = ""
     let preferences = UserDefaults.standard
@@ -173,7 +186,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             dateFormatter.dateFormat = "MMM-dd-YYYY"
             let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated))
             let finalDate = dateFormatter.string(from: date as Date)
-            let image = s3Transfer.downloadProfilePicture(picID: username)
+            //let image = s3TransferPhoto.downloadProfilePicture(picID: username)
             
 
             cell = tableView.dequeueReusableCell(withIdentifier: "feedTableViewCell") as? PostTableViewCell
@@ -189,7 +202,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let durationSec = (duration%60)
             cell.durationLabel.text = "\(durationMin):\(durationSec)"
             
-            cell.profilePicture!.image = image
+            //cell.profilePicture!.image = image
             
             if((likedPosts.contains(postID))){
                 cell.likeBtn.isEnabled = false

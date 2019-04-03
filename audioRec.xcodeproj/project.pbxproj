@@ -39,6 +39,7 @@
 		BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */; };
 		BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C12662113DABB0086A99E /* PostTableViewCell.swift */; };
 		BF9614C92219D36F008806AE /* ProfileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9614C82219D36F008806AE /* ProfileEditor.swift */; };
+		BFB5A312225145CB004EB9DB /* S3TransferUtilityPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB5A311225145CA004EB9DB /* S3TransferUtilityPhoto.swift */; };
 		BFE02FFD210FF7EB00376B16 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */; };
 		BFE030012111128300376B16 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE030002111128300376B16 /* FeedViewController.swift */; };
 		BFE030032111183600376B16 /* CreateAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE030022111183600376B16 /* CreateAccountModel.swift */; };
@@ -105,6 +106,7 @@
 		BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		BF8C12662113DABB0086A99E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BF9614C82219D36F008806AE /* ProfileEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditor.swift; sourceTree = "<group>"; };
+		BFB5A311225145CA004EB9DB /* S3TransferUtilityPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3TransferUtilityPhoto.swift; sourceTree = "<group>"; };
 		BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BFE030002111128300376B16 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		BFE030022111183600376B16 /* CreateAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountModel.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				5A5A4083212A331F00302124 /* recording.gif */,
 				5AFD7BDD2129E08B0047349C /* awsconfiguration.json */,
 				5A5A4081212A2FBE00302124 /* S3TransferUtility.swift */,
+				BFB5A311225145CA004EB9DB /* S3TransferUtilityPhoto.swift */,
 				BF23663120FD19F50087C7E1 /* AppDelegate.swift */,
 				BF07810821268F6200EB7CBE /* gifFile.swift */,
 				5AB7DCA8210FC76600464C93 /* audioRec.entitlements */,
@@ -446,6 +449,7 @@
 				BF70CFDE2102FA920001AF90 /* CreateAccountViewController.swift in Sources */,
 				BF6960B7223587E800ED1A6A /* PublishSelectionViewController.swift in Sources */,
 				BF6960B9223592DA00ED1A6A /* PublishTableViewCell.swift in Sources */,
+				BFB5A312225145CB004EB9DB /* S3TransferUtilityPhoto.swift in Sources */,
 				5AB7DCAA2110D34A00464C93 /* DatabaseManager.swift in Sources */,
 				BF70CFDA21014F6F0001AF90 /* LoginViewController.swift in Sources */,
 				BF07810921268F6200EB7CBE /* gifFile.swift in Sources */,

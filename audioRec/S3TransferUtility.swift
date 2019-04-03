@@ -15,9 +15,7 @@ import AVFoundation
 class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
     
     var delegate : DonePlayingDelegate!
-    
     var audioPlayer: AVAudioPlayer!
-    
     override init () {
         
     }
@@ -227,12 +225,11 @@ class S3TransferUtility: NSObject, AVAudioPlayerDelegate {
                     // Do something with downloadTask.
 
                 }
-                return nil;
+            return nil;
         }
         
         group.wait()
-
+        print("downloading profile pic")
         return image
     }
-
 }
