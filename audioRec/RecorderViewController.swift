@@ -15,10 +15,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     private let recorderRule = recorderCharLimit()
     
-    @IBOutlet weak var feedNavBtn: UIBarButtonItem!
-    @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
-    @IBOutlet weak var profileNavBtn: UIBarButtonItem!
-    
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var recordingImage: UIImageView!
@@ -132,20 +128,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             }
         }
     }
-    @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
-        if audioPlayer != nil{
-            audioPlayer.stop()
-        }
-        self.performSegue(withIdentifier: "recorderToFeed", sender: nil)
-    }
-    
-    @IBAction func profileNavBtn(_ sender: UIBarButtonItem) {
-        if audioPlayer != nil{
-            audioPlayer.stop()
-        }
-        self.performSegue(withIdentifier: "recorderToProfile", sender: nil)
-    }
-    
     
     
     @IBAction func recordBtn(_ sender: UIButton) {
@@ -258,9 +240,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     //MARK: - Functions
     func buttonsOnLoad () {
         //descriptionTxt.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        
-        recorderNavBtn.isEnabled = false
-        
+                
         timerLbl.isHidden = true
         publishBtn.isHidden = true
         publishPrivateBtn.isHidden = true

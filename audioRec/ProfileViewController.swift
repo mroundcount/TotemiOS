@@ -21,18 +21,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("updating tblviewcell")
     }
     
- 
-    @IBOutlet weak var feedNavBtn: UIToolbar!
-    @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
-    @IBOutlet weak var profileNavBtn: UIBarButtonItem!
-    
     @IBOutlet weak var profileHeader: UINavigationBar!
     @IBOutlet weak var usernameProfile: UINavigationItem!
     
     @IBOutlet weak var profilePicture: UIImageView!
-    
-    @IBOutlet weak var profileMenuBtn: UIBarButtonItem!
-    
+        
     @IBOutlet weak var slider: UISlider!
     
     
@@ -41,19 +34,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var postCell: PostTableViewCell!
     let s3Transfer = S3TransferUtility()
     var indexOfSelectedCell = -1
-    
-    @IBAction func feedNavBtn(_ sender: UIBarButtonItem) {
-        s3Transfer.stopAudio()
-        self.performSegue(withIdentifier: "profileToFeed", sender: nil)
-    }
-    
-    @IBAction func recorderNavBtn(_ sender: Any) {
-        s3Transfer.stopAudio()
-        self.performSegue(withIdentifier: "profileToRecorder", sender: nil)
-    }
-    
-
-    
     
     var token = ""
     var usernameString = ""
@@ -290,9 +270,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let profile = preferences.value(forKey: "username") as! String
         usernameProfile.title = "\(profile)'s Profile"
-        
-        profileNavBtn.isEnabled = false
-        
+                
         self.tableView.dataSource = self
         self.tableView.delegate = self
         s3Transfer.delegate = self

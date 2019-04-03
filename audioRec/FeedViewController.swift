@@ -12,12 +12,8 @@ import AVFoundation
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate, CustomCellUpdater {
     
-    @IBOutlet weak var feedNavBtn: UIBarButtonItem!
-    @IBOutlet weak var recorderNavBtn: UIBarButtonItem!
-    @IBOutlet weak var profileNavBtn: UIBarButtonItem!
     @IBOutlet weak var sortBtn: UIBarButtonItem!
     @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var privateNavBtn: UIBarButtonItem!
     
     var activeTags : NSMutableArray = []
     
@@ -98,34 +94,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     var audioLengthDelegate : AudioLengthForCellDelegate!
-    
-    @IBAction func recorderNavBtn(_ sender: UIBarButtonItem) {
-        print("recordd")
-        s3Transfer.stopAudio()
-        self.performSegue(withIdentifier: "feedToRecorder", sender: nil)
-        
-    }
-    @IBAction func profileNavBtn(_ sender: UIBarButtonItem) {
-        print("profile")
-        s3Transfer.stopAudio()
-        self.performSegue(withIdentifier: "feedToProfile", sender: nil)
-    }
-    
-    @IBAction func privateBtn(_ sender: UIBarButtonItem) {
-        getPrivatePosts()
-        tableView.reloadData()
-        feedNavBtn.isEnabled = true
-        privateNavBtn.isEnabled = false
-    }
-    
-    @IBAction func feedBtn(_ sender: UIBarButtonItem) {
-        viewDidLoad()
-        tableView.reloadData()
-        feedNavBtn.isEnabled = false
-    }
-    
-    
-    
     var postCell: PostTableViewCell!
     let s3Transfer = S3TransferUtility()
     let s3TransferPhoto = S3TransferUtilityPhoto()
@@ -290,9 +258,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        feedNavBtn.isEnabled = false
-
         self.tableView.dataSource = self
         self.tableView.delegate = self
         s3Transfer.delegate = self
@@ -342,7 +307,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 posts.append(newPost)
             }
-            privateNavBtn.isEnabled = true
         }
         
         self.posts = self.posts.reversed()
@@ -395,7 +359,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let postID = post!["post_i_d"] as? Int
             likedPosts.add(postID)
         }
-        privateNavBtn.isEnabled = false
     }
     
     override func didReceiveMemoryWarning() {
