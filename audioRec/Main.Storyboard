@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rZ9-7n-uVR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rZ9-7n-uVR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -100,7 +100,7 @@
                         <outlet property="createAccountBtn" destination="OCq-Hg-aRv" id="FGS-Sj-z63"/>
                         <outlet property="login" destination="Q3d-Og-8Vq" id="tzW-kX-Ope"/>
                         <outlet property="logoBanner" destination="lfe-FN-YrP" id="pNl-c5-jFC"/>
-                        <segue destination="Gsk-Cu-sAB" kind="show" identifier="loginSuccessful" id="tFQ-qk-At8"/>
+                        <segue destination="Mvs-g9-Wy2" kind="show" identifier="loginSuccessful" id="1dG-UI-gff"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBU-aj-r3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -247,9 +247,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJN-Ai-3H3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-354.39999999999998" y="-691.304347826087"/>
+            <point key="canvasLocation" x="-396" y="-703"/>
         </scene>
-        <!--Recorder View Controller-->
+        <!--Record-->
         <scene sceneID="WAT-uo-Zxa">
             <objects>
                 <viewController id="gu6-eg-1mg" customClass="RecorderViewController" customModule="audioRec" customModuleProvider="target" sceneMemberID="viewController">
@@ -258,7 +258,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Fq-9P-Ufv">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWF-2L-0Ad">
                                 <rect key="frame" x="194" y="233" width="181" height="145"/>
@@ -271,7 +271,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Txt" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emV-8D-7Fo">
-                                <rect key="frame" x="0.0" y="80" width="375" height="50"/>
+                                <rect key="frame" x="130" y="80" width="83.5" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ssm-Ja-bYm"/>
                                 </constraints>
@@ -292,24 +292,6 @@
                                     <action selector="pauseBtn:" destination="gu6-eg-1mg" eventType="touchUpInside" id="C2x-uY-6pF"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6b-ot-UHy">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem title="Feed" id="hYw-kt-Dde">
-                                        <connections>
-                                            <action selector="feedNavBtn:" destination="gu6-eg-1mg" id="RDA-Kw-e7n"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="o5I-kE-mOi"/>
-                                    <barButtonItem title="Recorder" id="Vak-jG-QH4"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8HQ-6p-grQ"/>
-                                    <barButtonItem title="Profile" id="xXA-gr-Drf">
-                                        <connections>
-                                            <action selector="profileNavBtn:" destination="gu6-eg-1mg" id="TC5-1x-vGZ"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAF-Jb-8gB">
                                 <rect key="frame" x="137" y="171" width="100" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
@@ -330,7 +312,7 @@
                                     <action selector="recordBtn:" destination="gu6-eg-1mg" eventType="touchUpInside" id="XPO-xp-Px1"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y5x-Do-ish">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y5x-Do-ish">
                                 <rect key="frame" x="67.5" y="391" width="240" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -340,7 +322,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hph-Gj-iGN">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hph-Gj-iGN">
                                 <rect key="frame" x="67" y="491" width="83" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Private">
@@ -350,7 +332,7 @@
                                     <action selector="publishPrivate:" destination="gu6-eg-1mg" eventType="touchUpInside" id="eSs-1M-sJ1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynj-9m-Iye">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynj-9m-Iye">
                                 <rect key="frame" x="218" y="491" width="89" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Publish">
@@ -365,8 +347,6 @@
                         <constraints>
                             <constraint firstItem="Hph-Gj-iGN" firstAttribute="top" secondItem="Y5x-Do-ish" secondAttribute="bottom" constant="20" id="90j-zc-EUM"/>
                             <constraint firstItem="uAA-yS-n4h" firstAttribute="trailing" secondItem="M4x-Ti-V3q" secondAttribute="trailing" constant="120" id="AqK-Xp-Dxq"/>
-                            <constraint firstItem="y6b-ot-UHy" firstAttribute="top" secondItem="Ynj-9m-Iye" secondAttribute="bottom" constant="86" id="FpN-pB-Mgh"/>
-                            <constraint firstItem="y6b-ot-UHy" firstAttribute="trailing" secondItem="uAA-yS-n4h" secondAttribute="trailing" id="HoC-JZ-YuK"/>
                             <constraint firstItem="1Fq-9P-Ufv" firstAttribute="leading" secondItem="uAA-yS-n4h" secondAttribute="leading" id="JgK-il-aM9"/>
                             <constraint firstItem="cAF-Jb-8gB" firstAttribute="top" secondItem="emV-8D-7Fo" secondAttribute="bottom" constant="70" id="Ji7-Fy-fq6"/>
                             <constraint firstItem="emV-8D-7Fo" firstAttribute="centerX" secondItem="cAF-Jb-8gB" secondAttribute="centerX" id="L9N-YO-JVU"/>
@@ -379,39 +359,30 @@
                             <constraint firstItem="uAA-yS-n4h" firstAttribute="trailing" secondItem="Ynj-9m-Iye" secondAttribute="trailing" constant="68" id="QqP-Bq-Wkl"/>
                             <constraint firstItem="1Fq-9P-Ufv" firstAttribute="bottom" secondItem="uAA-yS-n4h" secondAttribute="bottom" id="VTy-br-jGC"/>
                             <constraint firstItem="IWF-2L-0Ad" firstAttribute="height" secondItem="Hj6-Zc-rq2" secondAttribute="height" id="Wnz-lY-Hh0"/>
-                            <constraint firstItem="y6b-ot-UHy" firstAttribute="bottom" secondItem="uAA-yS-n4h" secondAttribute="bottom" id="aEX-nV-F8u"/>
                             <constraint firstItem="emV-8D-7Fo" firstAttribute="trailing" secondItem="IWF-2L-0Ad" secondAttribute="trailing" id="aZz-he-5Mw"/>
                             <constraint firstItem="M4x-Ti-V3q" firstAttribute="top" secondItem="emV-8D-7Fo" secondAttribute="bottom" constant="5" id="apf-kX-ptd"/>
                             <constraint firstItem="1Fq-9P-Ufv" firstAttribute="top" secondItem="F26-YA-y8K" secondAttribute="top" id="dT6-4t-oX4"/>
                             <constraint firstItem="cAF-Jb-8gB" firstAttribute="leading" secondItem="uAA-yS-n4h" secondAttribute="leading" constant="137" id="dyH-66-f5E"/>
                             <constraint firstItem="IWF-2L-0Ad" firstAttribute="width" secondItem="Hj6-Zc-rq2" secondAttribute="width" id="fH8-te-eO0"/>
-                            <constraint firstItem="y6b-ot-UHy" firstAttribute="leading" secondItem="uAA-yS-n4h" secondAttribute="leading" id="gbi-Rf-GVd"/>
-                            <constraint firstItem="IWF-2L-0Ad" firstAttribute="trailing" secondItem="y6b-ot-UHy" secondAttribute="trailing" id="gjR-Is-zau"/>
                             <constraint firstItem="IWF-2L-0Ad" firstAttribute="top" secondItem="cAF-Jb-8gB" secondAttribute="bottom" constant="28" id="gpx-zo-NUr"/>
                             <constraint firstItem="Ynj-9m-Iye" firstAttribute="top" secondItem="Y5x-Do-ish" secondAttribute="bottom" constant="20" id="h1g-Qx-PlU"/>
                             <constraint firstItem="emV-8D-7Fo" firstAttribute="leading" secondItem="Hj6-Zc-rq2" secondAttribute="leading" id="q62-EU-rUA"/>
                             <constraint firstItem="1Fq-9P-Ufv" firstAttribute="trailing" secondItem="uAA-yS-n4h" secondAttribute="trailing" id="rSt-e5-Jhw"/>
-                            <constraint firstItem="y6b-ot-UHy" firstAttribute="top" secondItem="Hph-Gj-iGN" secondAttribute="bottom" constant="86" id="vqr-Ov-HFb"/>
-                            <constraint firstItem="Hj6-Zc-rq2" firstAttribute="leading" secondItem="y6b-ot-UHy" secondAttribute="leading" id="y4s-gL-saz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uAA-yS-n4h"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Record" image="icons8-round-50" id="MM3-TT-IAI"/>
                     <navigationItem key="navigationItem" id="eXv-Pa-2do"/>
                     <connections>
                         <outlet property="defaultTxt" destination="emV-8D-7Fo" id="xBZ-ZS-da5"/>
                         <outlet property="descriptionTxt" destination="Y5x-Do-ish" id="lIr-Th-bVG"/>
-                        <outlet property="feedNavBtn" destination="hYw-kt-Dde" id="TtN-4S-ts3"/>
                         <outlet property="finishedBtn" destination="IWF-2L-0Ad" id="5bF-gL-zg0"/>
                         <outlet property="pauseBtn" destination="Hj6-Zc-rq2" id="cQV-7O-fAw"/>
-                        <outlet property="profileNavBtn" destination="xXA-gr-Drf" id="DAi-bl-GG8"/>
                         <outlet property="publishBtn" destination="Ynj-9m-Iye" id="4CG-MP-1dZ"/>
                         <outlet property="publishPrivateBtn" destination="Hph-Gj-iGN" id="jeP-uV-jvQ"/>
                         <outlet property="recordBtn" destination="M4x-Ti-V3q" id="btW-mJ-LlF"/>
-                        <outlet property="recorderNavBtn" destination="Vak-jG-QH4" id="J8w-0P-jGa"/>
                         <outlet property="recordingImage" destination="1Fq-9P-Ufv" id="R5D-HD-neT"/>
                         <outlet property="timerLbl" destination="cAF-Jb-8gB" id="yKo-Xi-lIb"/>
-                        <segue destination="Gsk-Cu-sAB" kind="show" identifier="recorderToFeed" id="WcJ-qf-B7z"/>
-                        <segue destination="u83-tG-Pf8" kind="show" identifier="recorderToProfile" id="sSE-Mw-bbN"/>
                         <segue destination="DlC-cG-HMH" kind="popoverPresentation" identifier="recorderToSelection" popoverAnchorView="Hph-Gj-iGN" id="WXK-1M-uwi">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
@@ -419,7 +390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bv4-Y3-kXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="668" y="1094"/>
+            <point key="canvasLocation" x="1913" y="152"/>
         </scene>
         <!--Publish Selection View Controller-->
         <scene sceneID="Q1A-Lx-QEI">
@@ -509,9 +480,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lIi-sE-xZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2270" y="1094"/>
+            <point key="canvasLocation" x="2740" y="152"/>
         </scene>
-        <!--Feed View Controller-->
+        <!--Public-->
         <scene sceneID="wrU-M7-VSp">
             <objects>
                 <viewController id="Gsk-Cu-sAB" customClass="FeedViewController" customModule="audioRec" customModuleProvider="target" sceneMemberID="viewController">
@@ -519,28 +490,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUX-zw-dJh">
-                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem title="Feed" id="YKl-kW-MxL">
-                                        <connections>
-                                            <action selector="feedBtn:" destination="Gsk-Cu-sAB" id="Neh-jp-cDr"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Bag-2e-aua"/>
-                                    <barButtonItem title="Recorder" id="e6g-DB-S1B">
-                                        <connections>
-                                            <action selector="recorderNavBtn:" destination="Gsk-Cu-sAB" id="gMo-cf-MtK"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bcn-nr-inx"/>
-                                    <barButtonItem title="Private" id="bCi-YS-mUV">
-                                        <connections>
-                                            <action selector="privateBtn:" destination="Gsk-Cu-sAB" id="e9Z-sE-AW6"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ouy-Q0-Ie0">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
@@ -560,7 +509,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKf-pl-Fe2">
-                                <rect key="frame" x="0.0" y="64" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="feedTableViewCell" rowHeight="213" id="sD3-hU-Jrc" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -677,7 +626,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="X7b-7z-QMy">
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="X7b-7z-QMy">
                                 <rect key="frame" x="0.0" y="579" width="375" height="0.0"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWu-cs-SJx">
@@ -729,29 +678,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="1jL-SU-7E3"/>
-                            <constraint firstItem="dUX-zw-dJh" firstAttribute="bottom" secondItem="lyv-g5-8VA" secondAttribute="bottom" id="Gcs-7n-SN7"/>
+                            <constraint firstItem="LKf-pl-Fe2" firstAttribute="bottom" secondItem="lyv-g5-8VA" secondAttribute="bottom" id="Ejz-GE-W61"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="HVR-5T-6kC"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="J8w-hZ-pvQ"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="top" secondItem="Ouy-Q0-Ie0" secondAttribute="bottom" id="L7c-Nr-GAw"/>
-                            <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="X7b-7z-QMy" secondAttribute="bottom" id="OWI-Fs-5Qm"/>
                             <constraint firstAttribute="trailing" secondItem="X7b-7z-QMy" secondAttribute="trailing" id="Ozx-gp-D4p"/>
                             <constraint firstItem="lyv-g5-8VA" firstAttribute="trailing" secondItem="X7b-7z-QMy" secondAttribute="trailing" id="Sbs-N7-LJU"/>
-                            <constraint firstItem="dUX-zw-dJh" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="Xrp-66-BPs"/>
-                            <constraint firstItem="dUX-zw-dJh" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="Ynd-RR-hlA"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="top" secondItem="lyv-g5-8VA" secondAttribute="top" id="ebu-xv-UyD"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="k8N-0M-uAD"/>
-                            <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="X7b-7z-QMy" secondAttribute="bottom" id="kt4-qM-8LH"/>
                             <constraint firstItem="X7b-7z-QMy" firstAttribute="leading" secondItem="e9s-fJ-0k9" secondAttribute="leading" id="m7y-Qw-3hc"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="top" secondItem="Ouy-Q0-Ie0" secondAttribute="bottom" id="qEy-dG-HI0"/>
                             <constraint firstItem="X7b-7z-QMy" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="sK9-jG-w7T"/>
-                            <constraint firstItem="dUX-zw-dJh" firstAttribute="top" secondItem="LKf-pl-Fe2" secondAttribute="bottom" id="tEx-OH-nHV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lyv-g5-8VA"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Public" image="publicFeedIcon" id="2P2-EG-VZS"/>
                     <connections>
-                        <outlet property="feedNavBtn" destination="YKl-kW-MxL" id="HWg-pA-c49"/>
-                        <outlet property="privateNavBtn" destination="bCi-YS-mUV" id="NoY-Gz-VFf"/>
-                        <outlet property="recorderNavBtn" destination="e6g-DB-S1B" id="yeT-e3-vTm"/>
                         <outlet property="searchDisplayController" destination="wHw-HU-ysi" id="tt6-J7-T2I"/>
                         <outlet property="sortBtn" destination="6ge-l6-VKS" id="rra-fo-7s6"/>
                         <outlet property="tableView" destination="LKf-pl-Fe2" id="dcO-zM-ofl"/>
@@ -760,8 +702,6 @@
                         <outletCollection property="sortOpt" destination="7jY-dF-Muq" collectionClass="NSMutableArray" id="a2D-X9-97K"/>
                         <outletCollection property="sortOpt" destination="fAu-bQ-knW" collectionClass="NSMutableArray" id="QDk-CK-R8O"/>
                         <outletCollection property="sortOpt" destination="RyR-Br-pV8" collectionClass="NSMutableArray" id="wNS-MK-bYm"/>
-                        <segue destination="u83-tG-Pf8" kind="show" identifier="feedToProfile" id="mek-Tq-dLp"/>
-                        <segue destination="gu6-eg-1mg" kind="show" identifier="feedToRecorder" id="Uun-Gg-GsX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgH-Cw-kkc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -774,9 +714,9 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="668" y="124.58770614692655"/>
+            <point key="canvasLocation" x="1913" y="-591"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="60p-bD-VHe">
             <objects>
                 <viewController id="u83-tG-Pf8" customClass="ProfileViewController" customModule="audioRec" customModuleProvider="target" sceneMemberID="viewController">
@@ -785,7 +725,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="215" estimatedRowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NLY-4h-Z0N">
-                                <rect key="frame" x="0.0" y="259" width="375" height="320"/>
+                                <rect key="frame" x="0.0" y="259" width="375" height="408"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileTableViewCell" rowHeight="215" id="EpE-NZ-rnW" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -859,24 +799,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxw-3a-ozv">
-                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem title="Feed" id="OUn-Du-IGM">
-                                        <connections>
-                                            <action selector="feedNavBtn:" destination="u83-tG-Pf8" id="C6M-Hh-IbJ"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qFq-VR-pKX"/>
-                                    <barButtonItem title="Recorder" id="dTI-GZ-riZ">
-                                        <connections>
-                                            <action selector="recorderNavBtn:" destination="u83-tG-Pf8" id="uQT-Dz-nXk"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="RCu-FS-ceG"/>
-                                    <barButtonItem title="Profile" id="01G-WW-ery"/>
-                                </items>
-                            </toolbar>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ub4-fa-fQL">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
@@ -889,8 +811,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wjJ-Rn-fkS">
-                                <rect key="frame" x="0.0" y="579" width="375" height="0.0"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wjJ-Rn-fkS">
+                                <rect key="frame" x="0.0" y="574" width="375" height="0.0"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpe-TK-VGA">
                                         <rect key="frame" x="0.0" y="0.0" width="102" height="0.0"/>
@@ -934,47 +856,57 @@
                         <constraints>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="1Ga-cl-Cxr"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="1hc-T8-zHF"/>
-                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="bottom" secondItem="cxw-3a-ozv" secondAttribute="top" id="CXg-Ef-JUX"/>
                             <constraint firstItem="QS1-ck-e9L" firstAttribute="top" secondItem="ub4-fa-fQL" secondAttribute="bottom" constant="15" id="Dey-dh-ipy"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="top" secondItem="QS1-ck-e9L" secondAttribute="bottom" constant="30" id="F6N-q5-DsA"/>
                             <constraint firstItem="QS1-ck-e9L" firstAttribute="centerX" secondItem="yj0-f0-bIz" secondAttribute="centerX" id="M2i-HY-ft8"/>
                             <constraint firstItem="ub4-fa-fQL" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="Rqe-zz-RJZ"/>
-                            <constraint firstItem="gLg-GS-8uC" firstAttribute="bottom" secondItem="cxw-3a-ozv" secondAttribute="bottom" id="S8u-r0-CAo"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="TdL-KQ-Nlt"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="U9j-Kg-6IB"/>
-                            <constraint firstItem="cxw-3a-ozv" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="Ult-17-zq3"/>
                             <constraint firstItem="ub4-fa-fQL" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="awk-hq-9MS"/>
                             <constraint firstItem="ub4-fa-fQL" firstAttribute="top" secondItem="gLg-GS-8uC" secondAttribute="top" id="e7Z-ML-0af"/>
                             <constraint firstItem="wjJ-Rn-fkS" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="gaz-TV-WYb"/>
-                            <constraint firstItem="cxw-3a-ozv" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="ntx-hi-kQ7"/>
-                            <constraint firstItem="cxw-3a-ozv" firstAttribute="top" secondItem="wjJ-Rn-fkS" secondAttribute="bottom" id="pQe-Hx-1yC"/>
-                            <constraint firstItem="cxw-3a-ozv" firstAttribute="top" secondItem="NLY-4h-Z0N" secondAttribute="bottom" id="wJh-xq-RtF"/>
+                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="bottom" secondItem="gLg-GS-8uC" secondAttribute="bottom" id="w61-J2-EyS"/>
                             <constraint firstItem="gLg-GS-8uC" firstAttribute="trailing" secondItem="wjJ-Rn-fkS" secondAttribute="trailing" id="zoR-If-XvZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gLg-GS-8uC"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="publicFeedIcon" id="T9Y-Zf-fWa"/>
                     <connections>
-                        <outlet property="feedNavBtn" destination="cxw-3a-ozv" id="Y5Z-Ie-8U7"/>
                         <outlet property="profileHeader" destination="ub4-fa-fQL" id="aeP-ga-EXd"/>
-                        <outlet property="profileNavBtn" destination="01G-WW-ery" id="Q1d-Hh-0Ig"/>
                         <outlet property="profilePicture" destination="QS1-ck-e9L" id="a0C-r1-8E7"/>
-                        <outlet property="recorderNavBtn" destination="dTI-GZ-riZ" id="dnQ-vI-xWs"/>
                         <outlet property="tableView" destination="NLY-4h-Z0N" id="VDE-wy-Z3K"/>
                         <outlet property="usernameProfile" destination="YMU-pb-xai" id="177-te-9sT"/>
                         <outletCollection property="profileMenu" destination="Zpe-TK-VGA" collectionClass="NSMutableArray" id="sC3-TD-w1G"/>
                         <outletCollection property="profileMenu" destination="WEq-tO-fC4" collectionClass="NSMutableArray" id="5oI-xW-Vk4"/>
                         <outletCollection property="profileMenu" destination="jTK-yi-ilt" collectionClass="NSMutableArray" id="NrN-NM-Uwb"/>
-                        <segue destination="Gsk-Cu-sAB" kind="show" identifier="profileToFeed" id="Mdd-V0-bt0"/>
                         <segue destination="rZ9-7n-uVR" kind="presentation" identifier="logout" id="FuC-k1-iXr"/>
                         <segue destination="lOL-JV-8ST" kind="popoverPresentation" identifier="profileEditor" popoverAnchorView="Zpe-TK-VGA" id="rTX-a7-dTc">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
-                        <segue destination="gu6-eg-1mg" kind="show" identifier="profileToRecorder" id="qBU-bW-4Xc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0u-J8-7l3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1533.5999999999999" y="124.58770614692655"/>
+            <point key="canvasLocation" x="1912.8" y="913.49325337331345"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="vjC-at-LTg">
+            <objects>
+                <tabBarController id="Mvs-g9-Wy2" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" id="97f-Mm-jzA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Gsk-Cu-sAB" kind="relationship" relationship="viewControllers" id="YAe-ea-Dbp"/>
+                        <segue destination="gu6-eg-1mg" kind="relationship" relationship="viewControllers" id="YS4-0o-a0d"/>
+                        <segue destination="u83-tG-Pf8" kind="relationship" relationship="viewControllers" id="FbD-Z3-dYv"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zf5-dU-6Ua" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="614" y="152"/>
         </scene>
         <!--Profile Editor-->
         <scene sceneID="i3E-hZ-Cao">
@@ -1038,23 +970,25 @@
                         <outlet property="profilePicture" destination="cWa-NN-NIw" id="vrz-d8-lGs"/>
                         <outlet property="saveBtn" destination="cQn-UT-Sw0" id="ZZa-7i-bEe"/>
                         <outlet property="uploadPhoto" destination="vns-oa-dPY" id="91H-5o-b9f"/>
+                        <segue destination="u83-tG-Pf8" kind="show" identifier="backProfile" id="bzp-8N-DfN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AN-fl-qiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2269.5999999999999" y="122.78860569715144"/>
+            <point key="canvasLocation" x="2740" y="913"/>
         </scene>
     </scenes>
     <resources>
         <image name="CreateAccountBtn.png" width="341" height="108"/>
         <image name="TotemBanner.png" width="729" height="216"/>
+        <image name="icons8-round-50" width="30" height="30"/>
         <image name="loginButtonPurple.png" width="286" height="89"/>
         <image name="profilePic" width="219" height="230"/>
+        <image name="publicFeedIcon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mek-Tq-dLp"/>
-        <segue reference="63W-FS-sd7"/>
-        <segue reference="Uun-Gg-GsX"/>
+        <segue reference="bzp-8N-DfN"/>
+        <segue reference="YAe-ea-Dbp"/>
         <segue reference="FuC-k1-iXr"/>
     </inferredMetricsTieBreakers>
 </document>
