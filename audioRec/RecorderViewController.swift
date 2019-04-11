@@ -81,8 +81,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -110,7 +110,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
                            completion: nil)
         }
     }
-    
+    /*
     @objc func keyboardWillAppear(_ notification: NSNotification) {
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -128,6 +128,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             }
         }
     }
+ */
     
     
     @IBAction func recordBtn(_ sender: UIButton) {

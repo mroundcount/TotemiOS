@@ -1,99 +1,17 @@
 //
-//  FeedViewController.swift
+//  UserFeedViewController.swift
 //  audioRec
 //
-//  Created by Michael Roundcount on 7/31/18.
-//  Copyright © 2018 Michael Roundcount. All rights reserved.
+//  Created by Michael Roundcount on 4/6/19.
+//  Copyright © 2019 Michael Roundcount. All rights reserved.
 //
 
 import UIKit
 import AWSS3
 import AVFoundation
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate, CustomCellUpdater {
-    
-    @IBOutlet weak var sortBtn: UIBarButtonItem!
-    @IBOutlet weak var slider: UISlider!
-    
-    var activeTags : NSMutableArray = []
-    
-    @IBAction func sortBtn(_ sender: Any) {
+class UserFeedViewConroller: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate, CustomCellUpdater {
 
-        sortOpt.forEach { (button) in
-            UIView.animate(withDuration: 0.3, animations: {
-                button.isHidden = false
-                self.view.layoutIfNeeded()
-            })
-        } 
-    }
-    
-
-    @IBAction func helpBtn(_ sender: UIBarButtonItem) {
-        UIApplication.shared.openURL(URL(string: "https://www.facebook.com/TotemLLC/?modal=admin_todo_tour")!)
-    }
-    
-    @IBOutlet var sortOpt: [UIButton]!
-    
-    @IBAction func OptTapped(_ sender: UIButton) {
-        
-        if(sender.tag == 0){
-            // most popular button
-            print("most pop")   
-          
-            sortOpt.forEach { (button) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    button.isHidden = true
-                    self.view.layoutIfNeeded()
-                })
-            }
-            updateTableView()
-            let sortedPosts = posts.sorted(by: {$0.likes! > $1.likes!})
-
-            self.posts = []
-            for (index, post) in sortedPosts.enumerated() {
-                print(sortedPosts[index].description)
-                print(sortedPosts[index].likes)
-                self.posts.append(sortedPosts[index])
-            }
-            for post in posts {
-                print(post.description)
-            }
-            print(likedPosts)
-            tableView.reloadData()
-        } else if (sender.tag == 1) {
-            // newest button
-            print("newest")
-            self.posts = []
-            updateTableView()
-          sortOpt.forEach { (button) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    button.isHidden = true
-                    self.view.layoutIfNeeded()
-                })
-            }
-        } else if (sender.tag == 2) {
-            print("profile")
-            self.performSegue(withIdentifier: "feedToProfile", sender: nil)
-            sortOpt.forEach { (button) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    button.isHidden = true
-                    self.view.layoutIfNeeded()
-                })
-            }
-        } else if (sender.tag == 3) {
-            print("cancel")
-            sortOpt.forEach { (button) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    button.isHidden = true
-                    self.view.layoutIfNeeded()
-                })
-            }
-        }
-
-    }
-    
-    
-    
     var audioLengthDelegate : AudioLengthForCellDelegate!
     var postCell: PostTableViewCell!
     let s3Transfer = S3TransferUtility()
@@ -110,14 +28,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var likedPosts : NSMutableArray = []
     
     @IBOutlet weak var tableView: UITableView!
-    
+
     var posts : [Post] = []
     
-    
-    //Look Luke
-    //this function will allow you to scroll through the audio using the slider
+    //Look into removing
     @IBAction func changeAudioTime(_ sender: Any) {
-        
         if let player = s3Transfer.audioPlayer {
             player.stop()
             player.currentTime = TimeInterval(slider.value)
@@ -127,22 +42,40 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    //Look Luke
-    //changing the value of the slider as you are going though the audio
     @objc func updateSlider() {
-        
         slider.value = Float(s3Transfer.getCurrentTime())
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        s3Transfer.delegate = self
         
+        // get token from preferences
+        if preferences.value(forKey: "tokenKey") == nil {
+            //  Doesn't exist
+        } else {
+            self.token = preferences.value(forKey: "tokenKey") as! String
+        }
+        
+        // get token from preferences
+        if preferences.value(forKey: "username") == nil {
+            //  Doesn't exist
+        } else {
+            self.usernameString = preferences.value(forKey: "username") as! String
+        }
+        
+        getPrivatePosts()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return (posts.count)
+        return (posts.count)
     }
 
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell : PostTableViewCell!
- 
+        
         if((posts.count) > 0){
             let post = posts[indexPath.row]
             let description = post.description!
@@ -157,7 +90,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let finalDate = dateFormatter.string(from: date as Date)
             //let image = s3TransferPhoto.downloadProfilePicture(picID: username)
             
-
             cell = tableView.dequeueReusableCell(withIdentifier: "feedTableViewCell") as? PostTableViewCell
             cell.postDescription.text = description
             cell.usernameLabel.text = username
@@ -185,7 +117,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         cell.sizeToFit()
         //Cell Styling
-
+        
         cell.contentView.backgroundColor = UIColor.clear
         
         cell.delegate = self
@@ -193,18 +125,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
-    
-    
-    func updateTableView() {
-        getPosts()
-        
-        tableView.reloadData()
-        
-        print("updating tblviewcell")
-    }
-
-    
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postCell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
@@ -216,7 +136,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             selectedIndex = indexPath.row
             selectedIndexPath = indexPath
         }
-
+        
         if audioPlayer != nil {
             if audioPlayer.isPlaying {
                 audioPlayer.stop()
@@ -243,7 +163,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         tableView.reloadData()
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == selectedIndex
         {
@@ -257,69 +177,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         s3Transfer.downloadData(postID: postID)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        s3Transfer.delegate = self
-        
-        // get token from preferences
-        if preferences.value(forKey: "tokenKey") == nil {
-            //  Doesn't exist
-        } else {
-            self.token = preferences.value(forKey: "tokenKey") as! String
-        }
-        
-        // get token from preferences
-        if preferences.value(forKey: "username") == nil {
-            //  Doesn't exist
-        } else {
-            self.usernameString = preferences.value(forKey: "username") as! String
-        }
-        
-        
-        getPosts()
-        
+    func donePlayingAudio(){
+        postCell.contentView.backgroundColor = UIColor.clear
+        tableView.reloadData()
     }
     
-    func getPosts(){
-        posts = []
-        let dbManager = DatabaseManager()
-        let dataString = "{\"Username\":[{\"username\":\"" + self.usernameString + "\"}]}"
+    func gotAudioLength() {
+        print("got audio in feed control")
+        print("got length for index path : \(selectedIndexPath)")
+        var newPostCell = tableView.cellForRow(at: selectedIndexPath) as! PostTableViewCell
+        newPostCell.selectedThisCell(length: s3Transfer.getLengthOfAudio(), s3trans: s3Transfer)
         
-        var postsArray = dbManager.getPostsForFeed(token: self.token, data: dataString) as NSArray
-        
-        if((postsArray.count) > 0){
-            for (index, element) in postsArray.enumerated() {
-                let newPost = Post()
-                let post = postsArray[index] as? [String: Any]
-                let description = post!["description"] as? String
-                newPost.description = description!
-                let postID = post!["post_i_d"] as? Int
-                newPost.postID = postID!
-                let likes = post!["likes"] as? Int
-                newPost.likes = likes!
-                let username = post!["username"] as? String
-                newPost.username = username!
-                let timeCreated = post!["time_created"] as? Int
-                newPost.timeCreated = timeCreated!
-                var duration = post!["duration"] as? Int
-                newPost.duration = duration!
-                
-                posts.append(newPost)
-            }
-        }
-        
-        self.posts = self.posts.reversed()
-        
-        print("Posts: \(posts)")
-        let array = dbManager.getLikedPosts(token: self.token) as NSArray
-        
-        for (index, element) in array.enumerated() {
-            let post = array[index] as? [String: Any]
-            let postID = post!["post_i_d"] as? Int
-            likedPosts.add(postID)
-        }
     }
     
     func getPrivatePosts(){
@@ -365,20 +233,4 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func donePlayingAudio(){
-        postCell.contentView.backgroundColor = UIColor.clear
-        tableView.reloadData()
-    }
-    
-    func gotAudioLength() {
-        print("got audio in feed control")
-        print("got length for index path : \(selectedIndexPath)")
-        var newPostCell = tableView.cellForRow(at: selectedIndexPath) as! PostTableViewCell
-        newPostCell.selectedThisCell(length: s3Transfer.getLengthOfAudio(), s3trans: s3Transfer)
-        
-    }
 }
-
-
-
