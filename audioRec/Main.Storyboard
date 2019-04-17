@@ -403,7 +403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bv4-Y3-kXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1912.8" y="151.57421289355324"/>
+            <point key="canvasLocation" x="1662" y="-704"/>
         </scene>
         <!--Publish Selection View Controller-->
         <scene sceneID="Q1A-Lx-QEI">
@@ -499,12 +499,13 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="E5l-Oj-74Z" id="6Oq-Fq-P7v"/>
+                        <outlet property="tableView" destination="FKV-sj-0Zz" id="kuj-Rw-ipl"/>
                         <segue destination="Gsk-Cu-sAB" kind="show" identifier="selectorToFeed" id="63W-FS-sd7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lIi-sE-xZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2740" y="151.57421289355324"/>
+            <point key="canvasLocation" x="2582" y="-705"/>
         </scene>
         <!--User Feed View Controller-->
         <scene sceneID="Nly-pD-AUM">
@@ -694,7 +695,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PHX-Rb-p63" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-354.39999999999998" y="912.5937031484259"/>
+            <point key="canvasLocation" x="1662" y="913"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="wrU-M7-VSp">
@@ -841,7 +842,7 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="X7b-7z-QMy">
-                                <rect key="frame" x="0.0" y="618" width="375" height="0.0"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="0.0"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWu-cs-SJx">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -933,7 +934,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="613.60000000000002" y="912.5937031484259"/>
+            <point key="canvasLocation" x="1662" y="89"/>
         </scene>
         <!--Profile-->
         <scene sceneID="60p-bD-VHe">
@@ -1111,7 +1112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0u-J8-7l3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1912.8" y="913.49325337331345"/>
+            <point key="canvasLocation" x="2625" y="125"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vjC-at-LTg">
@@ -1199,7 +1200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AN-fl-qiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2740" y="913"/>
+            <point key="canvasLocation" x="3812" y="125"/>
         </scene>
     </scenes>
     <resources>
@@ -1214,7 +1215,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Haa-pZ-K23"/>
-        <segue reference="YAe-ea-Dbp"/>
+        <segue reference="63W-FS-sd7"/>
         <segue reference="FuC-k1-iXr"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -36,7 +36,8 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     //need to change post type
     var selectionArray: [Any] = []
     
-    var searchArray = [String]()
+    //var searchArray = [String]()
+    var searchArray : [String] = []
     var isSearching = false
     
     @IBAction func Back(_ sender: UIBarButtonItem) {
@@ -45,7 +46,7 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    
+    @IBOutlet weak var tableView: UITableView!
     
     func getUsernames(){
         usernames = dbManager.getUsernames(token: self.token!)
@@ -54,9 +55,10 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearching {
-            return searchArray.count
+            return (searchArray.count)
+        } else {
+            return (usernames!.count)
         }
-        return (usernames!.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,10 +66,10 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
 
         cell = tableView.dequeueReusableCell(withIdentifier: "PublishTableViewCell") as! PublishTableViewCell
 
-        if isSearching {
+        if isSearching  {
             cell.usernameLabel.text = searchArray[indexPath.row]
         } else {
-        cell.usernameLabel.text = usernames![indexPath.row] as! String
+            cell.usernameLabel.text = usernames![indexPath.row] as? String
         }
         cell.sizeToFit()
         return cell
@@ -141,18 +143,19 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
         return documentDirectory
     }
     
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
             view.endEditing(true)
-            //tableView.reloadData()
+            tableView.reloadData()
         } else {
             isSearching = true
-            //searchArray = usernames!.filter({$0 == searchBar.text})
-            //searchArray = dbManager.getUsernames.usernames
-            //tableView.reloadData()
+            searchArray = usernames!.filter({($0 as? String) == searchBar.text}) as! [String]
+            tableView.reloadData()
         }
     }
+
     
     
 
@@ -160,8 +163,7 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
         super.viewDidLoad()
         getUsernames()
         searchBar.delegate = self
-        //tableView.delegate = self
-        
+        tableView.delegate = self
         // Do any additional setup after loading the view.
     }
 }

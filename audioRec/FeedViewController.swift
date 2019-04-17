@@ -10,7 +10,7 @@ import UIKit
 import AWSS3
 import AVFoundation
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate, CustomCellUpdater {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate, CustomCellUpdater, UITabBarControllerDelegate {
     
     @IBOutlet weak var sortBtn: UIBarButtonItem!
     @IBOutlet weak var slider: UISlider!
@@ -378,6 +378,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         newPostCell.selectedThisCell(length: s3Transfer.getLengthOfAudio(), s3trans: s3Transfer)
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let barView = self.tabBarController!
+        let destinationNav = barView.viewControllers![1] as! RecorderViewController
+        print("to recorder")
+    }
+    
 }
 
 
