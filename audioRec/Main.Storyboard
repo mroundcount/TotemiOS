@@ -414,7 +414,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FKV-sj-0Zz">
-                                <rect key="frame" x="0.0" y="64" width="375" height="449"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="393"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PublishTableViewCell" rowHeight="84" id="5AQ-bc-bG4" customClass="PublishTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -470,16 +470,26 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="E5l-Oj-74Z">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DlC-cG-HMH" id="8cq-ep-gQ2"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FKV-sj-0Zz" firstAttribute="trailing" secondItem="KrF-fi-hes" secondAttribute="trailing" id="42q-D6-cZD"/>
                             <constraint firstItem="KrF-fi-hes" firstAttribute="bottom" secondItem="Tmx-kv-hF0" secondAttribute="bottom" constant="60" id="4Qf-8J-RXv"/>
                             <constraint firstItem="Tmx-kv-hF0" firstAttribute="top" secondItem="FKV-sj-0Zz" secondAttribute="bottom" constant="20" id="CdQ-mP-4RB"/>
+                            <constraint firstItem="E5l-Oj-74Z" firstAttribute="top" secondItem="qdc-PX-4MD" secondAttribute="bottom" id="MFg-Yt-up3"/>
+                            <constraint firstItem="E5l-Oj-74Z" firstAttribute="leading" secondItem="KrF-fi-hes" secondAttribute="leading" id="MVt-zb-6zZ"/>
+                            <constraint firstItem="E5l-Oj-74Z" firstAttribute="trailing" secondItem="KrF-fi-hes" secondAttribute="trailing" id="QrL-YI-R4D"/>
                             <constraint firstItem="FKV-sj-0Zz" firstAttribute="leading" secondItem="KrF-fi-hes" secondAttribute="leading" id="X0q-wR-FgP"/>
                             <constraint firstItem="qdc-PX-4MD" firstAttribute="leading" secondItem="KrF-fi-hes" secondAttribute="leading" id="XjW-al-rPn"/>
+                            <constraint firstItem="FKV-sj-0Zz" firstAttribute="top" secondItem="E5l-Oj-74Z" secondAttribute="bottom" id="fQf-Vi-KUV"/>
                             <constraint firstItem="Tmx-kv-hF0" firstAttribute="centerX" secondItem="FKV-sj-0Zz" secondAttribute="centerX" id="ggT-rk-fvH"/>
-                            <constraint firstItem="FKV-sj-0Zz" firstAttribute="top" secondItem="qdc-PX-4MD" secondAttribute="bottom" id="q2S-Ah-9Jd"/>
                             <constraint firstItem="qdc-PX-4MD" firstAttribute="trailing" secondItem="KrF-fi-hes" secondAttribute="trailing" id="tc5-Nl-MRq"/>
                             <constraint firstItem="qdc-PX-4MD" firstAttribute="top" secondItem="KrF-fi-hes" secondAttribute="top" id="yWl-8M-idV"/>
                         </constraints>
@@ -488,12 +498,13 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="searchBar" destination="E5l-Oj-74Z" id="6Oq-Fq-P7v"/>
                         <segue destination="Gsk-Cu-sAB" kind="show" identifier="selectorToFeed" id="63W-FS-sd7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lIi-sE-xZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2740" y="152"/>
+            <point key="canvasLocation" x="2740" y="151.57421289355324"/>
         </scene>
         <!--User Feed View Controller-->
         <scene sceneID="Nly-pD-AUM">
@@ -616,6 +627,7 @@
                                             <outlet property="likeBtn" destination="LrL-fB-mH4" id="G9E-qN-r2c"/>
                                             <outlet property="postDescription" destination="miu-UF-TNV" id="yx1-bT-BU6"/>
                                             <outlet property="profilePicture" destination="tXa-MV-U0p" id="IrC-eP-nKh"/>
+                                            <outlet property="slider" destination="t7h-7D-jYP" id="wxC-gT-wQS"/>
                                             <outlet property="usernameLabel" destination="ulf-vD-da8" id="1vb-kB-e9A"/>
                                         </connections>
                                     </tableViewCell>
@@ -701,7 +713,7 @@
                                                 <action selector="helpBtn:" destination="Gsk-Cu-sAB" id="RiE-a5-C2I"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Menu" image="profilePicSmall" largeContentSizeImage="profilePicSmall" id="6ge-l6-VKS">
+                                        <barButtonItem key="rightBarButtonItem" title="Menu" largeContentSizeImage="profilePicSmall" id="6ge-l6-VKS">
                                             <inset key="imageInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <connections>
                                                 <action selector="sortBtn:" destination="Gsk-Cu-sAB" id="aZs-6o-ddr"/>

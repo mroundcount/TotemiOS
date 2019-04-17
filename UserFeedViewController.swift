@@ -11,6 +11,7 @@ import AVFoundation
 
 class UserFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DonePlayingDelegate, CustomCellUpdater {
 
+    let dbManager = DatabaseManager()
     var activeTags : NSMutableArray = []
     var audioLengthDelegate : AudioLengthForCellDelegate!
     var postCell: PostTableViewCell!
@@ -28,11 +29,10 @@ class UserFeedViewController: UIViewController, UITableViewDelegate, UITableView
     var likedPosts : NSMutableArray = []
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var slider: UISlider!
     
     var posts : [Post] = []
-    
-    //Look into removing
-    /*
+
     @IBAction func changeAudioTime(_ sender: Any) {
         if let player = s3Transfer.audioPlayer {
             player.stop()
@@ -46,7 +46,7 @@ class UserFeedViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func updateSlider() {
         slider.value = Float(s3Transfer.getCurrentTime())
     }
- */
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,9 +138,9 @@ class UserFeedViewController: UIViewController, UITableViewDelegate, UITableView
             cell.usernameLabel.text = username
             cell.datePostedLabel.text = finalDate
             cell.postID = postID
-            cell.likes = likes + 1
-            print("likefdasfsddds: \(likes + 1)")
-            cell.countLabel.text = "\(likes + 1)"
+            //+1 on both of these
+            cell.likes = likes
+            cell.countLabel.text = "\(likes)"
             cell.token = self.token
             let durationMin = (duration/60)
             let durationSec = (duration%60)
@@ -214,6 +214,26 @@ class UserFeedViewController: UIViewController, UITableViewDelegate, UITableView
         }else{
             return 125
         }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        //copy this and add the variables in the return with "delete
+        let delete = UITableViewRowAction(style: .normal, title: "      Delete     ") { action, index in
+            // execute the delete
+            
+            let cell = tableView.cellForRow(at: editActionsForRowAt) as? PostTableViewCell
+            let postID = cell?.postID!
+            print("delete button tapped. going to delete post with id: \(postID)")
+            let postData = "{\"postID\":\(postID!)}"
+            print(postData)
+            self.dbManager.deletePost(token: self.token, data: postData)
+            self.getPrivatePosts()
+            tableView.reloadData()
+            
+        }
+        delete.backgroundColor = .red
+        
+        return [delete]
     }
     
     func downloadAudioFromS3(postID: Int) {

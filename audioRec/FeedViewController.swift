@@ -150,7 +150,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let likes = post.likes!
             let username = post.username!
             let timeCreated = post.timeCreated!
-            let duration = post.duration!
+            //let duration = post.duration!
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM-dd-YYYY"
             let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated))
@@ -163,13 +163,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.usernameLabel.text = username
             cell.datePostedLabel.text = finalDate
             cell.postID = postID
-            cell.likes = likes + 1
-            print("likefdasfsddds: \(likes + 1)")
-            cell.countLabel.text = "\(likes + 1)"
+            //+1 likes here
+            cell.likes = likes
+            cell.countLabel.text = "\(likes)"
             cell.token = self.token
-            let durationMin = (duration/60)
-            let durationSec = (duration%60)
-            cell.durationLabel.text = "\(durationMin):\(durationSec)"
+            //let durationMin = (duration/60)
+            //let durationSec = (duration%60)
+            //cell.durationLabel.text = "\(durationMin):\(durationSec)"
             
             //cell.profilePicture!.image = image
             
@@ -304,7 +304,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let timeCreated = post!["time_created"] as? Int
                 newPost.timeCreated = timeCreated!
                 var duration = post!["duration"] as? Int
-                newPost.duration = duration!
+                //newPost.duration = duration!
                 
                 posts.append(newPost)
             }

@@ -11,7 +11,7 @@ import AWSS3
 import SwiftyJSON
 //PublishTableViewCell
 
-class PublishSelectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PublishSelectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var activeTags : NSMutableArray = []
     var postCell: PublishTableViewCell!
@@ -36,10 +36,15 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     //need to change post type
     var selectionArray: [Any] = []
     
+    var searchArray = [String]()
+    var isSearching = false
     
     @IBAction func Back(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     
     func getUsernames(){
@@ -48,6 +53,9 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearching {
+            return searchArray.count
+        }
         return (usernames!.count)
     }
     
@@ -56,8 +64,11 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
 
         cell = tableView.dequeueReusableCell(withIdentifier: "PublishTableViewCell") as! PublishTableViewCell
 
+        if isSearching {
+            cell.usernameLabel.text = searchArray[indexPath.row]
+        } else {
         cell.usernameLabel.text = usernames![indexPath.row] as! String
-        
+        }
         cell.sizeToFit()
         return cell
     }
@@ -77,13 +88,8 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
 
 
     @IBAction func publishBtn(_ sender: UIButton) {
-        
-        print("variable: \(variable)")
-        print("token: \(token)")
-        print("username: \(username)")
-        print("desc \(desc)")
-        print("tc: \(timeCreated)")
-        print("duration: \(duration)")
+    
+        print("Sent!")
         publish()
 
         self.performSegue(withIdentifier: "selectorToFeed", sender: nil)
@@ -135,11 +141,26 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
         return documentDirectory
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            isSearching = false
+            view.endEditing(true)
+            //tableView.reloadData()
+        } else {
+            isSearching = true
+            //searchArray = usernames!.filter({$0 == searchBar.text})
+            //searchArray = dbManager.getUsernames.usernames
+            //tableView.reloadData()
+        }
+    }
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsernames()
+        searchBar.delegate = self
+        //tableView.delegate = self
         
         // Do any additional setup after loading the view.
     }
