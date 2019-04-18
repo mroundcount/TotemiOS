@@ -151,7 +151,8 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
             tableView.reloadData()
         } else {
             isSearching = true
-            searchArray = usernames!.filter({($0 as? String) == searchBar.text}) as! [String]
+            let sText = searchBar.text
+            searchArray = usernames!.filter({($0 as! String).localizedCaseInsensitiveContains(sText!)}) as! [String]
             tableView.reloadData()
         }
     }

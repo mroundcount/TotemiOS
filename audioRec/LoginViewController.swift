@@ -54,7 +54,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func HelpBtn(_ sender: UIButton) {
-        UIApplication.shared.openURL(URL(string: "https://www.facebook.com/TotemLLC/?modal=admin_todo_tour")!)
+        //UIApplication.shared.openURL(URL(string: "https://www.facebook.com/TotemLLC/?modal=admin_todo_tour")!)
+        let alert = UIAlertController(title: "", message: "Hang in there kids, website coming soon!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Sounds Good!", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     

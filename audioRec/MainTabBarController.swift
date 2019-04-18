@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import AWSS3
+import AVFoundation
 
-class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
+class MainTabBarController: UITabBarController, UITabBarControllerDelegate, AVAudioPlayerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,11 +18,22 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
     }
     
+    let s3Transfer = S3TransferUtility()
+    //var delegate : DonePlayingDelegate!
+    var audioPlayer: AVAudioPlayer!
+    
+    
 
     // UITabBarDelegate
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         print("Selected item")
     }
+    
+    /*
+    func donePlayingAudio() {
+        self.delegate.donePlayingAudio()
+    }
+ */
     
     // UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -32,13 +45,34 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         switch index {
         case 0:
             // feed
+            if audioPlayer != nil {
+                if audioPlayer.isPlaying {
+                    audioPlayer.stop()
+                    //donePlayingAudio()
+                }
+            }
             print("feed selected")
+            s3Transfer.stopAudio()
         case 1:
             // record
+            if audioPlayer != nil {
+                if audioPlayer.isPlaying {
+                    audioPlayer.stop()
+                    //donePlayingAudio()
+                }
+            }
             print("record selected")
+            s3Transfer.stopAudio()
         case 2:
             // private
+            if audioPlayer != nil {
+                if audioPlayer.isPlaying {
+                    audioPlayer.stop()
+                    //donePlayingAudio()
+                }
+            }
             print("private selected")
+            s3Transfer.stopAudio()
         default:
             print("default")
         }
