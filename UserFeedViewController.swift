@@ -47,6 +47,13 @@ class UserFeedViewController: UIViewController, UITableViewDelegate, UITableView
         slider.value = Float(s3Transfer.getCurrentTime())
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        s3Transfer.stopAudio()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

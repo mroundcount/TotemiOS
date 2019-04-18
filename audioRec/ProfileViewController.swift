@@ -265,7 +265,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
   
 
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        s3Transfer.stopAudio()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

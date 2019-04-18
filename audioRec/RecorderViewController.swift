@@ -45,7 +45,10 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     var desc : String?
     var audioData : URL?
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        viewDidLoad()
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -235,7 +238,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             destinationVC.audioData = self.audioData
             
         }
-        
     }
     
     //MARK: - Functions

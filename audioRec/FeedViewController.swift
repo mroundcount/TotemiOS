@@ -285,6 +285,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        s3Transfer.stopAudio()
+    }
+    
     func getPosts(){
         posts = []
         let dbManager = DatabaseManager()
