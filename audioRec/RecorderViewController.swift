@@ -14,12 +14,9 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     // MARK: - Variables
     
     private let recorderRule = recorderCharLimit()
-    
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var recordingImage: UIImageView!
     // MARK: - Buttons
-
     @IBOutlet weak var recordBtn: UIButton!
     @IBOutlet weak var finishedBtn: UIButton!
     @IBOutlet weak var pauseBtn: UIButton!
@@ -34,7 +31,6 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     
     
     var duration = 0
-    
     // user variables
     var userID : Int = 0
     var username : String = ""
@@ -72,17 +68,12 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         } else {
             self.username = preferences.value(forKey: "username") as! String
         }
-        
         descriptionTxt.delegate = self
-        
         buttonsOnLoad()
         
         // Note that SO highlighting makes the new selector syntax (#selector()) look
         // like a comment but it isn't one
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardNotification(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillChangeFrame,
-                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         
         //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
         //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
@@ -218,10 +209,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     }
     
     @IBAction func publishPrivate(_ sender: UIButton) {
-        
         prepToPublish()
         self.performSegue(withIdentifier: "recorderToSelection", sender: nil)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -461,9 +450,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             descriptionTxt.resignFirstResponder()
             return false
         }
-        
         let changedText = currentText.replacingCharacters(in: stringRange, with: text)
-        
         return changedText.count <= 80
     }
 
