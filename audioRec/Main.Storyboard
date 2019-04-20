@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rZ9-7n-uVR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rZ9-7n-uVR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -696,7 +696,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PHX-Rb-p63" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1662" y="1083"/>
+            <point key="canvasLocation" x="1662" y="1621"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="wrU-M7-VSp">
@@ -1097,9 +1097,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gLg-GS-8uC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="-5" title="" image="profilePicSmall" id="T9Y-Zf-fWa">
+                    <tabBarItem key="tabBarItem" title="" image="user" id="DMK-zH-hF0">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="profileHeader" destination="ub4-fa-fQL" id="aeP-ga-EXd"/>
                         <outlet property="profilePicture" destination="QS1-ck-e9L" id="a0C-r1-8E7"/>
@@ -1116,7 +1117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0u-J8-7l3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2685.5999999999999" y="959.37031484257875"/>
+            <point key="canvasLocation" x="1662" y="878"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="vjC-at-LTg">
@@ -1131,12 +1132,12 @@
                         <segue destination="Gsk-Cu-sAB" kind="relationship" relationship="viewControllers" id="YAe-ea-Dbp"/>
                         <segue destination="gu6-eg-1mg" kind="relationship" relationship="viewControllers" id="YS4-0o-a0d"/>
                         <segue destination="P4d-gg-YJ4" kind="relationship" relationship="viewControllers" id="gCH-lB-ROX"/>
-                        <segue destination="u83-tG-Pf8" kind="relationship" relationship="viewControllers" id="wKh-gC-jmt"/>
+                        <segue destination="u83-tG-Pf8" kind="relationship" relationship="viewControllers" id="EmI-25-KEB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zf5-dU-6Ua" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="152"/>
+            <point key="canvasLocation" x="442" y="690"/>
         </scene>
         <!--Profile Editor-->
         <scene sceneID="i3E-hZ-Cao">
@@ -1215,12 +1216,14 @@
         <image name="loginButtonPurple.png" width="286" height="89"/>
         <image name="privateFeed" width="30" height="30"/>
         <image name="profilePic" width="219" height="230"/>
-        <image name="profilePicSmall" width="28" height="30"/>
+        <image name="profilePicSmall" width="30" height="30"/>
         <image name="publicFeedIcon" width="30" height="30"/>
+        <image name="user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="YS4-0o-a0d"/>
         <segue reference="iEF-ss-zJc"/>
-        <segue reference="wKh-gC-jmt"/>
+        <segue reference="EmI-25-KEB"/>
         <segue reference="FuC-k1-iXr"/>
     </inferredMetricsTieBreakers>
 </document>
