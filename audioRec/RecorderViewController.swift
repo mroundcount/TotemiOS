@@ -42,9 +42,15 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     var audioData : URL?
     
     override func viewDidAppear(_ animated: Bool) {
-        viewDidLoad()
+        
     }
 
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        viewDidLoad()
+    }
+    
+    @IBOutlet weak var deleteButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -232,7 +238,8 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
     //MARK: - Functions
     func buttonsOnLoad () {
         //descriptionTxt.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-                
+        
+        deleteButton.isHidden = true                
         timerLbl.isHidden = true
         publishBtn.isHidden = true
         publishPrivateBtn.isHidden = true
@@ -367,6 +374,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             
             stop()
             
+            deleteButton.isHidden = false
             publishBtn.isHidden = false
             publishPrivateBtn.isHidden = false
             recordingImage.isHidden = true

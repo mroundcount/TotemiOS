@@ -9,8 +9,18 @@
 
 import UIKit
 import SystemConfiguration
+import FBSDKLoginKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        print("did complete")
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("did log out")
+
+    }
+    
 
     @IBOutlet var _username: UITextField!
     @IBOutlet var _password: UITextField!
@@ -21,7 +31,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var loginSuccessful = false
     private var currentTextField: UITextField?
 
-    
+    let fbLogin : FBSDKLoginButton = {
+        let button = FBSDKLoginButton()
+        button.readPermissions = ["email"]
+        return button
+    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +65,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         _username.delegate = self
         _password.delegate = self
+        
+        fbLogin.delegate = self
+        self.view.addSubview(fbLogin)
+        
+        fbLogin.translatesAutoresizingMaskIntoConstraints = false
+        fbLogin.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        fbLogin.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+
         
     }
     

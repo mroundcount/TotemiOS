@@ -198,38 +198,38 @@
 		BF23663020FD19F50087C7E1 /* audioRec */ = {
 			isa = PBXGroup;
 			children = (
-				BF6DE9CB21E5C2D4005FE1A9 /* mediaIcons */,
-				5A5A4083212A331F00302124 /* recording.gif */,
-				5AFD7BDD2129E08B0047349C /* awsconfiguration.json */,
-				5A5A4081212A2FBE00302124 /* S3TransferUtility.swift */,
-				BFB5A311225145CA004EB9DB /* S3TransferUtilityPhoto.swift */,
 				BF23663120FD19F50087C7E1 /* AppDelegate.swift */,
-				BF07810821268F6200EB7CBE /* gifFile.swift */,
+				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
+				5A786E9522053955003CEB98 /* AudioLengthForCellDelegate.swift */,
 				5AB7DCA8210FC76600464C93 /* audioRec.entitlements */,
+				5AFD7BDD2129E08B0047349C /* awsconfiguration.json */,
+				BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */,
 				BFE030022111183600376B16 /* CreateAccountModel.swift */,
 				BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */,
+				5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */,
+				BF145F822195136E00450A88 /* DonePlayingDelegate.swift */,
 				BFE030002111128300376B16 /* FeedViewController.swift */,
+				BF07810821268F6200EB7CBE /* gifFile.swift */,
+				BF23663D20FD19FA0087C7E1 /* Info.plist */,
+				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
 				BF70CFD921014F6F0001AF90 /* LoginViewController.swift */,
+				BF07810E2127674E00EB7CBE /* Main.storyboard */,
+				5AF347542267E4E5002D61AA /* MainTabBarController.swift */,
+				BF6DE9CB21E5C2D4005FE1A9 /* mediaIcons */,
+				5A54C5EC21F7E6F100C35C8A /* Post.swift */,
 				BF8C12662113DABB0086A99E /* PostTableViewCell.swift */,
-				BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */,
 				BF9614C82219D36F008806AE /* ProfileEditor.swift */,
+				BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */,
 				BF6960B6223587E800ED1A6A /* PublishSelectionViewController.swift */,
 				BF6960B8223592DA00ED1A6A /* PublishTableViewCell.swift */,
 				BF078104212640FA00EB7CBE /* recorderModel.swift */,
 				BF078106212655FF00EB7CBE /* RecorderViewController.swift */,
-				BF48C62F225AF831002C184B /* UserFeedViewController.swift */,
-				BF07810E2127674E00EB7CBE /* Main.storyboard */,
-				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
-				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
-				BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */,
-				BF23663D20FD19FA0087C7E1 /* Info.plist */,
-				5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */,
+				5A5A4083212A331F00302124 /* recording.gif */,
+				5A5A4081212A2FBE00302124 /* S3TransferUtility.swift */,
+				BFB5A311225145CA004EB9DB /* S3TransferUtilityPhoto.swift */,
 				BF05B445217D7DA7003FB438 /* TotemLogo.png */,
-				BF145F822195136E00450A88 /* DonePlayingDelegate.swift */,
-				5A54C5EC21F7E6F100C35C8A /* Post.swift */,
 				BF11A9FF224B18BE0051593C /* User.swift */,
-				5A786E9522053955003CEB98 /* AudioLengthForCellDelegate.swift */,
-				5AF347542267E4E5002D61AA /* MainTabBarController.swift */,
+				BF48C62F225AF831002C184B /* UserFeedViewController.swift */,
 			);
 			path = audioRec;
 			sourceTree = "<group>";
@@ -428,6 +428,13 @@
 				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSMobileClient/AWSMobileClient.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -437,6 +444,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSMobileClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,6 +587,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -626,6 +641,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

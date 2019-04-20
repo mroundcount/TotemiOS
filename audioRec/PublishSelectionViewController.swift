@@ -9,6 +9,7 @@
 import UIKit
 import AWSS3
 import SwiftyJSON
+
 //PublishTableViewCell
 
 class PublishSelectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
@@ -41,7 +42,7 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
     var isSearching = false
     
     @IBAction func Back(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet weak var searchBar: UISearchBar!
