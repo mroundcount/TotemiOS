@@ -937,7 +937,7 @@
             </objects>
             <point key="canvasLocation" x="1662" y="152"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="60p-bD-VHe">
             <objects>
                 <viewController id="u83-tG-Pf8" customClass="ProfileViewController" customModule="audioRec" customModuleProvider="target" sceneMemberID="viewController">
@@ -1038,7 +1038,7 @@
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wjJ-Rn-fkS">
-                                <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
+                                <rect key="frame" x="0.0" y="618" width="375" height="0.0"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpe-TK-VGA">
                                         <rect key="frame" x="0.0" y="0.0" width="102" height="0.0"/>
@@ -1097,7 +1097,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gLg-GS-8uC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="publicFeedIcon" id="T9Y-Zf-fWa"/>
+                    <tabBarItem key="tabBarItem" tag="-5" title="" image="profilePicSmall" id="T9Y-Zf-fWa">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="profileHeader" destination="ub4-fa-fQL" id="aeP-ga-EXd"/>
                         <outlet property="profilePicture" destination="QS1-ck-e9L" id="a0C-r1-8E7"/>
@@ -1129,6 +1131,7 @@
                         <segue destination="Gsk-Cu-sAB" kind="relationship" relationship="viewControllers" id="YAe-ea-Dbp"/>
                         <segue destination="gu6-eg-1mg" kind="relationship" relationship="viewControllers" id="YS4-0o-a0d"/>
                         <segue destination="P4d-gg-YJ4" kind="relationship" relationship="viewControllers" id="gCH-lB-ROX"/>
+                        <segue destination="u83-tG-Pf8" kind="relationship" relationship="viewControllers" id="wKh-gC-jmt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zf5-dU-6Ua" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1212,13 +1215,12 @@
         <image name="loginButtonPurple.png" width="286" height="89"/>
         <image name="privateFeed" width="30" height="30"/>
         <image name="profilePic" width="219" height="230"/>
-        <image name="profilePicSmall" width="30" height="32"/>
+        <image name="profilePicSmall" width="28" height="30"/>
         <image name="publicFeedIcon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rTX-a7-dTc"/>
         <segue reference="iEF-ss-zJc"/>
-        <segue reference="bzp-8N-DfN"/>
+        <segue reference="wKh-gC-jmt"/>
         <segue reference="FuC-k1-iXr"/>
     </inferredMetricsTieBreakers>
 </document>

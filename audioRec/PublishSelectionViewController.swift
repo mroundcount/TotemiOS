@@ -128,7 +128,7 @@ class PublishSelectionViewController: UIViewController, UITableViewDelegate, UIT
         let s3Transfer = S3TransferUtility()
         do {
             let audioData = try Data(contentsOf: dataURL as URL)
-//            s3Transfer.uploadData(data: audioData, postID: postID)
+            s3Transfer.uploadData(data: audioData, postID: postID)
         } catch {
             print("Unable to load data: \(error)")
         }
