@@ -349,14 +349,25 @@
                                     <action selector="publishPrivate:" destination="gu6-eg-1mg" eventType="touchUpInside" id="eSs-1M-sJ1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lts-7m-562">
+                                <rect key="frame" x="165" y="572" width="45" height="30"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="gu6-eg-1mg" eventType="touchUpInside" id="0bw-9S-HNG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.19125583560000001" green="0.54957648140000004" blue="0.94226860700000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="uAA-yS-n4h" firstAttribute="bottom" secondItem="lts-7m-562" secondAttribute="bottom" constant="16" id="0TD-oB-jku"/>
                             <constraint firstItem="M4x-Ti-V3q" firstAttribute="top" secondItem="emV-8D-7Fo" secondAttribute="bottom" constant="5" id="3up-zk-7dC"/>
                             <constraint firstItem="Hj6-Zc-rq2" firstAttribute="top" secondItem="M4x-Ti-V3q" secondAttribute="bottom" constant="5" id="4Tw-UW-WOJ"/>
                             <constraint firstItem="Ynj-9m-Iye" firstAttribute="top" secondItem="Y5x-Do-ish" secondAttribute="bottom" constant="25" id="5IQ-ad-dIS"/>
                             <constraint firstItem="emV-8D-7Fo" firstAttribute="top" secondItem="uAA-yS-n4h" secondAttribute="top" constant="30" id="B7u-LZ-iRE"/>
                             <constraint firstItem="cAF-Jb-8gB" firstAttribute="top" secondItem="emV-8D-7Fo" secondAttribute="bottom" constant="40" id="GpV-0n-Vpr"/>
+                            <constraint firstItem="lts-7m-562" firstAttribute="centerX" secondItem="F26-YA-y8K" secondAttribute="centerX" id="Hd5-zn-T06"/>
                             <constraint firstItem="uAA-yS-n4h" firstAttribute="trailing" secondItem="emV-8D-7Fo" secondAttribute="trailing" constant="16" id="IEw-Rz-Mhb"/>
                             <constraint firstItem="1Fq-9P-Ufv" firstAttribute="leading" secondItem="uAA-yS-n4h" secondAttribute="leading" id="JgK-il-aM9"/>
                             <constraint firstItem="IWF-2L-0Ad" firstAttribute="leading" secondItem="Hj6-Zc-rq2" secondAttribute="trailing" constant="8" id="LmM-F0-amo"/>
@@ -388,6 +399,7 @@
                     <navigationItem key="navigationItem" id="eXv-Pa-2do"/>
                     <connections>
                         <outlet property="defaultTxt" destination="emV-8D-7Fo" id="xBZ-ZS-da5"/>
+                        <outlet property="deleteButton" destination="lts-7m-562" id="VQg-Iy-dUJ"/>
                         <outlet property="descriptionTxt" destination="Y5x-Do-ish" id="lIr-Th-bVG"/>
                         <outlet property="finishedBtn" destination="IWF-2L-0Ad" id="5bF-gL-zg0"/>
                         <outlet property="pauseBtn" destination="Hj6-Zc-rq2" id="cQV-7O-fAw"/>
@@ -396,9 +408,7 @@
                         <outlet property="recordBtn" destination="M4x-Ti-V3q" id="btW-mJ-LlF"/>
                         <outlet property="recordingImage" destination="1Fq-9P-Ufv" id="R5D-HD-neT"/>
                         <outlet property="timerLbl" destination="cAF-Jb-8gB" id="yKo-Xi-lIb"/>
-                        <segue destination="DlC-cG-HMH" kind="popoverPresentation" identifier="recorderToSelection" popoverAnchorView="Hph-Gj-iGN" id="WXK-1M-uwi">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
+                        <segue destination="DlC-cG-HMH" kind="show" identifier="recorderToSelection" id="WXK-1M-uwi"/>
                         <segue destination="Mvs-g9-Wy2" kind="show" identifier="recorderToFeed" id="iEF-ss-zJc"/>
                     </connections>
                 </viewController>
@@ -1221,7 +1231,6 @@
         <image name="user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YS4-0o-a0d"/>
         <segue reference="iEF-ss-zJc"/>
         <segue reference="EmI-25-KEB"/>
         <segue reference="FuC-k1-iXr"/>

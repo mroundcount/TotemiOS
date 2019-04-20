@@ -1,19 +1,47 @@
 PODS:
-  - AWSAuthCore (2.6.27):
-    - AWSCore (= 2.6.27)
-  - AWSCognito (2.6.27):
-    - AWSCore (= 2.6.27)
-  - AWSCore (2.6.27)
-  - AWSMobileClient (2.6.27):
-    - AWSAuthCore (= 2.6.27)
-  - AWSS3 (2.6.27):
-    - AWSCore (= 2.6.27)
-  - SwiftyJSON (4.1.0)
+  - AWSAuthCore (2.6.35):
+    - AWSCore (= 2.6.35)
+  - AWSCognito (2.6.35):
+    - AWSCore (= 2.6.35)
+  - AWSCore (2.6.35)
+  - AWSMobileClient (2.6.35):
+    - AWSAuthCore (= 2.6.35)
+  - AWSS3 (2.6.35):
+    - AWSCore (= 2.6.35)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - FacebookCore (0.6.0):
+    - Bolts (~> 1.9)
+    - FBSDKCoreKit (~> 4.43)
+  - FacebookLogin (0.6.0):
+    - Bolts (~> 1.9)
+    - FacebookCore (~> 0.5)
+    - FBSDKCoreKit (~> 4.43)
+    - FBSDKLoginKit (~> 4.43)
+  - FacebookShare (0.6.1):
+    - Bolts (~> 1.9)
+    - FacebookCore (~> 0.5)
+    - FBSDKCoreKit (~> 4.43)
+    - FBSDKShareKit (~> 4.43)
+  - FBSDKCoreKit (4.44.1):
+    - Bolts (~> 1.9)
+  - FBSDKLoginKit (4.44.1):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.44.1):
+    - FBSDKCoreKit
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - AWSCognito (~> 2.6.13)
   - AWSMobileClient (~> 2.6.13)
   - AWSS3 (~> 2.6.13)
+  - FacebookCore
+  - FacebookLogin
+  - FacebookShare
   - SwiftyJSON
 
 SPEC REPOS:
@@ -23,16 +51,30 @@ SPEC REPOS:
     - AWSCore
     - AWSMobileClient
     - AWSS3
+    - Bolts
+    - FacebookCore
+    - FacebookLogin
+    - FacebookShare
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  AWSAuthCore: 307c3043e169893579391acd30d1150e2aabfe53
-  AWSCognito: 582d098de9b4cc16bd9fad8e2fbea9f7280ec428
-  AWSCore: 87e3711bc0d7e055f9d85b6ef272d7f91f2e0796
-  AWSMobileClient: 20d8376dec701fd5812caedde0a8678e641c9ba9
-  AWSS3: 2069e63aeac5dd9fd90a74b8d717cacae7a8bf67
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  AWSAuthCore: 386e045a341acebf2409425467e907ae1a45ed63
+  AWSCognito: 6b96ae976b5f59881c1bb406e0c7d08494651dee
+  AWSCore: 2dab62ef2e5ca5d8c72c6cbdb3a6ea1532c27c2b
+  AWSMobileClient: f89a36e0d95fc354a9d3b50d347371788c542449
+  AWSS3: 282a590bb47e9cd88de24979fb28954399c41c52
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FacebookCore: 38cd3a4078738d6f648eb9b6b9d35b02d693e9a1
+  FacebookLogin: 658b0569961a081a0890f5f4dbf69ced00657d9e
+  FacebookShare: 84bccbc222fc09c839b851925ad6c295a4ab7840
+  FBSDKCoreKit: a823ae35bdb60ebb8d7a7e51abe7c5d87d2bfced
+  FBSDKLoginKit: 54ae59987f2a8703021557c90a9aebb9e5c2bef6
+  FBSDKShareKit: 526d4cfb713d24855fa23d0dd74e191accd3a720
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 8ed6955e26677dcfd3fd05bff45998b8418ab889
+PODFILE CHECKSUM: 6d2eb34d30644f9d6130aefa0b2e5d66c6f197d6
 
 COCOAPODS: 1.5.3
