@@ -13,7 +13,15 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        print("did complete")
+        print("did complete facebook login")
+        fetchProfile()
+        
+//        let dbManager = DatabaseManager()
+//
+//        let variable = "{\"User\":[{\"username\":\"" + username.text! + "\",\"password\":\"" + password.text! + "\",\"email\":\"" + emailAddress.text! + "\"}]}"
+//        print(variable)
+//        print("-----------------response from dataPost-----------------------")
+//        print(dbManager.dataPost(endpoint: "api/user", data: variable))
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -41,7 +49,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkIfPatientLoggedIn()
+        checkIfUserIsLoggedIn()
 
         //dismiss keyboard
         self.hideKeyboardWhenTappedAround()
@@ -74,6 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         fbLogin.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
 
         
+        
     }
     
     @IBAction func HelpBtn(_ sender: UIButton) {
@@ -84,7 +93,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     
-    func checkIfPatientLoggedIn(){
+    func checkIfUserIsLoggedIn(){
+        
+        if let token = FBSDKAccessToken.current() {
+            fetchProfile()
+        }
         
         let preferences = UserDefaults.standard
         
@@ -103,6 +116,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             }
         }
         
+    }
+    
+    func fetchProfile() {
+        print("Fetching profile!")
+        
+        let parameters = ["fields": "email, first_name, last_name, picture.type(large)"]
+        
+        FBSDKGraphRequest(graphPath: "me", parameters: parameters).start(completionHandler: {(connection, result, error) -> Void in
+            
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            if let resultNew = result as? [String:Any] {
+                let email = resultNew["email"]  as! String
+                
+                print(email)
+                
+                if let picture = resultNew["picture"] as? NSDictionary, let data = picture["data"] as? NSDictionary, let url = data["url"] as? String {
+                    print(url)
+                }
+            }
+            
+            
+            
+        })
     }
     
     // Dismissing the keyboard using the tap jester
