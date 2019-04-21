@@ -91,17 +91,7 @@ class UserFeedViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func OptTapped(_ sender: UIButton) {
         
-        if(sender.tag == 0){
-            print("profile")
-            self.performSegue(withIdentifier: "privateToProfile", sender: nil)
-            menuOpt.forEach { (button) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    button.isHidden = true
-                    self.view.layoutIfNeeded()
-                })
-            }
-      
-        }  else if (sender.tag == 1) {
+     if (sender.tag == 0) {
             print("cancel")
             menuOpt.forEach { (button) in
                 UIView.animate(withDuration: 0.3, animations: {

@@ -518,7 +518,7 @@
             </objects>
             <point key="canvasLocation" x="2582" y="-705"/>
         </scene>
-        <!--User Feed View Controller-->
+        <!--My Feed-->
         <scene sceneID="Nly-pD-AUM">
             <objects>
                 <viewController id="P4d-gg-YJ4" customClass="UserFeedViewController" customModule="audioRec" customModuleProvider="target" sceneMemberID="viewController">
@@ -648,16 +648,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ujR-HN-sSs">
                                 <rect key="frame" x="0.0" y="613" width="375" height="0.0"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huv-4J-SdI">
-                                        <rect key="frame" x="0.0" y="0.0" width="67" height="0.0"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Profile"/>
-                                        <connections>
-                                            <action selector="OptTapped:" destination="P4d-gg-YJ4" eventType="touchUpInside" id="YdW-BY-65A"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wBe-ni-zJ9">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wBe-ni-zJ9">
                                         <rect key="frame" x="0.0" y="0.0" width="67" height="0.0"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -689,26 +680,22 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Uxj-RX-xda"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="-5" title="" image="privateFeed" id="qpB-hg-Cna">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    <tabBarItem key="tabBarItem" tag="-5" title="My Feed" image="privateFeed" id="qpB-hg-Cna">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-5"/>
                         <inset key="landscapeImageInsets" minX="0.0" minY="-4" maxX="0.0" maxY="-6"/>
                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="-2" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="iGl-Is-94b" id="zRF-qf-u17"/>
-                        <outletCollection property="menuOpt" destination="huv-4J-SdI" collectionClass="NSMutableArray" id="anf-Gq-NpZ"/>
                         <outletCollection property="menuOpt" destination="wBe-ni-zJ9" collectionClass="NSMutableArray" id="pPA-xU-vlg"/>
-                        <segue destination="u83-tG-Pf8" kind="popoverPresentation" identifier="privateToProfile" popoverAnchorView="huv-4J-SdI" id="SVa-FO-F7M">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PHX-Rb-p63" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1662" y="1621"/>
         </scene>
-        <!--Feed View Controller-->
+        <!--Feed-->
         <scene sceneID="wrU-M7-VSp">
             <objects>
                 <viewController id="Gsk-Cu-sAB" customClass="FeedViewController" customModule="audioRec" customModuleProvider="target" sceneMemberID="viewController">
@@ -873,16 +860,7 @@
                                             <action selector="OptTapped:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="iAa-wH-72R"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyR-Br-pV8">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Profile"/>
-                                        <connections>
-                                            <action selector="OptTapped:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="kEk-TL-RUf"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAu-bQ-knW">
+                                    <button hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAu-bQ-knW">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -918,8 +896,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lyv-g5-8VA"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="publicFeedIcon" id="2P2-EG-VZS">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="publicFeedIcon" id="2P2-EG-VZS">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="wHw-HU-ysi" id="tt6-J7-T2I"/>
@@ -929,10 +907,6 @@
                         <outletCollection property="sortOpt" destination="EWu-cs-SJx" collectionClass="NSMutableArray" id="F3s-Jl-HRP"/>
                         <outletCollection property="sortOpt" destination="7jY-dF-Muq" collectionClass="NSMutableArray" id="a2D-X9-97K"/>
                         <outletCollection property="sortOpt" destination="fAu-bQ-knW" collectionClass="NSMutableArray" id="QDk-CK-R8O"/>
-                        <outletCollection property="sortOpt" destination="RyR-Br-pV8" collectionClass="NSMutableArray" id="wNS-MK-bYm"/>
-                        <segue destination="u83-tG-Pf8" kind="popoverPresentation" identifier="feedToProfile" popoverAnchorView="RyR-Br-pV8" id="Haa-pZ-K23">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgH-Cw-kkc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -945,9 +919,9 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1662" y="152"/>
+            <point key="canvasLocation" x="2582" y="152"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="60p-bD-VHe">
             <objects>
                 <viewController id="u83-tG-Pf8" customClass="ProfileViewController" customModule="audioRec" customModuleProvider="target" sceneMemberID="viewController">
@@ -1107,8 +1081,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gLg-GS-8uC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="user" id="DMK-zH-hF0">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="user" id="DMK-zH-hF0">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -1140,8 +1114,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="Gsk-Cu-sAB" kind="relationship" relationship="viewControllers" id="YAe-ea-Dbp"/>
-                        <segue destination="gu6-eg-1mg" kind="relationship" relationship="viewControllers" id="YS4-0o-a0d"/>
                         <segue destination="P4d-gg-YJ4" kind="relationship" relationship="viewControllers" id="gCH-lB-ROX"/>
+                        <segue destination="gu6-eg-1mg" kind="relationship" relationship="viewControllers" id="YS4-0o-a0d"/>
                         <segue destination="u83-tG-Pf8" kind="relationship" relationship="viewControllers" id="EmI-25-KEB"/>
                     </connections>
                 </tabBarController>
@@ -1231,6 +1205,7 @@
         <image name="user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="YS4-0o-a0d"/>
         <segue reference="iEF-ss-zJc"/>
         <segue reference="EmI-25-KEB"/>
         <segue reference="FuC-k1-iXr"/>

@@ -75,15 +75,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 })
             }
         } else if (sender.tag == 2) {
-            print("profile")
-            self.performSegue(withIdentifier: "feedToProfile", sender: nil)
-            sortOpt.forEach { (button) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    button.isHidden = true
-                    self.view.layoutIfNeeded()
-                })
-            }
-        } else if (sender.tag == 3) {
             print("cancel")
             sortOpt.forEach { (button) in
                 UIView.animate(withDuration: 0.3, animations: {
