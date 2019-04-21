@@ -81,36 +81,38 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
         // like a comment but it isn't one
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         
-        //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         print("view did disappear")
         UIApplication.shared.isIdleTimerDisabled = false
     }
-    
+    var offsetY:CGFloat = 0
+
     @objc func keyboardNotification(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            let endFrameY = endFrame!.origin.y ?? 0
-            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
-            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
-            if endFrameY >= UIScreen.main.bounds.size.height {
-                self.keyboardHeightLayoutConstraint?.constant = 154.0
+            let endFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
+            let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0
+            let animationCurveRawValue = (userInfo[UIKeyboardAnimationCurveUserInfoKey] as? Int) ?? Int(UIViewAnimationOptions.curveEaseInOut.rawValue)
+            let animationCurve = UIViewAnimationOptions(rawValue: UInt(animationCurveRawValue))
+            if let _ = endFrame, endFrame!.intersects(self.descriptionTxt.frame) {
+                self.offsetY = self.descriptionTxt.frame.maxY - endFrame!.minY
+                UIView.animate(withDuration: animationDuration, delay: TimeInterval(0), options: animationCurve, animations: {
+                    self.descriptionTxt.frame.origin.y = self.descriptionTxt.frame.origin.y - self.offsetY
+                }, completion: nil)
             } else {
-                self.keyboardHeightLayoutConstraint?.constant = endFrame?.size.height ?? 154.0
+                if self.offsetY != 0 {
+                    UIView.animate(withDuration: animationDuration, delay: TimeInterval(0), options: animationCurve, animations: {
+                        self.descriptionTxt.frame.origin.y = self.descriptionTxt.frame.origin.y + self.offsetY
+                        self.offsetY = 0
+                    }, completion: nil)
+                }
             }
-            UIView.animate(withDuration: duration,
-                           delay: TimeInterval(0),
-                           options: animationCurve,
-                           animations: { self.view.layoutIfNeeded() },
-                           completion: nil)
         }
     }
-    /*
+
     @objc func keyboardWillAppear(_ notification: NSNotification) {
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -128,7 +130,7 @@ class RecorderViewController: UIViewController, AVAudioRecorderDelegate, UITextF
             }
         }
     }
- */
+ 
     
     
     @IBAction func recordBtn(_ sender: UIButton) {

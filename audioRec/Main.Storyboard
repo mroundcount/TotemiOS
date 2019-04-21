@@ -249,7 +249,7 @@
             </objects>
             <point key="canvasLocation" x="-396" y="-703"/>
         </scene>
-        <!--Recorder View Controller-->
+        <!--Record-->
         <scene sceneID="WAT-uo-Zxa">
             <objects>
                 <viewController id="gu6-eg-1mg" customClass="RecorderViewController" customModule="audioRec" customModuleProvider="target" sceneMemberID="viewController">
@@ -393,7 +393,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uAA-yS-n4h"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="icons8-round-50" id="MM3-TT-IAI">
+                    <tabBarItem key="tabBarItem" title="Record" image="icons8-round-50" id="MM3-TT-IAI">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="eXv-Pa-2do"/>
