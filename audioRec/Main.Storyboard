@@ -340,9 +340,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hph-Gj-iGN">
-                                <rect key="frame" x="50" y="446" width="83" height="46"/>
+                                <rect key="frame" x="50" y="446" width="90" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" title="Private">
+                                <state key="normal" title="Friends">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -472,7 +472,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdc-PX-4MD">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="haT-kH-hDG">
+                                    <navigationItem title="Select Friends" id="haT-kH-hDG">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="9Eq-Qx-cee">
                                             <connections>
                                                 <action selector="Back:" destination="DlC-cG-HMH" id="hpo-6u-BxA"/>
@@ -1008,11 +1008,6 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="username" id="YMU-pb-xai">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="bid-JF-RL6">
-                                            <connections>
-                                                <action selector="BackBtn:" destination="u83-tG-Pf8" id="AQn-RR-cdr"/>
-                                            </connections>
-                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Menu" id="Ajj-Xs-IJJ">
                                             <connections>
                                                 <action selector="profileMenuBtn:" destination="u83-tG-Pf8" id="dVd-Pn-vAW"/>
@@ -1205,7 +1200,6 @@
         <image name="user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YS4-0o-a0d"/>
         <segue reference="iEF-ss-zJc"/>
         <segue reference="EmI-25-KEB"/>
         <segue reference="FuC-k1-iXr"/>

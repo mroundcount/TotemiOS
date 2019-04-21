@@ -45,13 +45,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var audioPlayer: AVAudioPlayer!
     
     var activeTags : NSMutableArray = []
-    
-    
-    @IBAction func BackBtn(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
+
     @IBOutlet weak var tableView: UITableView!
     
     var posts : NSArray?

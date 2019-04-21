@@ -48,7 +48,7 @@ class UserFeedViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
+        updateTableView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
