@@ -34,6 +34,7 @@
 		BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */; };
 		BF23664720FD19FB0087C7E1 /* audioRecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23664620FD19FB0087C7E1 /* audioRecTests.swift */; };
 		BF23665220FD19FB0087C7E1 /* audioRecUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */; };
+		BF25A59A227013F1007C259A /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF25A599227013F1007C259A /* OtherProfileViewController.swift */; };
 		BF48C630225AF832002C184B /* UserFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48C62F225AF831002C184B /* UserFeedViewController.swift */; };
 		BF6960B7223587E800ED1A6A /* PublishSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6960B6223587E800ED1A6A /* PublishSelectionViewController.swift */; };
 		BF6960B9223592DA00ED1A6A /* PublishTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6960B8223592DA00ED1A6A /* PublishTableViewCell.swift */; };
@@ -103,6 +104,7 @@
 		BF23664D20FD19FB0087C7E1 /* audioRecUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = audioRecUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioRecUITests.swift; sourceTree = "<group>"; };
 		BF23665320FD19FB0087C7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF25A599227013F1007C259A /* OtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
 		BF48C62F225AF831002C184B /* UserFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserFeedViewController.swift; path = ../UserFeedViewController.swift; sourceTree = "<group>"; };
 		BF6960B6223587E800ED1A6A /* PublishSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishSelectionViewController.swift; sourceTree = "<group>"; };
 		BF6960B8223592DA00ED1A6A /* PublishTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishTableViewCell.swift; sourceTree = "<group>"; };
@@ -215,21 +217,17 @@
 				BF70CFD921014F6F0001AF90 /* LoginViewController.swift */,
 				BF07810E2127674E00EB7CBE /* Main.storyboard */,
 				5AF347542267E4E5002D61AA /* MainTabBarController.swift */,
-				BF6DE9CB21E5C2D4005FE1A9 /* mediaIcons */,
 				5A54C5EC21F7E6F100C35C8A /* Post.swift */,
 				BF8C12662113DABB0086A99E /* PostTableViewCell.swift */,
-				BF9614C82219D36F008806AE /* ProfileEditor.swift */,
-				BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */,
-				BF6960B6223587E800ED1A6A /* PublishSelectionViewController.swift */,
-				BF6960B8223592DA00ED1A6A /* PublishTableViewCell.swift */,
-				BF078104212640FA00EB7CBE /* recorderModel.swift */,
-				BF078106212655FF00EB7CBE /* RecorderViewController.swift */,
-				5A5A4083212A331F00302124 /* recording.gif */,
+				BF25A599227013F1007C259A /* OtherProfileViewController.swift */,
+				BF25A59B2270141D007C259A /* Profile */,
+				BF25A59C22701435007C259A /* Record and Publish */,
 				5A5A4081212A2FBE00302124 /* S3TransferUtility.swift */,
 				BFB5A311225145CA004EB9DB /* S3TransferUtilityPhoto.swift */,
 				BF05B445217D7DA7003FB438 /* TotemLogo.png */,
 				BF11A9FF224B18BE0051593C /* User.swift */,
 				BF48C62F225AF831002C184B /* UserFeedViewController.swift */,
+				BF6DE9CB21E5C2D4005FE1A9 /* mediaIcons */,
 			);
 			path = audioRec;
 			sourceTree = "<group>";
@@ -250,6 +248,27 @@
 				BF23665320FD19FB0087C7E1 /* Info.plist */,
 			);
 			path = audioRecUITests;
+			sourceTree = "<group>";
+		};
+		BF25A59B2270141D007C259A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				BF9614C82219D36F008806AE /* ProfileEditor.swift */,
+				BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		BF25A59C22701435007C259A /* Record and Publish */ = {
+			isa = PBXGroup;
+			children = (
+				BF6960B6223587E800ED1A6A /* PublishSelectionViewController.swift */,
+				BF6960B8223592DA00ED1A6A /* PublishTableViewCell.swift */,
+				BF078104212640FA00EB7CBE /* recorderModel.swift */,
+				BF078106212655FF00EB7CBE /* RecorderViewController.swift */,
+				5A5A4083212A331F00302124 /* recording.gif */,
+			);
+			path = "Record and Publish";
 			sourceTree = "<group>";
 		};
 		BF6DE9CB21E5C2D4005FE1A9 /* mediaIcons */ = {
@@ -483,6 +502,7 @@
 				BF8C12672113DABB0086A99E /* PostTableViewCell.swift in Sources */,
 				BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */,
 				5A786E9622053955003CEB98 /* AudioLengthForCellDelegate.swift in Sources */,
+				BF25A59A227013F1007C259A /* OtherProfileViewController.swift in Sources */,
 				5A5A4082212A2FBE00302124 /* S3TransferUtility.swift in Sources */,
 				BF078105212640FA00EB7CBE /* recorderModel.swift in Sources */,
 				BFE030012111128300376B16 /* FeedViewController.swift in Sources */,

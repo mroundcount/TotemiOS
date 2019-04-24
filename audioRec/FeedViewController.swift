@@ -149,7 +149,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             dateFormatter.dateFormat = "MMM-dd-YYYY"
             let date = NSDate(timeIntervalSince1970: TimeInterval(timeCreated))
             let finalDate = dateFormatter.string(from: date as Date)
-            //let image = s3TransferPhoto.downloadProfilePicture(picID: username)
+            let image = s3TransferPhoto.downloadProfilePicture(picID: username)
             
 
             cell = tableView.dequeueReusableCell(withIdentifier: "feedTableViewCell") as? PostTableViewCell
@@ -165,7 +165,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             //let durationSec = (duration%60)
             //cell.durationLabel.text = "\(durationMin):\(durationSec)"
             
-            //cell.profilePicture!.image = image
+            cell.profilePicture!.image = image
             
             if((likedPosts.contains(postID))){
                 cell.likeBtn.isEnabled = false

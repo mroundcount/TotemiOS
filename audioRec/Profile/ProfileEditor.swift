@@ -94,19 +94,6 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     @IBAction func saveBtn(_ sender: UIButton) {
    
-//        Roundcount added 2/18
-//        let data = JSON([
-//            ])
-//
-//        let array : [JSON] = [data]
-//        let variable = JSON(["Post" : array])
-//        let dbManager = DatabaseManager()
-//
-////         TODO: update the dbManager thing with a post that uses a token
-//        let picID = dbManager.createNewPost(token: self.token, data: variable.rawString()!)
-//        print("ID of the post just returned \(picID)")
-     
-//         This is just a test to upload to s3
         let dataURL = getDirectory().appendingPathComponent("myprofilepicture.jpg")
         let s3Transfer = S3TransferUtility()
         do {
@@ -115,7 +102,7 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
         } catch {
             print("Unable to load data: \(error)")
         }
-        self.performSegue(withIdentifier: "backProfile", sender: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     //Function that get's path to direcotry
@@ -129,7 +116,7 @@ class ProfileEditor: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
 
     func saveImage(image: UIImage) -> Bool {
-        guard let data = UIImageJPEGRepresentation(image, 1) ?? UIImagePNGRepresentation(image) else {
+        guard let data = UIImageJPEGRepresentation(image, 0.1) ?? UIImagePNGRepresentation(image) else {
             return false
         }
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
