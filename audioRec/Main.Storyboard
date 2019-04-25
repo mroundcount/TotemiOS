@@ -707,11 +707,6 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Feed" id="sXs-56-1Hd">
-                                        <barButtonItem key="leftBarButtonItem" title="Help" id="Eri-xm-S8E">
-                                            <connections>
-                                                <action selector="helpBtn:" destination="Gsk-Cu-sAB" id="RiE-a5-C2I"/>
-                                            </connections>
-                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Menu" largeContentSizeImage="profilePicSmall" id="6ge-l6-VKS">
                                             <inset key="imageInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <connections>
@@ -721,8 +716,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKf-pl-Fe2">
-                                <rect key="frame" x="0.0" y="64" width="375" height="323"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKf-pl-Fe2">
+                                <rect key="frame" x="0.0" y="114" width="375" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="feedTableViewCell" rowHeight="213" id="sD3-hU-Jrc" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -800,26 +795,35 @@
                                                     </constraints>
                                                 </stackView>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="0hX-Kc-csl">
-                                                    <rect key="frame" x="13" y="142" width="349" height="31"/>
+                                                    <rect key="frame" x="75" y="142" width="287" height="31"/>
                                                     <connections>
                                                         <action selector="changeAudioTime:" destination="sD3-hU-Jrc" eventType="valueChanged" id="SAC-LS-c2S"/>
                                                     </connections>
                                                 </slider>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGp-x6-IxW">
+                                                    <rect key="frame" x="25" y="142" width="42" height="30"/>
+                                                    <state key="normal" title="Pause"/>
+                                                    <connections>
+                                                        <action selector="pauseBtn:" destination="sD3-hU-Jrc" eventType="touchUpInside" id="K2b-E7-7lA"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="0hX-Kc-csl" secondAttribute="trailing" constant="15" id="03f-k2-XvN"/>
                                                 <constraint firstItem="0hX-Kc-csl" firstAttribute="top" secondItem="qC8-Qb-W9h" secondAttribute="bottom" constant="30" id="0qY-vB-uDh"/>
                                                 <constraint firstItem="wM2-c8-8Ic" firstAttribute="top" secondItem="E2k-8H-7oZ" secondAttribute="topMargin" constant="75" id="2en-vU-qrc"/>
-                                                <constraint firstItem="0hX-Kc-csl" firstAttribute="leading" secondItem="E2k-8H-7oZ" secondAttribute="leading" constant="15" id="6Iu-XS-dvO"/>
                                                 <constraint firstItem="z1A-cE-kDJ" firstAttribute="leading" secondItem="E2k-8H-7oZ" secondAttribute="leading" constant="10" id="Btw-p3-Hoh"/>
                                                 <constraint firstItem="cOz-q7-KFq" firstAttribute="top" secondItem="E2k-8H-7oZ" secondAttribute="topMargin" constant="-7" id="CmV-M7-oNM"/>
                                                 <constraint firstItem="wM2-c8-8Ic" firstAttribute="trailing" secondItem="E2k-8H-7oZ" secondAttribute="trailingMargin" constant="10" id="MNt-Yn-kTp"/>
                                                 <constraint firstItem="tga-eS-2XV" firstAttribute="top" secondItem="BDK-X1-nvG" secondAttribute="bottom" constant="4" id="Olj-Ms-AtA"/>
+                                                <constraint firstItem="0hX-Kc-csl" firstAttribute="leading" secondItem="BGp-x6-IxW" secondAttribute="trailing" constant="10" id="TUo-iI-ytN"/>
                                                 <constraint firstItem="qC8-Qb-W9h" firstAttribute="top" secondItem="cOz-q7-KFq" secondAttribute="bottom" constant="8" id="YkZ-7z-FmV"/>
                                                 <constraint firstAttribute="trailing" secondItem="cOz-q7-KFq" secondAttribute="trailing" constant="15" id="Z4W-WH-Y6c"/>
                                                 <constraint firstItem="cOz-q7-KFq" firstAttribute="leading" secondItem="tga-eS-2XV" secondAttribute="trailing" constant="5" id="Z8y-vj-EcD"/>
                                                 <constraint firstItem="z1A-cE-kDJ" firstAttribute="top" secondItem="tga-eS-2XV" secondAttribute="bottom" constant="4" id="cxI-o5-I6w"/>
+                                                <constraint firstItem="BGp-x6-IxW" firstAttribute="leading" secondItem="E2k-8H-7oZ" secondAttribute="leadingMargin" constant="10" id="fvC-oZ-SUb"/>
                                                 <constraint firstItem="qC8-Qb-W9h" firstAttribute="centerX" secondItem="E2k-8H-7oZ" secondAttribute="centerX" id="h0f-z8-yB0"/>
+                                                <constraint firstItem="BGp-x6-IxW" firstAttribute="top" secondItem="z1A-cE-kDJ" secondAttribute="bottom" constant="35" id="kw6-II-qfC"/>
                                                 <constraint firstItem="BDK-X1-nvG" firstAttribute="top" secondItem="E2k-8H-7oZ" secondAttribute="top" constant="10" id="lCF-4B-fU8"/>
                                                 <constraint firstItem="tga-eS-2XV" firstAttribute="leading" secondItem="E2k-8H-7oZ" secondAttribute="leading" constant="10" id="n74-du-5B6"/>
                                                 <constraint firstItem="cOz-q7-KFq" firstAttribute="top" secondItem="E2k-8H-7oZ" secondAttribute="topMargin" constant="-7" id="oMr-tv-RfV"/>
@@ -831,6 +835,7 @@
                                             <outlet property="datePostedLabel" destination="z1A-cE-kDJ" id="E7f-Rr-6TD"/>
                                             <outlet property="durationLabel" destination="wM2-c8-8Ic" id="UB6-qo-RgM"/>
                                             <outlet property="likeBtn" destination="JjU-WS-ayN" id="XWC-cu-Vnh"/>
+                                            <outlet property="pauseBtn" destination="BGp-x6-IxW" id="WpM-uh-iOK"/>
                                             <outlet property="postDescription" destination="cOz-q7-KFq" id="P2k-yd-c1L"/>
                                             <outlet property="profilePicture" destination="BDK-X1-nvG" id="0mn-EA-3WG"/>
                                             <outlet property="slider" destination="0hX-Kc-csl" id="Kmp-Rw-LrR"/>
@@ -842,26 +847,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="X7b-7z-QMy">
                                 <rect key="frame" x="0.0" y="618" width="375" height="0.0"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWu-cs-SJx">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Sort: Most Popular"/>
-                                        <connections>
-                                            <action selector="OptTapped:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="gAL-fT-nsy"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7jY-dF-Muq">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Sort: Newest"/>
-                                        <connections>
-                                            <action selector="OptTapped:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="iAa-wH-72R"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAu-bQ-knW">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                    <button hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAu-bQ-knW">
+                                        <rect key="frame" x="0.0" y="0.0" width="67" height="0.0"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Cancel">
@@ -873,9 +860,34 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.86759421820000004" green="0.86759421820000004" blue="0.86759421820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="03U-JN-CGl">
+                                <rect key="frame" x="0.0" y="64" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgW-qq-4as">
+                                        <rect key="frame" x="0.0" y="10" width="91.5" height="30"/>
+                                        <state key="normal" title="Newest"/>
+                                        <connections>
+                                            <action selector="FilterOptTapped:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="ozd-hZ-qIn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mjf-bm-l8o">
+                                        <rect key="frame" x="141.5" y="10" width="92" height="30"/>
+                                        <state key="normal" title="Shuffle"/>
+                                        <connections>
+                                            <action selector="FilterOptTapped:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="MH8-9h-uwR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyB-Mr-hBh">
+                                        <rect key="frame" x="283.5" y="10" width="91.5" height="30"/>
+                                        <state key="normal" title="Popular"/>
+                                        <connections>
+                                            <action selector="FilterOptTapped:" destination="Gsk-Cu-sAB" eventType="touchUpInside" id="1gS-sJ-WUT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="EWu-cs-SJx" secondAttribute="trailing" id="8n5-SL-Gnj"/>
-                                    <constraint firstItem="EWu-cs-SJx" firstAttribute="leading" secondItem="X7b-7z-QMy" secondAttribute="leading" id="I9R-Zc-hhs"/>
+                                    <constraint firstAttribute="height" constant="50" id="IaO-f9-60e"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -883,16 +895,18 @@
                         <constraints>
                             <constraint firstItem="lyv-g5-8VA" firstAttribute="bottom" secondItem="X7b-7z-QMy" secondAttribute="bottom" id="0x8-e6-4nP"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="1jL-SU-7E3"/>
+                            <constraint firstItem="LKf-pl-Fe2" firstAttribute="top" secondItem="03U-JN-CGl" secondAttribute="bottom" id="2A6-Yw-mU5"/>
+                            <constraint firstAttribute="trailing" secondItem="03U-JN-CGl" secondAttribute="trailing" id="4AM-el-8gE"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="bottom" secondItem="lyv-g5-8VA" secondAttribute="bottom" id="Ejz-GE-W61"/>
+                            <constraint firstItem="03U-JN-CGl" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="FMX-Xm-i8t"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="HVR-5T-6kC"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="trailing" secondItem="lyv-g5-8VA" secondAttribute="trailing" id="J8w-hZ-pvQ"/>
-                            <constraint firstItem="LKf-pl-Fe2" firstAttribute="top" secondItem="Ouy-Q0-Ie0" secondAttribute="bottom" id="L7c-Nr-GAw"/>
                             <constraint firstAttribute="trailing" secondItem="X7b-7z-QMy" secondAttribute="trailing" id="Ozx-gp-D4p"/>
                             <constraint firstItem="lyv-g5-8VA" firstAttribute="trailing" secondItem="X7b-7z-QMy" secondAttribute="trailing" id="Sbs-N7-LJU"/>
                             <constraint firstItem="Ouy-Q0-Ie0" firstAttribute="top" secondItem="lyv-g5-8VA" secondAttribute="top" id="ebu-xv-UyD"/>
                             <constraint firstItem="LKf-pl-Fe2" firstAttribute="leading" secondItem="lyv-g5-8VA" secondAttribute="leading" id="k8N-0M-uAD"/>
                             <constraint firstItem="X7b-7z-QMy" firstAttribute="leading" secondItem="e9s-fJ-0k9" secondAttribute="leading" id="m7y-Qw-3hc"/>
-                            <constraint firstItem="LKf-pl-Fe2" firstAttribute="top" secondItem="Ouy-Q0-Ie0" secondAttribute="bottom" id="qEy-dG-HI0"/>
+                            <constraint firstItem="03U-JN-CGl" firstAttribute="top" secondItem="Ouy-Q0-Ie0" secondAttribute="bottom" id="xfM-7o-GU2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lyv-g5-8VA"/>
                     </view>
@@ -903,9 +917,6 @@
                         <outlet property="searchDisplayController" destination="wHw-HU-ysi" id="tt6-J7-T2I"/>
                         <outlet property="sortBtn" destination="6ge-l6-VKS" id="rra-fo-7s6"/>
                         <outlet property="tableView" destination="LKf-pl-Fe2" id="dcO-zM-ofl"/>
-                        <outletCollection property="sortOpt" destination="EWu-cs-SJx" collectionClass="NSMutableArray" id="lnc-2T-N0y"/>
-                        <outletCollection property="sortOpt" destination="EWu-cs-SJx" collectionClass="NSMutableArray" id="F3s-Jl-HRP"/>
-                        <outletCollection property="sortOpt" destination="7jY-dF-Muq" collectionClass="NSMutableArray" id="a2D-X9-97K"/>
                         <outletCollection property="sortOpt" destination="fAu-bQ-knW" collectionClass="NSMutableArray" id="QDk-CK-R8O"/>
                     </connections>
                 </viewController>
@@ -919,7 +930,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2582" y="152"/>
+            <point key="canvasLocation" x="2581.5999999999999" y="151.57421289355324"/>
         </scene>
         <!--Profile-->
         <scene sceneID="60p-bD-VHe">
@@ -929,8 +940,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="215" estimatedRowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NLY-4h-Z0N">
-                                <rect key="frame" x="0.0" y="259" width="375" height="255"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="215" estimatedRowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NLY-4h-Z0N">
+                                <rect key="frame" x="0.0" y="285" width="375" height="333"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileTableViewCell" rowHeight="215" id="EpE-NZ-rnW" customClass="PostTableViewCell" customModule="audioRec" customModuleProvider="target">
@@ -1017,19 +1028,10 @@
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wjJ-Rn-fkS">
-                                <rect key="frame" x="0.0" y="618" width="375" height="0.0"/>
+                                <rect key="frame" x="375" y="618" width="0.0" height="0.0"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpe-TK-VGA">
-                                        <rect key="frame" x="0.0" y="0.0" width="102" height="0.0"/>
-                                        <color key="backgroundColor" red="0.86759421820000004" green="0.86759421820000004" blue="0.86759421820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Edit Profile"/>
-                                        <connections>
-                                            <action selector="OptTapped:" destination="u83-tG-Pf8" eventType="touchUpInside" id="59T-tz-DaY"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTK-yi-ilt">
-                                        <rect key="frame" x="0.0" y="0.0" width="102" height="0.0"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTK-yi-ilt">
+                                        <rect key="frame" x="0.0" y="0.0" width="77" height="0.0"/>
                                         <color key="backgroundColor" red="0.86759421820000004" green="0.86759421820000004" blue="0.86759421820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Log Out"/>
@@ -1037,8 +1039,8 @@
                                             <action selector="OptTapped:" destination="u83-tG-Pf8" eventType="touchUpInside" id="bjO-Eo-y5g"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEq-tO-fC4">
-                                        <rect key="frame" x="0.0" y="0.0" width="102" height="0.0"/>
+                                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEq-tO-fC4">
+                                        <rect key="frame" x="0.0" y="0.0" width="77" height="0.0"/>
                                         <color key="backgroundColor" red="0.86759421820000004" green="0.86759421820000004" blue="0.86759421820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Cancel"/>
@@ -1056,22 +1058,29 @@
                                     <constraint firstAttribute="height" constant="150" id="fIs-Nw-As0"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvW-HC-N11">
+                                <rect key="frame" x="141" y="239" width="93" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Edit Profile"/>
+                                <connections>
+                                    <action selector="editProfileBtn:" destination="u83-tG-Pf8" eventType="touchUpInside" id="xQe-zo-fe1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="1Ga-cl-Cxr"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="1hc-T8-zHF"/>
                             <constraint firstItem="QS1-ck-e9L" firstAttribute="top" secondItem="ub4-fa-fQL" secondAttribute="bottom" constant="15" id="Dey-dh-ipy"/>
-                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="top" secondItem="QS1-ck-e9L" secondAttribute="bottom" constant="30" id="F6N-q5-DsA"/>
                             <constraint firstItem="QS1-ck-e9L" firstAttribute="centerX" secondItem="yj0-f0-bIz" secondAttribute="centerX" id="M2i-HY-ft8"/>
                             <constraint firstItem="ub4-fa-fQL" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="Rqe-zz-RJZ"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="TdL-KQ-Nlt"/>
-                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="trailing" secondItem="gLg-GS-8uC" secondAttribute="trailing" id="U9j-Kg-6IB"/>
                             <constraint firstItem="ub4-fa-fQL" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="awk-hq-9MS"/>
                             <constraint firstItem="gLg-GS-8uC" firstAttribute="bottom" secondItem="wjJ-Rn-fkS" secondAttribute="bottom" id="dSm-rH-hjM"/>
                             <constraint firstItem="ub4-fa-fQL" firstAttribute="top" secondItem="gLg-GS-8uC" secondAttribute="top" id="e7Z-ML-0af"/>
-                            <constraint firstItem="wjJ-Rn-fkS" firstAttribute="leading" secondItem="gLg-GS-8uC" secondAttribute="leading" id="gaz-TV-WYb"/>
+                            <constraint firstItem="fvW-HC-N11" firstAttribute="top" secondItem="QS1-ck-e9L" secondAttribute="bottom" constant="10" id="nWi-Tz-jNf"/>
                             <constraint firstItem="NLY-4h-Z0N" firstAttribute="bottom" secondItem="gLg-GS-8uC" secondAttribute="bottom" id="w61-J2-EyS"/>
+                            <constraint firstItem="fvW-HC-N11" firstAttribute="centerX" secondItem="yj0-f0-bIz" secondAttribute="centerX" id="wwA-PL-xFn"/>
+                            <constraint firstItem="NLY-4h-Z0N" firstAttribute="top" secondItem="fvW-HC-N11" secondAttribute="bottom" constant="10" id="yns-Ik-ej1"/>
                             <constraint firstItem="gLg-GS-8uC" firstAttribute="trailing" secondItem="wjJ-Rn-fkS" secondAttribute="trailing" id="zoR-If-XvZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gLg-GS-8uC"/>
@@ -1081,22 +1090,22 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="editProfileBtn" destination="fvW-HC-N11" id="vLC-6b-avp"/>
                         <outlet property="profileHeader" destination="ub4-fa-fQL" id="aeP-ga-EXd"/>
                         <outlet property="profilePicture" destination="QS1-ck-e9L" id="a0C-r1-8E7"/>
                         <outlet property="tableView" destination="NLY-4h-Z0N" id="VDE-wy-Z3K"/>
                         <outlet property="usernameProfile" destination="YMU-pb-xai" id="177-te-9sT"/>
-                        <outletCollection property="profileMenu" destination="Zpe-TK-VGA" collectionClass="NSMutableArray" id="sC3-TD-w1G"/>
                         <outletCollection property="profileMenu" destination="WEq-tO-fC4" collectionClass="NSMutableArray" id="5oI-xW-Vk4"/>
                         <outletCollection property="profileMenu" destination="jTK-yi-ilt" collectionClass="NSMutableArray" id="NrN-NM-Uwb"/>
                         <segue destination="rZ9-7n-uVR" kind="presentation" identifier="logout" id="FuC-k1-iXr"/>
-                        <segue destination="lOL-JV-8ST" kind="popoverPresentation" identifier="profileEditor" popoverAnchorView="Zpe-TK-VGA" id="rTX-a7-dTc">
+                        <segue destination="lOL-JV-8ST" kind="popoverPresentation" identifier="profileEditor" popoverAnchorView="fvW-HC-N11" id="rTX-a7-dTc">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0u-J8-7l3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1662" y="878"/>
+            <point key="canvasLocation" x="1661.5999999999999" y="877.51124437781118"/>
         </scene>
         <!--Other Profile View Controller-->
         <scene sceneID="d6x-B2-7cT">

@@ -32,6 +32,7 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView?
+    @IBOutlet weak var pauseBtn: UIButton!
     
     
     
@@ -67,6 +68,12 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     
         
     }
+    
+    @IBAction func pauseBtn(_ sender: UIButton) {
+        let player = s3Transfer.audioPlayer
+        player?.pause()
+    }
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

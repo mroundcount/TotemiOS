@@ -29,6 +29,7 @@
 		BF07810F2127674E00EB7CBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF07810E2127674E00EB7CBE /* Main.storyboard */; };
 		BF11AA00224B18BE0051593C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11A9FF224B18BE0051593C /* User.swift */; };
 		BF145F832195136E00450A88 /* DonePlayingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF145F822195136E00450A88 /* DonePlayingDelegate.swift */; };
+		BF15858A22715FDC00B2548A /* ContestFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF15858922715FDC00B2548A /* ContestFeedViewController.swift */; };
 		BF23663220FD19F50087C7E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23663120FD19F50087C7E1 /* AppDelegate.swift */; };
 		BF23663920FD19FA0087C7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF23663820FD19FA0087C7E1 /* Assets.xcassets */; };
 		BF23663C20FD19FA0087C7E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */; };
@@ -93,6 +94,7 @@
 		BF07810E2127674E00EB7CBE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BF11A9FF224B18BE0051593C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BF145F822195136E00450A88 /* DonePlayingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonePlayingDelegate.swift; sourceTree = "<group>"; };
+		BF15858922715FDC00B2548A /* ContestFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestFeedViewController.swift; sourceTree = "<group>"; };
 		BF23662E20FD19F50087C7E1 /* audioRec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = audioRec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF23663120FD19F50087C7E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF23663820FD19FA0087C7E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,7 +107,7 @@
 		BF23665120FD19FB0087C7E1 /* audioRecUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioRecUITests.swift; sourceTree = "<group>"; };
 		BF23665320FD19FB0087C7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF25A599227013F1007C259A /* OtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
-		BF48C62F225AF831002C184B /* UserFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserFeedViewController.swift; path = ../UserFeedViewController.swift; sourceTree = "<group>"; };
+		BF48C62F225AF831002C184B /* UserFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedViewController.swift; sourceTree = "<group>"; };
 		BF6960B6223587E800ED1A6A /* PublishSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishSelectionViewController.swift; sourceTree = "<group>"; };
 		BF6960B8223592DA00ED1A6A /* PublishTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishTableViewCell.swift; sourceTree = "<group>"; };
 		BF70CFD921014F6F0001AF90 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BF158588227159EE00B2548A /* Log In and Create Account */ = {
+			isa = PBXGroup;
+			children = (
+				BFE030022111183600376B16 /* CreateAccountModel.swift */,
+				BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */,
+				BF70CFD921014F6F0001AF90 /* LoginViewController.swift */,
+			);
+			path = "Log In and Create Account";
+			sourceTree = "<group>";
+		};
+		BF15858B22715FF400B2548A /* Feeds */ = {
+			isa = PBXGroup;
+			children = (
+				BFE030002111128300376B16 /* FeedViewController.swift */,
+				BF15858922715FDC00B2548A /* ContestFeedViewController.swift */,
+				BF48C62F225AF831002C184B /* UserFeedViewController.swift */,
+			);
+			path = Feeds;
+			sourceTree = "<group>";
+		};
 		BF23662520FD19F50087C7E1 = {
 			isa = PBXGroup;
 			children = (
@@ -201,32 +223,28 @@
 			isa = PBXGroup;
 			children = (
 				BF23663120FD19F50087C7E1 /* AppDelegate.swift */,
-				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
 				5A786E9522053955003CEB98 /* AudioLengthForCellDelegate.swift */,
 				5AB7DCA8210FC76600464C93 /* audioRec.entitlements */,
 				5AFD7BDD2129E08B0047349C /* awsconfiguration.json */,
-				BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */,
-				BFE030022111183600376B16 /* CreateAccountModel.swift */,
-				BF70CFDD2102FA920001AF90 /* CreateAccountViewController.swift */,
 				5AB7DCA92110D34A00464C93 /* DatabaseManager.swift */,
 				BF145F822195136E00450A88 /* DonePlayingDelegate.swift */,
-				BFE030002111128300376B16 /* FeedViewController.swift */,
 				BF07810821268F6200EB7CBE /* gifFile.swift */,
 				BF23663D20FD19FA0087C7E1 /* Info.plist */,
 				BF23663A20FD19FA0087C7E1 /* LaunchScreen.storyboard */,
-				BF70CFD921014F6F0001AF90 /* LoginViewController.swift */,
 				BF07810E2127674E00EB7CBE /* Main.storyboard */,
 				5AF347542267E4E5002D61AA /* MainTabBarController.swift */,
 				5A54C5EC21F7E6F100C35C8A /* Post.swift */,
 				BF8C12662113DABB0086A99E /* PostTableViewCell.swift */,
-				BF25A599227013F1007C259A /* OtherProfileViewController.swift */,
+				BF158588227159EE00B2548A /* Log In and Create Account */,
+				BF15858B22715FF400B2548A /* Feeds */,
 				BF25A59B2270141D007C259A /* Profile */,
 				BF25A59C22701435007C259A /* Record and Publish */,
 				5A5A4081212A2FBE00302124 /* S3TransferUtility.swift */,
 				BFB5A311225145CA004EB9DB /* S3TransferUtilityPhoto.swift */,
 				BF05B445217D7DA7003FB438 /* TotemLogo.png */,
 				BF11A9FF224B18BE0051593C /* User.swift */,
-				BF48C62F225AF831002C184B /* UserFeedViewController.swift */,
+				BF00BC912137737200AE45B2 /* buttonsLogos.xcassets */,
+				BF23663820FD19FA0087C7E1 /* Assets.xcassets */,
 				BF6DE9CB21E5C2D4005FE1A9 /* mediaIcons */,
 			);
 			path = audioRec;
@@ -253,6 +271,7 @@
 		BF25A59B2270141D007C259A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				BF25A599227013F1007C259A /* OtherProfileViewController.swift */,
 				BF9614C82219D36F008806AE /* ProfileEditor.swift */,
 				BFE02FFC210FF7EB00376B16 /* ProfileViewController.swift */,
 			);
@@ -505,6 +524,7 @@
 				BF25A59A227013F1007C259A /* OtherProfileViewController.swift in Sources */,
 				5A5A4082212A2FBE00302124 /* S3TransferUtility.swift in Sources */,
 				BF078105212640FA00EB7CBE /* recorderModel.swift in Sources */,
+				BF15858A22715FDC00B2548A /* ContestFeedViewController.swift in Sources */,
 				BFE030012111128300376B16 /* FeedViewController.swift in Sources */,
 				BF11AA00224B18BE0051593C /* User.swift in Sources */,
 			);

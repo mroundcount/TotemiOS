@@ -25,8 +25,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var usernameProfile: UINavigationItem!
     
     @IBOutlet weak var profilePicture: UIImageView!
-        
+    @IBOutlet weak var editProfileBtn: UIButton!
+    
     @IBOutlet weak var slider: UISlider!
+
     
     
 
@@ -49,6 +51,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var posts : NSArray?
+    
+    @IBAction func editProfileBtn(_ sender: Any) {
+        self.performSegue(withIdentifier: "profileEditor", sender: nil)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (posts?.count)!

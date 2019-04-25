@@ -16,7 +16,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var slider: UISlider!
     
     var activeTags : NSMutableArray = []
-    
+
     @IBAction func sortBtn(_ sender: Any) {
 
         sortOpt.forEach { (button) in
@@ -27,6 +27,43 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         } 
     }
     
+    
+    @IBAction func FilterOptTapped(_ sender: UIButton) {
+        
+        if(sender.tag == 0){
+            print("Newest")
+            self.posts = []
+            updateTableView()
+            sortOpt.forEach { (button) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    button.isHidden = true
+                    self.view.layoutIfNeeded()
+                })
+            }
+        } else if (sender.tag == 1) {
+            print("Shuffle")
+            updateTableView()
+            posts.shuffle()
+
+            tableView.reloadData()
+        } else if (sender.tag == 2) {
+            print("Popular")
+            updateTableView()
+            let PopularPosts = posts.sorted(by: {$0.likes! > $1.likes!})
+            
+            self.posts = []
+            for (index, post) in PopularPosts.enumerated() {
+                print(PopularPosts[index].description)
+                print(PopularPosts[index].likes)
+                self.posts.append(PopularPosts[index])
+            }
+            for post in posts {
+                print(post.description)
+            }
+            print(likedPosts)
+            tableView.reloadData()
+        }
+    }
 
     @IBAction func helpBtn(_ sender: UIBarButtonItem) {
         //UIApplication.shared.openURL(URL(string: "https://www.facebook.com/TotemLLC/?modal=admin_todo_tour")!)
@@ -41,7 +78,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if(sender.tag == 0){
             // most popular button
-            print("most pop")   
+            print("cancel")
           
             sortOpt.forEach { (button) in
                 UIView.animate(withDuration: 0.3, animations: {
@@ -49,41 +86,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.view.layoutIfNeeded()
                 })
             }
-            updateTableView()
-            let sortedPosts = posts.sorted(by: {$0.likes! > $1.likes!})
-
-            self.posts = []
-            for (index, post) in sortedPosts.enumerated() {
-                print(sortedPosts[index].description)
-                print(sortedPosts[index].likes)
-                self.posts.append(sortedPosts[index])
-            }
-            for post in posts {
-                print(post.description)
-            }
-            print(likedPosts)
-            tableView.reloadData()
-        } else if (sender.tag == 1) {
-            // newest button
-            print("newest")
-            self.posts = []
-            updateTableView()
-          sortOpt.forEach { (button) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    button.isHidden = true
-                    self.view.layoutIfNeeded()
-                })
-            }
-        } else if (sender.tag == 2) {
-            print("cancel")
-            sortOpt.forEach { (button) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    button.isHidden = true
-                    self.view.layoutIfNeeded()
-                })
-            }
         }
-
     }
     
     
@@ -270,10 +273,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             self.usernameString = preferences.value(forKey: "username") as! String
         }
-        
-        
+
         getPosts()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
