@@ -70,9 +70,19 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     }
     
     @IBAction func pauseBtn(_ sender: UIButton) {
-        let player = s3Transfer.audioPlayer
-        player?.pause()
+    let player = s3Transfer.audioPlayer
+        if (pauseBtn.titleLabel?.text == "Pause") {
+            player?.stop()
+            pauseBtn.setTitle("Resume", for: .normal)
+            updateSlider()
+
+        } else {
+            player?.play()
+            pauseBtn.setTitle("Pause", for: .normal)
+        }
     }
+
+
     
 
     override func awakeFromNib() {
@@ -117,8 +127,6 @@ class PostTableViewCell: UITableViewCell, DonePlayingDelegate {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-        
     }
 
     
